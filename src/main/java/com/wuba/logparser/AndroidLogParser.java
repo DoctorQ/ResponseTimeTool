@@ -13,7 +13,7 @@ public class AndroidLogParser implements LogParser {
 	@Override
 	public String parserLog(File logDir) {
 		// TODO Auto-generated method stub
-		return null;
+		return "1123";
 	}
 
 }

@@ -2,19 +2,22 @@ package com.wuba.logparser;
 
 import java.io.File;
 
-import junit.framework.Assert;
-
-import org.junit.Test;
-
-import com.wuba.logparser.AndroidLogParser;
-import com.wuba.logparser.LogParser;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class AndroidLogParserTest {
-    @Test
-    public void canConstructAPersonWithAName() {
-        LogParser androidLog = new AndroidLogParser();
-        File file = new File("");
-        String timeStamp =  androidLog.parserLog(file);
-//        Assert.assertNotNull(timeStamp);
-    }
+	@BeforeClass
+	public void setUp() {
+
+	}
+
+	@Test(groups = { "init" })
+	public void logInitTest() {
+		LogParser androidLog = new AndroidLogParser();
+		File file = new File("");
+		String timeStamp = androidLog.parserLog(file);
+		
+		Assert.assertNotNull(timeStamp);
+	}
 }
