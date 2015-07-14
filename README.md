@@ -12,6 +12,7 @@ Response  Time test tool for iOS and Android.
 
 - git clone https://github.com/58Automation/ResponseTimeTool.git
 - import into eclipse
+- gradle clean eclipse test jacoco build
 
 
 
