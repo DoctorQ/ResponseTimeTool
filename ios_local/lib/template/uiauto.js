@@ -11,11 +11,11 @@ String.prototype.trim = function() {
 };
 
 function FailureException(message) {
-    this.name = 'FailureException';
-    this.message = message;
-    this.toString = function() {
-        return this.name + ': "' + this.message + '"';
-    };
+	this.name = 'FailureException';
+	this.message = message;
+	this.toString = function() {
+		return this.name + ': "' + this.message + '"';
+	};
 };
 
 function verifyImage(image){
