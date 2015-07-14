@@ -1,4 +1,4 @@
-package com.wuba;
+package com.wuba.logparser;
 
 import java.io.File;
 
