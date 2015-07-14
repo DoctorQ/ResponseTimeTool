@@ -9,5 +9,13 @@ public class IOSLogParser implements LogParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String paserLongToStringForTime(long time) {
+		return null;
+	}
+
+	public long parserStringToLongForTime(String time) {
+		return 0;
+	}
 	
 }

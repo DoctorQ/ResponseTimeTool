@@ -15,7 +15,7 @@ public class AndroidLogParserTest {
 	@Test(groups = { "init" })
 	public void logInitTest() {
 		LogParser androidLog = new AndroidLogParser();
-		File file = new File("");
+		File file = new File("/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/log/android/time_points.txt");
 		String timeStamp = androidLog.parserLog(file);
 		
 		Assert.assertNotNull(timeStamp);
