@@ -1,0 +1,545 @@
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+D/time_points(23849): http://app.58.com/api/log/api/advertising/latest/1/6.0.0.0/|1422421751461|begin******|1422421751461
+D/time_points(23906): http://app.58.com/api/log/api/app/addanalysis/?productid=1&v=6.0.0.0&ua=MI%2B3&os=android&osv=4.4.2&channel=58585858&apn=cmnet&m=68%253Adf%253Add%253A8e%253Aa3%253Ade&mid=GSM&simop=cm2&x-up-calling-line-id=|1422421751571|begin******|1422421751571
+D/time_points(23849): http://app.58.com/api/log/api/sysmsg/gl?on=true|1422421751907|begin******|1422421751907
+D/time_points(23849): http://app.58.com/api/log/api/unity/update?versionnumber=1.1.2.3&dirname=bt&wlsversion=42&channelid=58585858&cityid=801&subwayver=1.0.0.0&wcVersion=1.0.0.1|1422421752203|begin******|1422421752203
+D/time_points(23849): http://app.58.com/api/windex/api/indexnew/?os=android&cversion=6.0.0.0&indexver=329&city=bt&test-12013=1|1422421752214|begin******|1422421752214
+D/time_points(23849): http://app.58.com/api/push/newgl/index/list|1422421752358|begin******|1422421752358
+D/time_points(23849): http://app.58.com/api/windex/api/advertising/scroll/1/6.0.0.0/130/-500/0/bt?channelid=58585858|1422421752622|begin******|1422421752622
+D/time_points(23849): http://app.58.com/api/windex/api/advertising/scroll/1/6.0.0.0/130/-500/0/bt?channelid=58585858|1422421752622|connect host is over|1422421753634
+D/time_points(23849): http://app.58.com/api/windex/api/advertising/scroll/1/6.0.0.0/130/-500/0/bt?channelid=58585858|1422421752622|read inputstream  is over|1422421753637
+D/time_points(23849): http://app.58.com/api/windex/api/advertising/scroll/1/6.0.0.0/130/-500/0/bt?channelid=58585858|1422421752622|parser json is over|1422421753638
+D/time_points(23849): http://app.58.com/api/log/api/sysmsg/gl?on=true|1422421751907|connect host is over|1422421753839
+D/time_points(23849): http://app.58.com/api/log/api/sysmsg/gl?on=true|1422421751907|read inputstream  is over|1422421753840
+D/time_points(23849): http://app.58.com/api/log/api/sysmsg/gl?on=true|1422421751907|parser json is over|1422421753841
+D/time_points(23849): http://app.58.com/api/log/api/unity/locate?lotid=116.434155&latid=40.010493&version=1&type=2&platform=1|1422421754492|begin******|1422421754492
+D/time_points(23849): http://app.58.com/api/log/api/unity/locate?lotid=116.434155&latid=40.010493&version=1&type=2&platform=1|1422421754492|connect host is over|1422421754945
+D/time_points(23849): http://app.58.com/api/log/api/unity/locate?lotid=116.434155&latid=40.010493&version=1&type=2&platform=1|1422421754492|read inputstream  is over|1422421754946
+D/time_points(23849): http://app.58.com/api/log/api/unity/locate?lotid=116.434155&latid=40.010493&version=1&type=2&platform=1|1422421754492|parser json is over|1422421754948
+D/time_points(23849): http://app.58.com/api/log/api/unity/update?versionnumber=1.1.2.3&dirname=bt&wlsversion=42&channelid=58585858&cityid=801&subwayver=1.0.0.0&wcVersion=1.0.0.1|1422421752203|connect host is over|1422421757594
+D/time_points(23849): http://app.58.com/api/log/api/unity/update?versionnumber=1.1.2.3&dirname=bt&wlsversion=42&channelid=58585858&cityid=801&subwayver=1.0.0.0&wcVersion=1.0.0.1|1422421752203|read inputstream  is over|1422421757595
+D/time_points(23849): http://app.58.com/api/windex/api/indexnew/?os=android&cversion=6.0.0.0&indexver=329&city=bt&test-12013=1|1422421752214|connect host is over|1422421757601
+D/time_points(23849): http://app.58.com/api/windex/api/indexnew/?os=android&cversion=6.0.0.0&indexver=329&city=bt&test-12013=1|1422421752214|read inputstream  is over|1422421757601
+D/time_points(23849): http://app.58.com/api/windex/api/indexnew/?os=android&cversion=6.0.0.0&indexver=329&city=bt&test-12013=1|1422421752214|parser json is over|1422421757602
+D/time_points(23849): http://app.58.com/api/log/api/unity/update?versionnumber=1.1.2.3&dirname=bt&wlsversion=42&channelid=58585858&cityid=801&subwayver=1.0.0.0&wcVersion=1.0.0.1|1422421752203|parser json is over|1422421757613
+D/time_points(23906): http://app.58.com/api/log/api/app/addanalysis/?productid=1&v=6.0.0.0&ua=MI%2B3&os=android&osv=4.4.2&channel=58585858&apn=cmnet&m=68%253Adf%253Add%253A8e%253Aa3%253Ade&mid=GSM&simop=cm2&x-up-calling-line-id=|1422421751571|connect host is over|1422421757628
+D/time_points(23849): http://app.58.com/api/push/newgl/index/list|1422421752358|connect host is over|1422421757635
+D/time_points(23906): http://app.58.com/api/log/api/app/addanalysis/?productid=1&v=6.0.0.0&ua=MI%2B3&os=android&osv=4.4.2&channel=58585858&apn=cmnet&m=68%253Adf%253Add%253A8e%253Aa3%253Ade&mid=GSM&simop=cm2&x-up-calling-line-id=|1422421751571|read inputstream  is over|1422421757650
+D/time_points(23906): http://app.58.com/api/log/api/app/addanalysis/?productid=1&v=6.0.0.0&ua=MI%2B3&os=android&osv=4.4.2&channel=58585858&apn=cmnet&m=68%253Adf%253Add%253A8e%253Aa3%253Ade&mid=GSM&simop=cm2&x-up-calling-line-id=|1422421751571|parser json is over|1422421757650
+D/time_points(23849): http://app.58.com/api/push/newgl/index/list|1422421752358|read inputstream  is over|1422421758015
+D/time_points(23849): http://app.58.com/api/push/newgl/index/list|1422421752358|parser json is over|1422421758028
+D/time_points(23849): http://app.58.com/api/log/api/advertising/latest/1/6.0.0.0/|1422421751461|connect host is over|1422421758040
+D/time_points(23849): http://app.58.com/api/log/api/advertising/latest/1/6.0.0.0/|1422421751461|read inputstream  is over|1422421758040
+D/time_points(23849): http://app.58.com/api/log/api/advertising/latest/1/6.0.0.0/|1422421751461|parser json is over|1422421758047
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&location=801%2C1142%2C5993&action=getListInfo%2CgetFilterInfo&tabkey=allcity&geoia=40.010493%2C116.434155&params=%7B%7D&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760525|begin******|1422421760525
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&location=801%2C1142%2C5993&action=getListInfo%2CgetFilterInfo&tabkey=allcity&geoia=40.010493%2C116.434155&params=%7B%7D&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760525|connect host is over|1422421760800
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&location=801%2C1142%2C5993&action=getListInfo%2CgetFilterInfo&tabkey=allcity&geoia=40.010493%2C116.434155&params=%7B%7D&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760525|read inputstream  is over|1422421760809
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&location=801%2C1142%2C5993&action=getListInfo%2CgetFilterInfo&tabkey=allcity&geoia=40.010493%2C116.434155&params=%7B%7D&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760525|parser json is over|1422421760875
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&page=2&location=801%2C1142%2C5993&action=getListInfo&tabkey=allcity&isNeedAd=0&params=%7B%7D&geoia=40.010493%2C116.434155&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760946|begin******|1422421760946
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&page=2&location=801%2C1142%2C5993&action=getListInfo&tabkey=allcity&isNeedAd=0&params=%7B%7D&geoia=40.010493%2C116.434155&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760946|connect host is over|1422421761197
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&page=2&location=801%2C1142%2C5993&action=getListInfo&tabkey=allcity&isNeedAd=0&params=%7B%7D&geoia=40.010493%2C116.434155&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760946|read inputstream  is over|1422421761203
+D/time_points(23849): http://app.58.com/api/list/xinfang?geotype=baidu&filterParams=%7B%7D&page=2&location=801%2C1142%2C5993&action=getListInfo&tabkey=allcity&isNeedAd=0&params=%7B%7D&geoia=40.010493%2C116.434155&localname=bt&v=1&format=json&curVer=6.0.0.0&appId=1&os=android|1422421760946|parser json is over|1422421761235
+I/time_points(23849): LOOP 0 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421772002|begin******|1422421772002
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421772044|begin******|1422421772044
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421772044|connect host is over|1422421774356
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421772044|parser xml is over|1422421774443
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421772002|connect host is over|1422421774763
+I/time_points(23849): LOOP 0 START TIME:1422421771848
+I/time_points(23849): LOOP 0 END TIME:1422421774902
+I/time_points(23849): LOOP 0 USED TIME:3054
+I/time_points(23849): LOOP 0 END
+I/time_points(23849): LOOP 1 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421791496|begin******|1422421791496
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421791523|begin******|1422421791523
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421791523|connect host is over|1422421792120
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421791523|parser xml is over|1422421792208
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421791496|connect host is over|1422421792488
+I/time_points(23849): LOOP 1 START TIME:1422421791228
+I/time_points(23849): LOOP 1 END TIME:1422421792240
+I/time_points(23849): LOOP 1 USED TIME:1012
+I/time_points(23849): LOOP 1 END
+I/time_points(23849): LOOP 2 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421808665|begin******|1422421808665
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421808705|begin******|1422421808705
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421808705|connect host is over|1422421809249
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421808705|parser xml is over|1422421809281
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421808665|connect host is over|1422421812629
+I/time_points(23849): LOOP 2 START TIME:1422421808534
+I/time_points(23849): LOOP 2 END TIME:1422421809549
+I/time_points(23849): LOOP 2 USED TIME:1015
+I/time_points(23849): LOOP 2 END
+I/time_points(23849): LOOP 3 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421825999|begin******|1422421825999
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421826043|begin******|1422421826043
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421826043|connect host is over|1422421826627
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421826043|parser xml is over|1422421826687
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421825999|connect host is over|1422421829744
+I/time_points(23849): LOOP 3 START TIME:1422421825853
+I/time_points(23849): LOOP 3 END TIME:1422421826866
+I/time_points(23849): LOOP 3 USED TIME:1013
+I/time_points(23849): LOOP 3 END
+I/time_points(23849): LOOP 4 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421843308|begin******|1422421843308
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421843337|begin******|1422421843337
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421843337|connect host is over|1422421846219
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421843337|parser xml is over|1422421846234
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421843308|connect host is over|1422421849469
+I/time_points(23849): LOOP 4 START TIME:1422421843168
+I/time_points(23849): LOOP 4 END TIME:1422421846256
+I/time_points(23849): LOOP 4 USED TIME:3088
+I/time_points(23849): LOOP 4 END
+I/time_points(23849): LOOP 5 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421862692|begin******|1422421862692
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421862729|begin******|1422421862729
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421862729|connect host is over|1422421865215
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421862729|parser xml is over|1422421865345
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421862692|connect host is over|1422421865505
+I/time_points(23849): LOOP 5 START TIME:1422421862554
+I/time_points(23849): LOOP 5 END TIME:1422421865577
+I/time_points(23849): LOOP 5 USED TIME:3023
+I/time_points(23849): LOOP 5 END
+I/time_points(23849): LOOP 6 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421882079|begin******|1422421882079
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421882109|begin******|1422421882109
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421882109|connect host is over|1422421882692
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421882109|parser xml is over|1422421882710
+I/time_points(23849): LOOP 6 START TIME:1422421881871
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421882079|connect host is over|1422421888230
+I/time_points(23849): LOOP 6 END TIME:1422421882890
+I/time_points(23849): LOOP 6 USED TIME:1019
+I/time_points(23849): LOOP 6 END
+I/time_points(23849): LOOP 7 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421899351|begin******|1422421899351
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421899386|begin******|1422421899386
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421899386|connect host is over|1422421901797
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421899386|parser xml is over|1422421901854
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421899351|connect host is over|1422421902148
+I/time_points(23849): LOOP 7 START TIME:1422421899214
+I/time_points(23849): LOOP 7 END TIME:1422421902260
+I/time_points(23849): LOOP 7 USED TIME:3046
+I/time_points(23849): LOOP 7 END
+I/time_points(23849): LOOP 8 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421918712|begin******|1422421918712
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421918739|begin******|1422421918740
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421918739|connect host is over|1422421921224
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421918739|parser xml is over|1422421921292
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421918712|connect host is over|1422421921849
+I/time_points(23849): LOOP 8 START TIME:1422421918569
+I/time_points(23849): LOOP 8 END TIME:1422421921662
+I/time_points(23849): LOOP 8 USED TIME:3093
+I/time_points(23849): LOOP 8 END
+I/time_points(23849): LOOP 9 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421938125|begin******|1422421938125
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421938157|begin******|1422421938157
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421938125|connect host is over|1422421938492
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421938157|connect host is over|1422421938541
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421938157|parser xml is over|1422421938718
+I/time_points(23849): LOOP 9 START TIME:1422421937972
+I/time_points(23849): LOOP 9 END TIME:1422421939002
+I/time_points(23849): LOOP 9 USED TIME:1030
+I/time_points(23849): LOOP 9 END
+I/time_points(23849): LOOP 10 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421955455|begin******|1422421955455
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421955482|begin******|1422421955482
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421955482|connect host is over|1422421957882
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421955482|parser xml is over|1422421958017
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421955455|connect host is over|1422421958230
+I/time_points(23849): LOOP 10 START TIME:1422421955310
+I/time_points(23849): LOOP 10 END TIME:1422421958331
+I/time_points(23849): LOOP 10 USED TIME:3021
+I/time_points(23849): LOOP 10 END
+I/time_points(23849): LOOP 11 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421974774|begin******|1422421974774
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421974810|begin******|1422421974810
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421974810|connect host is over|1422421975395
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421974810|parser xml is over|1422421975455
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421974774|connect host is over|1422421978539
+I/time_points(23849): LOOP 11 START TIME:1422421974626
+I/time_points(23849): LOOP 11 END TIME:1422421975638
+I/time_points(23849): LOOP 11 USED TIME:1012
+I/time_points(23849): LOOP 11 END
+I/time_points(23849): LOOP 12 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421992099|begin******|1422421992099
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421992130|begin******|1422421992130
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421992130|connect host is over|1422421994543
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421992130|parser xml is over|1422421994624
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422421992099|connect host is over|1422421994707
+I/time_points(23849): LOOP 12 START TIME:1422421991957
+I/time_points(23849): LOOP 12 END TIME:1422421994977
+I/time_points(23849): LOOP 12 USED TIME:3020
+I/time_points(23849): LOOP 12 END
+I/time_points(23849): LOOP 13 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422011404|begin******|1422422011404
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422011434|begin******|1422422011434
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422011434|connect host is over|1422422013622
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422011434|parser xml is over|1422422013634
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422011404|connect host is over|1422422017514
+I/time_points(23849): LOOP 13 START TIME:1422422011267
+I/time_points(23849): LOOP 13 END TIME:1422422014308
+I/time_points(23849): LOOP 13 USED TIME:3041
+I/time_points(23849): LOOP 13 END
+I/time_points(23849): LOOP 14 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422030808|begin******|1422422030808
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422030837|begin******|1422422030837
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422030837|connect host is over|1422422031412
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422030837|parser xml is over|1422422031457
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422030808|connect host is over|1422422034695
+I/time_points(23849): LOOP 14 START TIME:1422422030644
+I/time_points(23849): LOOP 14 END TIME:1422422031694
+I/time_points(23849): LOOP 14 USED TIME:1050
+I/time_points(23849): LOOP 14 END
+I/time_points(23849): LOOP 15 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422048138|begin******|1422422048138
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422048172|begin******|1422422048172
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422048172|connect host is over|1422422050564
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422048172|parser xml is over|1422422050585
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422048138|connect host is over|1422422050981
+I/time_points(23849): LOOP 15 START TIME:1422422047996
+I/time_points(23849): LOOP 15 END TIME:1422422051030
+I/time_points(23849): LOOP 15 USED TIME:3034
+I/time_points(23849): LOOP 15 END
+I/time_points(23849): LOOP 16 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422067496|begin******|1422422067496
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422067520|begin******|1422422067520
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422067520|connect host is over|1422422069722
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422067520|parser xml is over|1422422069735
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422067496|connect host is over|1422422070113
+I/time_points(23849): LOOP 16 START TIME:1422422067354
+I/time_points(23849): LOOP 16 END TIME:1422422070388
+I/time_points(23849): LOOP 16 USED TIME:3034
+I/time_points(23849): LOOP 16 END
+I/time_points(23849): LOOP 17 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422086829|begin******|1422422086829
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422086860|begin******|1422422086860
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422086860|connect host is over|1422422089463
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422086860|parser xml is over|1422422089667
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422086829|connect host is over|1422422092923
+I/time_points(23849): LOOP 17 START TIME:1422422086675
+I/time_points(23849): LOOP 17 END TIME:1422422089708
+I/time_points(23849): LOOP 17 USED TIME:3033
+I/time_points(23849): LOOP 17 END
+I/time_points(23849): LOOP 18 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422106153|begin******|1422422106153
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422106186|begin******|1422422106186
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422106186|connect host is over|1422422106751
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422106186|parser xml is over|1422422106828
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422106153|connect host is over|1422422109927
+I/time_points(23849): LOOP 18 START TIME:1422422106012
+I/time_points(23849): LOOP 18 END TIME:1422422107027
+I/time_points(23849): LOOP 18 USED TIME:1015
+I/time_points(23849): LOOP 18 END
+I/time_points(23849): LOOP 19 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422123482|begin******|1422422123482
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422123511|begin******|1422422123511
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422123511|connect host is over|1422422124079
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422123511|parser xml is over|1422422124177
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422123482|connect host is over|1422422127236
+I/time_points(23849): LOOP 19 START TIME:1422422123337
+I/time_points(23849): LOOP 19 END TIME:1422422124349
+I/time_points(23849): LOOP 19 USED TIME:1012
+I/time_points(23849): LOOP 19 END
+I/time_points(23849): LOOP 20 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422140799|begin******|1422422140799
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422140835|begin******|1422422140835
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422140835|connect host is over|1422422143119
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422140835|parser xml is over|1422422143152
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422140799|connect host is over|1422422143532
+I/time_points(23849): LOOP 20 START TIME:1422422140655
+I/time_points(23849): LOOP 20 END TIME:1422422143706
+I/time_points(23849): LOOP 20 USED TIME:3051
+I/time_points(23849): LOOP 20 END
+I/time_points(23849): LOOP 21 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422160147|begin******|1422422160147
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422160178|begin******|1422422160178
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422160178|connect host is over|1422422160734
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422160178|parser xml is over|1422422160813
+I/time_points(23849): LOOP 21 START TIME:1422422160021
+I/time_points(23849): LOOP 21 END TIME:1422422161038
+I/time_points(23849): LOOP 21 USED TIME:1017
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422160147|connect host is over|1422422169887
+I/time_points(23849): LOOP 21 END
+I/time_points(23849): LOOP 22 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422177465|begin******|1422422177465
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422177495|begin******|1422422177495
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422177495|connect host is over|1422422179865
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422177495|parser xml is over|1422422179885
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422177465|connect host is over|1422422180275
+I/time_points(23849): LOOP 22 START TIME:1422422177339
+I/time_points(23849): LOOP 22 END TIME:1422422180405
+I/time_points(23849): LOOP 22 USED TIME:3066
+I/time_points(23849): LOOP 22 END
+I/time_points(23849): LOOP 23 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422196841|begin******|1422422196841
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422196880|begin******|1422422196880
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422196880|connect host is over|1422422199200
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422196880|parser xml is over|1422422199233
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422196841|connect host is over|1422422199613
+I/time_points(23849): LOOP 23 START TIME:1422422196697
+I/time_points(23849): LOOP 23 END TIME:1422422199716
+I/time_points(23849): LOOP 23 USED TIME:3019
+I/time_points(23849): LOOP 23 END
+I/time_points(23849): LOOP 24 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422216260|begin******|1422422216260
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422216291|begin******|1422422216291
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422216291|connect host is over|1422422216866
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422216291|parser xml is over|1422422216966
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422216260|connect host is over|1422422220047
+I/time_points(23849): LOOP 24 START TIME:1422422216134
+I/time_points(23849): LOOP 24 END TIME:1422422217157
+I/time_points(23849): LOOP 24 USED TIME:1023
+I/time_points(23849): LOOP 24 END
+I/time_points(23849): LOOP 25 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422233575|begin******|1422422233575
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422233604|begin******|1422422233604
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422233604|connect host is over|1422422236450
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422233604|parser xml is over|1422422236552
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422233575|connect host is over|1422422239854
+I/time_points(23849): LOOP 25 START TIME:1422422233437
+I/time_points(23849): LOOP 25 END TIME:1422422236480
+I/time_points(23849): LOOP 25 USED TIME:3043
+I/time_points(23849): LOOP 25 END
+I/time_points(23849): LOOP 26 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422252944|begin******|1422422252944
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422253037|begin******|1422422253037
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422253037|connect host is over|1422422255481
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422253037|parser xml is over|1422422255588
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422252944|connect host is over|1422422255739
+I/time_points(23849): LOOP 26 START TIME:1422422252773
+I/time_points(23849): LOOP 26 END TIME:1422422255808
+I/time_points(23849): LOOP 26 USED TIME:3035
+I/time_points(23849): LOOP 26 END
+I/time_points(23849): LOOP 27 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422272234|begin******|1422422272234
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422272272|begin******|1422422272272
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422272272|connect host is over|1422422275024
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422272272|parser xml is over|1422422275197
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422272234|connect host is over|1422422278829
+I/time_points(23849): LOOP 27 START TIME:1422422272104
+I/time_points(23849): LOOP 27 END TIME:1422422276169
+I/time_points(23849): LOOP 27 USED TIME:4065
+I/time_points(23849): LOOP 27 END
+I/time_points(23849): LOOP 28 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422292768|begin******|1422422292768
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422292802|begin******|1422422292802
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422292802|connect host is over|1422422295135
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422292802|parser xml is over|1422422295237
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422292768|connect host is over|1422422295558
+I/time_points(23849): LOOP 28 START TIME:1422422292619
+I/time_points(23849): LOOP 28 END TIME:1422422295640
+I/time_points(23849): LOOP 28 USED TIME:3021
+I/time_points(23849): LOOP 28 END
+I/time_points(23849): LOOP 29 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422312087|begin******|1422422312087
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422312121|begin******|1422422312121
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422312121|connect host is over|1422422314389
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422312121|parser xml is over|1422422314427
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422312087|connect host is over|1422422314863
+I/time_points(23849): LOOP 29 START TIME:1422422311961
+I/time_points(23849): LOOP 29 END TIME:1422422314995
+I/time_points(23849): LOOP 29 USED TIME:3034
+I/time_points(23849): LOOP 29 END
+I/time_points(23849): LOOP 30 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422331419|begin******|1422422331419
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422331448|begin******|1422422331448
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422331448|connect host is over|1422422332027
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422331448|parser xml is over|1422422332099
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422331419|connect host is over|1422422335290
+I/time_points(23849): LOOP 30 START TIME:1422422331275
+I/time_points(23849): LOOP 30 END TIME:1422422332285
+I/time_points(23849): LOOP 30 USED TIME:1010
+I/time_points(23849): LOOP 30 END
+I/time_points(23849): LOOP 31 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422348713|begin******|1422422348713
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422348757|begin******|1422422348757
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422348757|connect host is over|1422422351132
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422348757|parser xml is over|1422422351202
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422348713|connect host is over|1422422351563
+I/time_points(23849): LOOP 31 START TIME:1422422348580
+I/time_points(23849): LOOP 31 END TIME:1422422351615
+I/time_points(23849): LOOP 31 USED TIME:3035
+I/time_points(23849): LOOP 31 END
+I/time_points(23849): LOOP 32 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422368190|begin******|1422422368190
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422368221|begin******|1422422368221
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422368221|connect host is over|1422422368766
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422368221|parser xml is over|1422422368828
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422368190|connect host is over|1422422371986
+I/time_points(23849): LOOP 32 START TIME:1422422368029
+I/time_points(23849): LOOP 32 END TIME:1422422369047
+I/time_points(23849): LOOP 32 USED TIME:1018
+I/time_points(23849): LOOP 32 END
+I/time_points(23849): LOOP 33 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422385483|begin******|1422422385483
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422385508|begin******|1422422385508
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422385508|connect host is over|1422422386052
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422385508|parser xml is over|1422422386068
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422385483|connect host is over|1422422389214
+I/time_points(23849): LOOP 33 START TIME:1422422385340
+I/time_points(23849): LOOP 33 END TIME:1422422386356
+I/time_points(23849): LOOP 33 USED TIME:1016
+I/time_points(23849): LOOP 33 END
+I/time_points(23849): LOOP 34 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422402810|begin******|1422422402810
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422402845|begin******|1422422402845
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422402845|connect host is over|1422422405509
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422402845|parser xml is over|1422422405617
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422402810|connect host is over|1422422405650
+I/time_points(23849): LOOP 34 START TIME:1422422402678
+I/time_points(23849): LOOP 34 END TIME:1422422405721
+I/time_points(23849): LOOP 34 USED TIME:3043
+I/time_points(23849): LOOP 34 END
+I/time_points(23849): LOOP 35 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422422183|begin******|1422422422183
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422422209|begin******|1422422422209
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422422209|connect host is over|1422422422551
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422422209|parser xml is over|1422422422631
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422422183|connect host is over|1422422425475
+I/time_points(23849): LOOP 35 START TIME:1422422422040
+I/time_points(23849): LOOP 35 END TIME:1422422423051
+I/time_points(23849): LOOP 35 USED TIME:1011
+I/time_points(23849): LOOP 35 END
+I/time_points(23849): LOOP 36 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422439577|begin******|1422422439577
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422439612|begin******|1422422439612
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422439577|connect host is over|1422422439871
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422439612|connect host is over|1422422439947
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422439612|parser xml is over|1422422439993
+I/time_points(23849): LOOP 36 START TIME:1422422439430
+I/time_points(23849): LOOP 36 END TIME:1422422440439
+I/time_points(23849): LOOP 36 USED TIME:1009
+I/time_points(23849): LOOP 36 END
+I/time_points(23849): LOOP 37 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422456939|begin******|1422422456939
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422456983|begin******|1422422456983
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422456983|connect host is over|1422422457508
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422456983|parser xml is over|1422422457525
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422456939|connect host is over|1422422460671
+I/time_points(23849): LOOP 37 START TIME:1422422456797
+I/time_points(23849): LOOP 37 END TIME:1422422457809
+I/time_points(23849): LOOP 37 USED TIME:1012
+I/time_points(23849): LOOP 37 END
+I/time_points(23849): LOOP 38 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422474235|begin******|1422422474235
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422474271|begin******|1422422474271
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422474271|connect host is over|1422422476652
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422474271|parser xml is over|1422422476667
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422474235|connect host is over|1422422480151
+I/time_points(23849): LOOP 38 START TIME:1422422474105
+I/time_points(23849): LOOP 38 END TIME:1422422477173
+I/time_points(23849): LOOP 38 USED TIME:3068
+I/time_points(23849): LOOP 38 END
+I/time_points(23849): LOOP 39 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422493599|begin******|1422422493599
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422493630|begin******|1422422493630
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422493630|connect host is over|1422422496484
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422493630|parser xml is over|1422422496815
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422493599|connect host is over|1422422499812
+I/time_points(23849): LOOP 39 START TIME:1422422493471
+I/time_points(23849): LOOP 39 END TIME:1422422497590
+I/time_points(23849): LOOP 39 USED TIME:4119
+I/time_points(23849): LOOP 39 END
+I/time_points(23849): LOOP 40 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422514020|begin******|1422422514020
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422514066|begin******|1422422514066
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422514066|connect host is over|1422422514613
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422514066|parser xml is over|1422422514708
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422514020|connect host is over|1422422517781
+I/time_points(23849): LOOP 40 START TIME:1422422513889
+I/time_points(23849): LOOP 40 END TIME:1422422514950
+I/time_points(23849): LOOP 40 USED TIME:1061
+I/time_points(23849): LOOP 40 END
+I/time_points(23849): LOOP 41 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422531390|begin******|1422422531390
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422531422|begin******|1422422531422
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422531422|connect host is over|1422422533773
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422531422|parser xml is over|1422422533803
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422531390|connect host is over|1422422534176
+I/time_points(23849): LOOP 41 START TIME:1422422531247
+I/time_points(23849): LOOP 41 END TIME:1422422534284
+I/time_points(23849): LOOP 41 USED TIME:3037
+I/time_points(23849): LOOP 41 END
+I/time_points(23849): LOOP 42 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422550709|begin******|1422422550709
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422550734|begin******|1422422550734
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422550734|connect host is over|1422422553214
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422550734|parser xml is over|1422422553307
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422550709|connect host is over|1422422553497
+I/time_points(23849): LOOP 42 START TIME:1422422550571
+I/time_points(23849): LOOP 42 END TIME:1422422553603
+I/time_points(23849): LOOP 42 USED TIME:3032
+I/time_points(23849): LOOP 42 END
+I/time_points(23849): LOOP 43 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422570044|begin******|1422422570044
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422570072|begin******|1422422570072
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422570072|connect host is over|1422422571590
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422570072|parser xml is over|1422422571662
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422570044|connect host is over|1422422575161
+I/time_points(23849): LOOP 43 START TIME:1422422569888
+I/time_points(23849): LOOP 43 END TIME:1422422571910
+I/time_points(23849): LOOP 43 USED TIME:2022
+I/time_points(23849): LOOP 43 END
+I/time_points(23849): LOOP 44 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422588337|begin******|1422422588337
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422588370|begin******|1422422588370
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422588370|connect host is over|1422422590736
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422588370|parser xml is over|1422422590818
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422588337|connect host is over|1422422591158
+I/time_points(23849): LOOP 44 START TIME:1422422588205
+I/time_points(23849): LOOP 44 END TIME:1422422591246
+I/time_points(23849): LOOP 44 USED TIME:3041
+I/time_points(23849): LOOP 44 END
+I/time_points(23849): LOOP 45 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422607698|begin******|1422422607698
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422607733|begin******|1422422607733
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422607733|connect host is over|1422422609994
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422607733|parser xml is over|1422422610005
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422607698|connect host is over|1422422613549
+I/time_points(23849): LOOP 45 START TIME:1422422607553
+I/time_points(23849): LOOP 45 END TIME:1422422610595
+I/time_points(23849): LOOP 45 USED TIME:3042
+I/time_points(23849): LOOP 45 END
+I/time_points(23849): LOOP 46 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422627061|begin******|1422422627061
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422627086|begin******|1422422627086
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422627086|connect host is over|1422422629445
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422627086|parser xml is over|1422422629551
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422627061|connect host is over|1422422629773
+I/time_points(23849): LOOP 46 START TIME:1422422626905
+I/time_points(23849): LOOP 46 END TIME:1422422629933
+I/time_points(23849): LOOP 46 USED TIME:3028
+I/time_points(23849): LOOP 46 END
+I/time_points(23849): LOOP 47 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422646394|begin******|1422422646394
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422646420|begin******|1422422646420
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422646420|connect host is over|1422422646735
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422646420|parser xml is over|1422422646796
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422646394|connect host is over|1422422649678
+I/time_points(23849): LOOP 47 START TIME:1422422646244
+I/time_points(23849): LOOP 47 END TIME:1422422647254
+I/time_points(23849): LOOP 47 USED TIME:1010
+I/time_points(23849): LOOP 47 END
+I/time_points(23849): LOOP 48 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422663669|begin******|1422422663669
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422663707|begin******|1422422663707
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422663669|connect host is over|1422422663985
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422663707|connect host is over|1422422664031
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422663707|parser xml is over|1422422664065
+I/time_points(23849): LOOP 48 START TIME:1422422663546
+I/time_points(23849): LOOP 48 END TIME:1422422664558
+I/time_points(23849): LOOP 48 USED TIME:1012
+I/time_points(23849): LOOP 48 END
+I/time_points(23849): LOOP 49 BEGIN
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422681008|begin******|1422422681008
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422681036|begin******|1422422681036
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422681036|connect host is over|1422422681591
+D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422422681036|parser xml is over|1422422681605
+D/time_points(23849): http://i.webapp.58.com/bt/xinfang/20527557035274x.shtml?formatsource=detail_currentcate&fromdc=xinfang&fromdl=bt&topcate=xinfang&adact=3|1422422681008|connect host is over|1422422684764
+I/time_points(23849): LOOP 49 START TIME:1422422680862
+I/time_points(23849): LOOP 49 END TIME:1422422681882
+I/time_points(23849): LOOP 49 USED TIME:1020
+I/time_points(23849): LOOP 49 END
+I/time_points(23849): Min time time is 1009 ms
+I/time_points(23849): Max time time is 4119 ms
+I/time_points(23849): Avg time time is 2199 ms
