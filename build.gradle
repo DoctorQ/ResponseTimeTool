@@ -24,21 +24,38 @@ dependencies {
    
 }
 jacoco{
-	toolVersion = "0.7.5.201505241946"  
+	toolVersion = "0.7.4.201502262128"  
     reportsDir = file("$buildDir/jacocoReport")
+    
 }
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        //html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
 test {
     systemProperties 'property': 'value'
     useTestNG() 
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
 }
 
 sonarRunner {  
     sonarProperties {  
-        property "sonar.host.url", "http://localhost:9002"  
-        property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar"  
+        property "sonar.host.url", "http://10.58.37.253:9000/"  
+        property "sonar.jdbc.url", "jdbc:mysql://10.58.37.253:3306/sonar"  
         property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"  
         property "sonar.jdbc.username", "sonar"  
-        property "sonar.jdbc.password", "sonar"  
+        property "sonar.jdbc.password", "sonar"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+        property "sonar.sourceEncoding", "UTF-8"  
     }  
 }  
 uploadArchives {
