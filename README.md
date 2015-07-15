@@ -4,7 +4,7 @@ Response  Time test tool for iOS and Android.
 
 # Dev env
 
-- JDK:1.7+
+- JDK:1.6+
 - Eclipse:Luna Service Release 2 (4.4.2)+
 - Gradle:2.4+
 - Encode:UTF-8
@@ -32,7 +32,7 @@ Response  Time test tool for iOS and Android.
 
 `gradle clean sonarRunner`
 
-SonarQube:[http://10.58.37.253:9000/dashboard/index/5841](http://10.58.37.253:9000/dashboard/index/5841)
+[SonarQube](http://10.58.37.253:9000/dashboard/index/5841)
 
 
 
