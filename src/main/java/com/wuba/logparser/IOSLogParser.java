@@ -2,10 +2,12 @@ package com.wuba.logparser;
 
 import java.io.File;
 
+import com.wuba.model.RTResult;
+
 public class IOSLogParser implements LogParser {
 
 	@Override
-	public String parserLog(File logDir) {
+	public RTResult parserLog(File logDir) {
 		// TODO Auto-generated method stub
 		return null;
 	}
