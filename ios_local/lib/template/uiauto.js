@@ -1,5 +1,5 @@
 //automation globals define
-var iosAutoPath = "$TEST_SCRIPT_PATH"
+var iosAutoPath = "TEST_CASE_PATH"
 var target      = UIATarget.localTarget();
 var application = target.frontMostApp();
 var host = target.host();
@@ -11,11 +11,11 @@ String.prototype.trim = function() {
 };
 
 function FailureException(message) {
-    this.name = 'FailureException';
-    this.message = message;
-    this.toString = function() {
-        return this.name + ': "' + this.message + '"';
-    };
+	this.name = 'FailureException';
+	this.message = message;
+	this.toString = function() {
+		return this.name + ': "' + this.message + '"';
+	};
 };
 
 function verifyImage(image){
@@ -38,7 +38,11 @@ function verifyImage(image){
 
 try{
 	
-/***REPLACE-CONTENTS-LINE***/
+/*COMMAND-LINES-START*/
+
+/*REPLACE_COMMAND_LINES*/
+
+/*COMMAND-LINES-END*/
 
 }catch(e){
 	result = -1;

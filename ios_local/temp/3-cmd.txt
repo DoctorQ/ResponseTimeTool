@@ -1,1 +1,1 @@
-finish
+target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});
