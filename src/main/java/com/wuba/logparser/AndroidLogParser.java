@@ -43,6 +43,10 @@ public class AndroidLogParser implements LogParser {
 		if (!logDir.exists()) {
 			throw new NullPointerException("LogDir is not exists");
 		}
+		return parserFile(logDir);
+	}
+
+	private RTResult parserFile(File logFile) {
 		FileReader fr = null;
 		BufferedReader br = null;
 		// 建立连接时间
@@ -59,15 +63,25 @@ public class AndroidLogParser implements LogParser {
 		String mId = null;
 		// url
 		String mUrl = null;
+
+		Matcher beginMatcher = null;
+		Matcher connectMatcher = null;
+		Matcher readMatcher = null;
+		Matcher parserJsonMatcher = null;
+		Matcher parserXMLMatcher = null;
 		try {
-			fr = new FileReader(logDir);
+			fr = new FileReader(logFile);
 			br = new BufferedReader(fr);
 
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				Matcher beginMatcher = getMatcher(BEGIN_PATTERN, line);
+				beginMatcher = getMatcher(BEGIN_PATTERN, line);
 
 				if (beginMatcher.find()) {
+					String url = beginMatcher.group(1);
+					if (isBlack(url))
+						continue;
+
 					mUrl = beginMatcher.group(1);
 					mId = beginMatcher.group(2);
 					mBegin = beginMatcher.group(3);
@@ -77,14 +91,12 @@ public class AndroidLogParser implements LogParser {
 				if (mId == null) {
 					continue;
 				}
-
-				Matcher connectMatcher = getMatcher(
+				connectMatcher = getMatcher(
 						String.format(CONNECTED_PATTERN, mId), line);
-				Matcher readMatcher = getMatcher(
-						String.format(READ_PATTERN, mId), line);
-				Matcher parserJsonMatcher = getMatcher(
+				readMatcher = getMatcher(String.format(READ_PATTERN, mId), line);
+				parserJsonMatcher = getMatcher(
 						String.format(PARSER_JSON_PATTERN, mId), line);
-				Matcher parserXMLMatcher = getMatcher(
+				parserXMLMatcher = getMatcher(
 						String.format(PARSER_XML_PATTERN, mId), line);
 				if (connectMatcher.find()) {
 					mConnect = connectMatcher.group(1);
@@ -146,6 +158,16 @@ public class AndroidLogParser implements LogParser {
 		}
 
 		return null;
+	}
+
+	private boolean isBlack(String url) {
+		int size = url_black.length;
+		for (int i = 0; i < size; i++) {
+			if (url.contains(url_black[i])) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private Pattern getPattern(String patternStr) {
