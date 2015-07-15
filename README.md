@@ -10,13 +10,27 @@ Response  Time test tool for iOS and Android.
 - Encode:UTF-8
 - TestNG
 - Jacoco
-- Sonar
+- SonarRunner
 
 # Contribute code
 
 - git clone https://github.com/58Automation/ResponseTimeTool.git
 - import into eclipse
-- gradle clean eclipse test jacoco build
+- gradle clean eclipse build
+
+
+# Test-TestNG
+
+`gradle clean test`
+
+
+# CodeCoverage-Jacoco
+
+`gradle clean test jacoco`
+
+# Code Quality-SonarRunner
+
+`gradle clean sonarRunner`
 
 
 
