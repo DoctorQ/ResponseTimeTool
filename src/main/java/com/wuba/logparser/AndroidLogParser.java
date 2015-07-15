@@ -30,6 +30,9 @@ public class AndroidLogParser implements LogParser {
 	private static final String PARSER_JSON_PATTERN = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String PARSER_XML_PATTERN = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
 
+	private static final String XML_DATATYPE = "xml";
+	private static final String JSON_DATATYPE = "xml";
+
 	public AndroidLogParser() {
 
 	}
@@ -64,11 +67,12 @@ public class AndroidLogParser implements LogParser {
 			while ((line = br.readLine()) != null) {
 				Matcher beginMatcher = getMatcher(BEGIN_PATTERN, line);
 
-				if (beginMatcher.find() && mBegin == null) {
+				if (beginMatcher.find()) {
 					mUrl = beginMatcher.group(1);
 					mId = beginMatcher.group(2);
 					mBegin = beginMatcher.group(3);
 					System.out.println("begin time : " + mBegin);
+					continue;
 				}
 				if (mId == null) {
 					continue;
@@ -102,9 +106,11 @@ public class AndroidLogParser implements LogParser {
 					result.setBeginTime(parserStringToLongForTime(mBegin));
 					result.setConnectTime(parserStringToLongForTime(mConnect));
 					if (mParserJson != null) {
+						result.setDataType(JSON_DATATYPE);
 						result.setReadTime(parserStringToLongForTime(mRead));
 						result.setParserTime(parserStringToLongForTime(mParserJson));
 					} else {
+						result.setDataType(XML_DATATYPE);
 						result.setParserTime(parserStringToLongForTime(mParserXML));
 					}
 					System.out.println("结束解析");

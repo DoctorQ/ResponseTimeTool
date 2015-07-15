@@ -2,18 +2,26 @@ package com.wuba.model;
 
 //响应时间结果对象，包括case名，开始时间，连接时间，读取数据时间，解析时间
 public class RTResult{
+	public String getDataType() {
+		return dataType;
+	}
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
+	}
+	@Override
+	public String toString() {
+		return "RTResult [caseName=" + caseName + ", url=" + url + ", id=" + id
+				+ ", dataType=" + dataType + ", beginTime=" + beginTime
+				+ ", connectTime=" + connectTime + ", readTime=" + readTime
+				+ ", parserTime=" + parserTime + "]";
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	@Override
-	public String toString() {
-		return "RTResult [caseName=" + caseName + ", url=" + url
-				+ ", beginTime=" + beginTime + ", connectTime=" + connectTime
-				+ ", readTime=" + readTime + ", parserTime=" + parserTime + "]";
-	}
+	
 	public String getUrl() {
 		return url;
 	}
@@ -53,6 +61,7 @@ public class RTResult{
 	private String caseName;
 	private String url;
 	private String id;
+	private String dataType;
 	private long beginTime;
 	private long connectTime;
 	private long readTime;

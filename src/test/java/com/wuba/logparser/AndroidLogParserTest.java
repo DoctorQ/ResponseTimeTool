@@ -19,11 +19,20 @@ public class AndroidLogParserTest {
 		androidLog = new AndroidLogParser();
 	}
 
-	@Test(groups = { "init" })
-	public void logInitTest() {
+	@Test(groups = { "main" })
+	public void parserJsonTest() {
 
 		File file = new File(
 				"/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/log/android/time_points.txt");
+		RTResult result = androidLog.parserLog(file);
+		Assert.assertNotNull(result);
+		System.out.println(result.toString());
+	}
+	@Test(groups = { "main" })
+	public void parserXMLTest() {
+
+		File file = new File(
+				"/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/log/android/xml.txt");
 		RTResult result = androidLog.parserLog(file);
 		Assert.assertNotNull(result);
 		System.out.println(result.toString());
