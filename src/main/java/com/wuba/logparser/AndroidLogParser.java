@@ -23,22 +23,12 @@ import com.wuba.model.RTResult;
  *         其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
 public class AndroidLogParser implements LogParser {
-	// 建立连接时间
-	private String mBegin;
-	// 连接成功时间
-	private String mConnect;
-	// 读取Json数据时间
-	private String mRead;
-	// 解析Json数据时间
-	private String mParserJson;
-	// 解析XML数据时间
-	private String mParserXML;
 
-	private static final String BEGIN_PATTERN = "\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
-	private static final String CONNECTED_PATTERN = "\\|([0-9]+)\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String READ_PATTERN = "\\|([0-9]+)\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String PARSER_JSON_PATTERN = "\\|([0-9]+)\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String PARSER_XML_PATTERN = "\\|([0-9]+)\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
+	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String READ_PATTERN = "\\|%s\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_JSON_PATTERN = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_XML_PATTERN = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
 
 	public AndroidLogParser() {
 
@@ -52,7 +42,20 @@ public class AndroidLogParser implements LogParser {
 		}
 		FileReader fr = null;
 		BufferedReader br = null;
-
+		// 建立连接时间
+		String mBegin = null;
+		// 连接成功时间
+		String mConnect = null;
+		// 读取Json数据时间
+		String mRead = null;
+		// 解析Json数据时间
+		String mParserJson = null;
+		// 解析XML数据时间
+		String mParserXML = null;
+		// id
+		String mId = null;
+		// url
+		String mUrl = null;
 		try {
 			fr = new FileReader(logDir);
 			br = new BufferedReader(fr);
@@ -60,31 +63,52 @@ public class AndroidLogParser implements LogParser {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				Matcher beginMatcher = getMatcher(BEGIN_PATTERN, line);
-				Matcher connectMatcher = getMatcher(CONNECTED_PATTERN, line);
-				Matcher readMatcher = getMatcher(READ_PATTERN, line);
-				Matcher parserJsonMatcher = getMatcher(PARSER_JSON_PATTERN,
-						line);
-				Matcher parserXMLMatcher = getMatcher(PARSER_XML_PATTERN, line);
-				if (beginMatcher.find()) {
-					mBegin = beginMatcher.group(0);
+
+				if (beginMatcher.find() && mBegin == null) {
+					mUrl = beginMatcher.group(1);
+					mId = beginMatcher.group(2);
+					mBegin = beginMatcher.group(3);
 					System.out.println("begin time : " + mBegin);
-				} else if (connectMatcher.find()) {
-					mConnect = connectMatcher.group(0);
+				}
+				if (mId == null) {
+					continue;
+				}
+
+				Matcher connectMatcher = getMatcher(
+						String.format(CONNECTED_PATTERN, mId), line);
+				Matcher readMatcher = getMatcher(
+						String.format(READ_PATTERN, mId), line);
+				Matcher parserJsonMatcher = getMatcher(
+						String.format(PARSER_JSON_PATTERN, mId), line);
+				Matcher parserXMLMatcher = getMatcher(
+						String.format(PARSER_XML_PATTERN, mId), line);
+				if (connectMatcher.find()) {
+					mConnect = connectMatcher.group(1);
 					System.out.println("connect time : " + mConnect);
 				} else if (readMatcher.find()) {
-					mRead =readMatcher.group(0);
-					System.out.println("read time" + mRead);
+					mRead = readMatcher.group(1);
+					System.out.println("read time :" + mRead);
 				} else if (parserJsonMatcher.find()) {
-					mParserJson = parserJsonMatcher
-							.group(0);
+					mParserJson = parserJsonMatcher.group(1);
 					System.out.println("parser time : " + mParserJson);
-				} else if (getPattern(PARSER_XML_PATTERN).matcher(line).find()) {
-					mParserXML = getPattern(PARSER_XML_PATTERN).matcher(line)
-							.group(0);
+				} else if (parserXMLMatcher.find()) {
+					mParserXML = parserXMLMatcher.group(1);
 					System.out.println("parser time : " + mParserXML);
 				}
 				if (mParserJson != null || mParserXML != null) {
+					RTResult result = new RTResult();
+					result.setId(mId);
+					result.setUrl(mUrl);
+					result.setBeginTime(parserStringToLongForTime(mBegin));
+					result.setConnectTime(parserStringToLongForTime(mConnect));
+					if (mParserJson != null) {
+						result.setReadTime(parserStringToLongForTime(mRead));
+						result.setParserTime(parserStringToLongForTime(mParserJson));
+					} else {
+						result.setParserTime(parserStringToLongForTime(mParserXML));
+					}
 					System.out.println("结束解析");
+					return result;
 				}
 				// begin的匹配器
 			}
@@ -119,6 +143,7 @@ public class AndroidLogParser implements LogParser {
 	}
 
 	private Pattern getPattern(String patternStr) {
+
 		return Pattern.compile(patternStr);
 	}
 
@@ -128,8 +153,9 @@ public class AndroidLogParser implements LogParser {
 
 	@Override
 	public long parserStringToLongForTime(String time) {
-
-		return 0;
+		if (time == null)
+			return 0;
+		return Long.parseLong(time);
 	}
 
 	@Override
