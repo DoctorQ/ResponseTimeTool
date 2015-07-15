@@ -3,7 +3,11 @@ package com.wuba.logparser;
 import java.io.File;
 
 import com.wuba.model.RTResult;
-
+/**
+ * 
+ * @author hui.qian qianhui@58.com  
+ * @date 2015年7月15日 下午5:49:08
+ */
 public class IOSLogParser implements LogParser {
 
 	@Override

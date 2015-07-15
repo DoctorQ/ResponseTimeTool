@@ -1,20 +1,43 @@
 package com.wuba.model;
-
-//响应时间结果对象，包括case名，开始时间，连接时间，读取数据时间，解析时间
+/**
+ * 
+ * @author hui.qian qianhui@58.com  
+ * @date 2015年7月15日 下午5:48:51
+ */
 public class RTResult{
+	@Override
+	public String toString() {
+		return "RTResult [caseName=" + caseName + ", url=" + url + ", id=" + id
+				+ ", dataType=" + dataType + ", beginTime=" + beginTime
+				+ ", connectTime=" + connectTime + ", readTime=" + readTime
+				+ ", parserTime=" + parserTime + ", connectCost=" + connectCost
+				+ ", readCost=" + readCost + ", parserCost=" + parserCost + "]";
+	}
+	public long getConnectCost() {
+		return connectCost;
+	}
+	public void setConnectCost(long connectCost) {
+		this.connectCost = connectCost;
+	}
+	public long getReadCost() {
+		return readCost;
+	}
+	public void setReadCost(long readCost) {
+		this.readCost = readCost;
+	}
+	public long getParserCost() {
+		return parserCost;
+	}
+	public void setParserCost(long parserCost) {
+		this.parserCost = parserCost;
+	}
 	public String getDataType() {
 		return dataType;
 	}
 	public void setDataType(String dataType) {
 		this.dataType = dataType;
 	}
-	@Override
-	public String toString() {
-		return "RTResult [caseName=" + caseName + ", url=" + url + ", id=" + id
-				+ ", dataType=" + dataType + ", beginTime=" + beginTime
-				+ ", connectTime=" + connectTime + ", readTime=" + readTime
-				+ ", parserTime=" + parserTime + "]";
-	}
+	
 	public String getId() {
 		return id;
 	}
@@ -58,16 +81,28 @@ public class RTResult{
 	public void setParserTime(long parserTime) {
 		this.parserTime = parserTime;
 	}
+	//场景名称
 	private String caseName;
+	//http请求的url地址
 	private String url;
+	//请求的id号
 	private String id;
+	//解析的数据类型:json和xml
 	private String dataType;
+	//连接开始时间点
 	private long beginTime;
+	//连接成功时间点
 	private long connectTime;
+	//读取完成时间点
 	private long readTime;
+	//解析完成时间点
 	private long parserTime;
-	
-	
+	//连接耗时
+	private long connectCost;
+	//读取耗时
+	private long readCost;
+	//解析耗时
+	private long parserCost;
 	
 	
 	

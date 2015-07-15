@@ -10,8 +10,12 @@ import java.util.regex.Pattern;
 
 import com.wuba.model.RTResult;
 
+
 /**
- * |1422421760525|begin******|1422421760525 |1422421760525|connect host is
+ * 
+ * @author hui.qian qianhui@58.com  
+ * @date 2015年7月15日 下午5:49:43
+ * * |1422421760525|begin******|1422421760525 |1422421760525|connect host is
  * over|1422421760800 json: |1422421760525|read inputstream is
  * over|1422421760809 |1422421760525|parser json is over|1422421760875
  * 
@@ -46,6 +50,12 @@ public class AndroidLogParser implements LogParser {
 		return parserFile(logDir);
 	}
 
+	/**
+	 * 解析log文件，得到各个响应时间的数据
+	 * 
+	 * @param logFile
+	 * @return
+	 */
 	private RTResult parserFile(File logFile) {
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -121,9 +131,22 @@ public class AndroidLogParser implements LogParser {
 						result.setDataType(JSON_DATATYPE);
 						result.setReadTime(parserStringToLongForTime(mRead));
 						result.setParserTime(parserStringToLongForTime(mParserJson));
+						//设置响应时间的准确值
+						result.setConnectCost(result.getConnectTime()
+								- result.getBeginTime());
+						result.setReadCost(result.getReadTime()
+								- result.getConnectTime());
+						result.setParserCost(result.getParserTime()
+								- result.getReadTime());
 					} else {
 						result.setDataType(XML_DATATYPE);
 						result.setParserTime(parserStringToLongForTime(mParserXML));
+						result.setConnectCost(result.getConnectTime()
+								- result.getBeginTime());
+						//xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
+						result.setParserCost(result.getParserTime()
+								- result.getConnectTime());
+						
 					}
 					System.out.println("结束解析");
 					return result;
@@ -160,6 +183,12 @@ public class AndroidLogParser implements LogParser {
 		return null;
 	}
 
+	/**
+	 * 判断url是否为黑名单中url
+	 * 
+	 * @param url
+	 * @return
+	 */
 	private boolean isBlack(String url) {
 		int size = url_black.length;
 		for (int i = 0; i < size; i++) {
@@ -170,15 +199,20 @@ public class AndroidLogParser implements LogParser {
 		return false;
 	}
 
-	private Pattern getPattern(String patternStr) {
-
-		return Pattern.compile(patternStr);
-	}
-
+	/**
+	 * 根据正则表达式和需要进行匹配的字符串生成一个匹配器Matcher
+	 * 
+	 * @param patternStr
+	 * @param parserStr
+	 * @return
+	 */
 	private Matcher getMatcher(String patternStr, String parserStr) {
-		return getPattern(patternStr).matcher(parserStr);
+		return Pattern.compile(patternStr).matcher(parserStr);
 	}
 
+	/**
+	 * 将字符串格式的时间转换为Long类型的
+	 */
 	@Override
 	public long parserStringToLongForTime(String time) {
 		if (time == null)
