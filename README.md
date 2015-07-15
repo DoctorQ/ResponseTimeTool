@@ -4,7 +4,7 @@ Response  Time test tool for iOS and Android.
 
 # Dev env
 
-- JDK:1.6+
+- JDK:1.7+
 - Eclipse:Luna Service Release 2 (4.4.2)+
 - Gradle:2.2+
 - Encode:UTF-8

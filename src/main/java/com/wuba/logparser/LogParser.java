@@ -1,6 +1,7 @@
 package com.wuba.logparser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import com.wuba.model.RTResult;
 

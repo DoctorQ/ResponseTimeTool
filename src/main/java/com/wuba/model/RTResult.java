@@ -2,6 +2,12 @@ package com.wuba.model;
 
 //响应时间结果对象，包括case名，开始时间，连接时间，读取数据时间，解析时间
 public class RTResult{
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getCaseName() {
 		return caseName;
 	}
@@ -33,6 +39,7 @@ public class RTResult{
 		this.parserTime = parserTime;
 	}
 	private String caseName;
+	private String url;
 	private long beginTime;
 	private long connectTime;
 	private long readTime;

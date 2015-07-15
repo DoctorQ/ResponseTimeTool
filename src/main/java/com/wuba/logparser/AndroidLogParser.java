@@ -1,6 +1,12 @@
 package com.wuba.logparser;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.wuba.model.RTResult;
 
@@ -20,26 +26,104 @@ public class AndroidLogParser implements LogParser {
 	// 建立连接时间
 	private String mBegin;
 	// 连接成功时间
-	private String mConnected;
-	// 读取数据时间
+	private String mConnect;
+	// 读取Json数据时间
 	private String mRead;
-	// 解析数据时间
-	private String mParser;
+	// 解析Json数据时间
+	private String mParserJson;
+	// 解析XML数据时间
+	private String mParserXML;
 
 	private static final String BEGIN_PATTERN = "\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
 	private static final String CONNECTED_PATTERN = "\\|([0-9]+)\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String READ_PATTERN = "\\|([0-9]+)\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String PARSER_PATTERN = "\\|([0-9]+)\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_JSON_PATTERN = "\\|([0-9]+)\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_XML_PATTERN = "\\|([0-9]+)\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
 
 	public AndroidLogParser() {
 
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public RTResult parserLog(File logDir) {
-		
-		
+		if (!logDir.exists()) {
+			throw new NullPointerException("LogDir is not exists");
+		}
+		FileReader fr = null;
+		BufferedReader br = null;
+
+		try {
+			fr = new FileReader(logDir);
+			br = new BufferedReader(fr);
+
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				Matcher beginMatcher = getMatcher(BEGIN_PATTERN, line);
+				Matcher connectMatcher = getMatcher(CONNECTED_PATTERN, line);
+				Matcher readMatcher = getMatcher(READ_PATTERN, line);
+				Matcher parserJsonMatcher = getMatcher(PARSER_JSON_PATTERN,
+						line);
+				Matcher parserXMLMatcher = getMatcher(PARSER_XML_PATTERN, line);
+				if (beginMatcher.find()) {
+					mBegin = beginMatcher.group(0);
+					System.out.println("begin time : " + mBegin);
+				} else if (connectMatcher.find()) {
+					mConnect = connectMatcher.group(0);
+					System.out.println("connect time : " + mConnect);
+				} else if (readMatcher.find()) {
+					mRead =readMatcher.group(0);
+					System.out.println("read time" + mRead);
+				} else if (parserJsonMatcher.find()) {
+					mParserJson = parserJsonMatcher
+							.group(0);
+					System.out.println("parser time : " + mParserJson);
+				} else if (getPattern(PARSER_XML_PATTERN).matcher(line).find()) {
+					mParserXML = getPattern(PARSER_XML_PATTERN).matcher(line)
+							.group(0);
+					System.out.println("parser time : " + mParserXML);
+				}
+				if (mParserJson != null || mParserXML != null) {
+					System.out.println("结束解析");
+				}
+				// begin的匹配器
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (fr != null) {
+				try {
+					fr.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+
 		return null;
+	}
+
+	private Pattern getPattern(String patternStr) {
+		return Pattern.compile(patternStr);
+	}
+
+	private Matcher getMatcher(String patternStr, String parserStr) {
+		return getPattern(patternStr).matcher(parserStr);
 	}
 
 	@Override
@@ -52,7 +136,5 @@ public class AndroidLogParser implements LogParser {
 	public String paserLongToStringForTime(long time) {
 		return null;
 	}
-	
-	
-	
+
 }
