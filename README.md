@@ -6,7 +6,7 @@ Response  Time test tool for iOS and Android.
 
 - JDK:1.7+
 - Eclipse:Luna Service Release 2 (4.4.2)+
-- Gradle:2.2+
+- Gradle:2.4+
 - Encode:UTF-8
 - TestNG
 - Jacoco
