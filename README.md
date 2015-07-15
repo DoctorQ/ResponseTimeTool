@@ -32,6 +32,7 @@ Response  Time test tool for iOS and Android.
 
 `gradle clean sonarRunner`
 
+SonarQube:[http://10.58.37.253:9000/dashboard/index/5841](http://10.58.37.253:9000/dashboard/index/5841)
 
 
 
