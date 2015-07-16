@@ -3,14 +3,13 @@ package com.wuba.logparser;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.AssertJUnit;
+
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import com.wuba.model.RTResult;
 
@@ -27,9 +26,7 @@ public class AndroidLogParserTest {
 
 	@Test(groups = { "main" })
 	public void parserJsonTest() {
-		logger.debug(new File(".").getAbsolutePath());
-		File file = new File(
-				"log/android/time_points.txt");
+		File file = new File(this.getClass().getResource("/time_points.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		AssertJUnit.assertNotNull(result);
 		logger.debug(result.toString());
