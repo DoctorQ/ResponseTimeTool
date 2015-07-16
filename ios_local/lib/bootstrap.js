@@ -29,8 +29,8 @@ while (runLoop){
 	var instructionFile = iosAutoPath + "/temp/" + instructionNumber.toString() + "-cmd.txt";
 	var responseFile = iosAutoPath + "/temp/" + instructionNumber.toString() + "-resp.txt";
 	var instruction = host.performTaskWithPathArgumentsTimeout("/bin/cat", [instructionFile], 5);
-	var respResult = -1
-
+	var respResult = -1 // respResult code -1:失败 0:成功 1:结束
+	var evalOutput = ""
 	if (instruction.exitCode == 0){
 		var instructionText = instruction.stdout;
 		if (instructionText.startsWith("finish")){
@@ -39,16 +39,15 @@ while (runLoop){
 			respResult = 0;
 		}else{
 			try{
-				var evalResult = eval(instructionText);//execute js cmd
-				if (evalResult == null){
-					respResult = 0;
-				}
+				evalOutput = eval(instructionText);//execute js cmd
+				respResult = 0;
 			}catch (err){
 				UIALogger.logError("could not parse intruction set: " + err.toString());
 			}
 		}
 		//wirte resp cmd
-		var command = "echo " + respResult + " > " + responseFile
+		if (evalOutput == null) evalOutput = "";
+		var command = "echo \"" + respResult + "|" + evalOutput + "\" > " + responseFile
 		var result = host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", command], 5);
 		if (respResult == 0){
 			instructionNumber++;
