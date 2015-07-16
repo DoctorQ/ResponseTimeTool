@@ -11,6 +11,7 @@ Response  Time test tool for iOS and Android.
 - TestNG
 - Jacoco
 - SonarRunner
+- Log4j
 
 # Contribute code
 

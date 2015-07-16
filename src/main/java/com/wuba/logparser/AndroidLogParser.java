@@ -8,25 +8,27 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.wuba.model.RTResult;
+import org.apache.log4j.Logger;
 
+import com.wuba.model.RTResult;
 
 /**
  * 
- * @author hui.qian qianhui@58.com  
- * @date 2015年7月15日 下午5:49:43
- * * |1422421760525|begin******|1422421760525 |1422421760525|connect host is
- * over|1422421760800 json: |1422421760525|read inputstream is
- * over|1422421760809 |1422421760525|parser json is over|1422421760875
+ * @author hui.qian qianhui@58.com
+ * @date 2015年7月15日 下午5:49:43 * |1422421760525|begin******|1422421760525
+ *       |1422421760525|connect host is over|1422421760800 json:
+ *       |1422421760525|read inputstream is over|1422421760809
+ *       |1422421760525|parser json is over|1422421760875
  * 
- * xml: |1422421772044|parser xml is over|1422421774443
+ *       xml: |1422421772044|parser xml is over|1422421774443
  * 
- * 响应时间分:1.建立连接时间(connect-begin) 2.读取数据时间(read-connect)
- *         3.解析数据时间(parser-read)
- *         其中需要注意的是android中解析xml和json不一样,xml格式的数据读取和解析是同时的,所以只有解析数据时间.
- *         其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
+ *       响应时间分:1.建立连接时间(connect-begin) 2.读取数据时间(read-connect)
+ *       3.解析数据时间(parser-read)
+ *       其中需要注意的是android中解析xml和json不一样,xml格式的数据读取和解析是同时的,所以只有解析数据时间.
+ *       其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
 public class AndroidLogParser implements LogParser {
+	private final static Logger logger = Logger.getLogger(AndroidLogParser.class);
 
 	private static final String BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
 	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
@@ -95,7 +97,8 @@ public class AndroidLogParser implements LogParser {
 					mUrl = beginMatcher.group(1);
 					mId = beginMatcher.group(2);
 					mBegin = beginMatcher.group(3);
-					System.out.println("begin time : " + mBegin);
+					logger.info("begin time : " + mBegin);
+					//System.out.println("begin time : " + mBegin);
 					continue;
 				}
 				if (mId == null) {
@@ -131,7 +134,7 @@ public class AndroidLogParser implements LogParser {
 						result.setDataType(JSON_DATATYPE);
 						result.setReadTime(parserStringToLongForTime(mRead));
 						result.setParserTime(parserStringToLongForTime(mParserJson));
-						//设置响应时间的准确值
+						// 设置响应时间的准确值
 						result.setConnectCost(result.getConnectTime()
 								- result.getBeginTime());
 						result.setReadCost(result.getReadTime()
@@ -143,10 +146,10 @@ public class AndroidLogParser implements LogParser {
 						result.setParserTime(parserStringToLongForTime(mParserXML));
 						result.setConnectCost(result.getConnectTime()
 								- result.getBeginTime());
-						//xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
+						// xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
 						result.setParserCost(result.getParserTime()
 								- result.getConnectTime());
-						
+
 					}
 					System.out.println("结束解析");
 					return result;
