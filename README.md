@@ -25,7 +25,7 @@ Response  Time test tool for iOS and Android.
 `gradle clean test`
 
 
-# CodeCoverage-Jacoco
+# Code Coverage-Jacoco
 
 `gradle clean test jacoco`
 
