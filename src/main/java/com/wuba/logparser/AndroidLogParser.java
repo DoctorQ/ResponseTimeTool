@@ -21,7 +21,7 @@ import com.wuba.model.RTResult;
  * 
  * xml: |1422421772044|parser xml is over|1422421774443
  * 
- * @author hui.qian 响应时间分:1.建立连接时间(connect-begin) 2.读取数据时间(read-connect)
+ * 响应时间分:1.建立连接时间(connect-begin) 2.读取数据时间(read-connect)
  *         3.解析数据时间(parser-read)
  *         其中需要注意的是android中解析xml和json不一样,xml格式的数据读取和解析是同时的,所以只有解析数据时间.
  *         其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
