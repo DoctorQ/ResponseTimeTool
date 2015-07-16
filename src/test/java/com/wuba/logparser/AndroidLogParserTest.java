@@ -35,7 +35,7 @@ public class AndroidLogParserTest {
 	public void parserXMLTest() {
 
 		File file = new File(
-				"log/android/xml.txt");
+				this.getClass().getResource("/xml.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		AssertJUnit.assertNotNull(result);
 		logger.debug(result.toString());
