@@ -1,5 +1,8 @@
 package com.wuba.logparser;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +19,7 @@ public class AndroidLogParserTest {
 			.getLogger(AndroidLogParserTest.class);
 	private LogParser androidLog;
 
+	@BeforeMethod
 	@BeforeClass
 	public void setUp() {
 		androidLog = new AndroidLogParser();
@@ -23,20 +27,20 @@ public class AndroidLogParserTest {
 
 	@Test(groups = { "main" })
 	public void parserJsonTest() {
-
+		logger.debug(new File(".").getAbsolutePath());
 		File file = new File(
-				"time_points.txt");
+				"log/android/time_points.txt");
 		RTResult result = androidLog.parserLog(file);
-		Assert.assertNotNull(result);
+		AssertJUnit.assertNotNull(result);
 		logger.debug(result.toString());
 	}
 	@Test(groups = { "main" })
 	public void parserXMLTest() {
 
 		File file = new File(
-				"/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/log/android/xml.txt");
+				"log/android/xml.txt");
 		RTResult result = androidLog.parserLog(file);
-		Assert.assertNotNull(result);
+		AssertJUnit.assertNotNull(result);
 		logger.debug(result.toString());
 	}
 	@Test
