@@ -6,3 +6,4 @@ build/
 .gradle/
 /bin/
 test-output/
+.alog
