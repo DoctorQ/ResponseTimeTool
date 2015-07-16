@@ -28,7 +28,8 @@ import com.wuba.model.RTResult;
  *       其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
 public class AndroidLogParser implements LogParser {
-	private final static Logger logger = Logger.getLogger(AndroidLogParser.class);
+	private final static Logger logger = Logger
+			.getLogger(AndroidLogParser.class);
 
 	private static final String BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
 	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
@@ -97,8 +98,7 @@ public class AndroidLogParser implements LogParser {
 					mUrl = beginMatcher.group(1);
 					mId = beginMatcher.group(2);
 					mBegin = beginMatcher.group(3);
-					logger.info("begin time : " + mBegin);
-					//System.out.println("begin time : " + mBegin);
+					logger.debug("begin time : " + mBegin);
 					continue;
 				}
 				if (mId == null) {
@@ -113,16 +113,16 @@ public class AndroidLogParser implements LogParser {
 						String.format(PARSER_XML_PATTERN, mId), line);
 				if (connectMatcher.find()) {
 					mConnect = connectMatcher.group(1);
-					System.out.println("connect time : " + mConnect);
+					logger.debug("connect time : " + mConnect);
 				} else if (readMatcher.find()) {
 					mRead = readMatcher.group(1);
-					System.out.println("read time :" + mRead);
+					logger.debug("read time :" + mRead);
 				} else if (parserJsonMatcher.find()) {
 					mParserJson = parserJsonMatcher.group(1);
-					System.out.println("parser time : " + mParserJson);
+					logger.debug("parser time : " + mParserJson);
 				} else if (parserXMLMatcher.find()) {
 					mParserXML = parserXMLMatcher.group(1);
-					System.out.println("parser time : " + mParserXML);
+					logger.debug("parser time : " + mParserXML);
 				}
 				if (mParserJson != null || mParserXML != null) {
 					RTResult result = new RTResult();
@@ -151,7 +151,7 @@ public class AndroidLogParser implements LogParser {
 								- result.getConnectTime());
 
 					}
-					System.out.println("结束解析");
+					logger.debug("结束解析");
 					return result;
 				}
 				// begin的匹配器

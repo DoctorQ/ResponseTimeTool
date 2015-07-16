@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    testCompile 'org.testng:testng:6.9.6'
+    compile 'org.testng:testng:6.8.13'
     compile 'log4j:log4j:1.2.17'
     
    
