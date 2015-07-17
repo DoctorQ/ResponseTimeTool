@@ -30,7 +30,13 @@ public class AndroidDevice implements Device{
 	}
 
 	@Override
-	public String getOSVersion() {
+	public String getOsVersion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getAppId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -58,5 +64,7 @@ public class AndroidDevice implements Device{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

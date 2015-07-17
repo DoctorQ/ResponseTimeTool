@@ -7,10 +7,12 @@ var application = target.frontMostApp();
 var host = target.host();
 var mainWindow  = application.mainWindow();
 var wd_frame = mainWindow
+var instructionFile = iosAutoPath + "/temp/cmd.txt";
+var responseFile = iosAutoPath + "/temp/resp.txt";
 
 // loop variables
 var runLoop = true;
-var instructionNumber = 0;
+// var instructionNumber = 0;
 
 // extend String internal function
 String.prototype.trim = function() {
@@ -21,19 +23,33 @@ String.prototype.startsWith = function(searchString, position) {
 	return this.indexOf(searchString, position) === position;
 };
 
+function removeCommandFile(){
+	var rmCommandFile = "rm -rf " + instructionFile
+	host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", rmCommandFile], 5);
+};
+
+function removeResponseFile(){
+	var rmResponseFile = "rm -rf " + responseFile
+	host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", rmResponseFile], 5);
+};
+
+//rm cmd.txt and resp.txt
+// removeCommandFile()
+// removeResponseFile()
+
 // main loop
 while (runLoop){
 	//update screenshot
 	var now = new Date().getTime();
 	target.captureScreenWithName("screen" + now.toString())
-	var instructionFile = iosAutoPath + "/temp/" + instructionNumber.toString() + "-cmd.txt";
-	var responseFile = iosAutoPath + "/temp/" + instructionNumber.toString() + "-resp.txt";
-	var instruction = host.performTaskWithPathArgumentsTimeout("/bin/cat", [instructionFile], 5);
+	var instruction = host.performTaskWithPathArgumentsTimeout("/bin/cat", [instructionFile], 5); // read js command
 	var respResult = -1 // respResult code -1:失败 0:成功 1:结束
 	var evalOutput = ""
 	if (instruction.exitCode == 0){
 		var instructionText = instruction.stdout;
-		if (instructionText.startsWith("finish")){
+		if (instructionText.startsWith("start record server")){
+			respResult = 0;
+		}else if (instructionText.startsWith("close record server")){
 			respResult = 1;
 		}else if (instructionText.startsWith("verifyImage")){
 			respResult = 0;
@@ -45,13 +61,12 @@ while (runLoop){
 				UIALogger.logError("could not parse intruction set: " + err.toString());
 			}
 		}
-		//wirte resp cmd
 		if (evalOutput == null) evalOutput = "";
 		var command = "echo \"" + respResult + "|" + evalOutput + "\" > " + responseFile
-		var result = host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", command], 5);
-		if (respResult == 0){
-			instructionNumber++;
-		}else{
+		removeCommandFile() // delete cmd.txt
+		host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", command], 5); // write response
+
+		if (respResult != 0){
 			break;
 		}	
 	}
