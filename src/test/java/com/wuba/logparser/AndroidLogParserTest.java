@@ -1,7 +1,7 @@
 package com.wuba.logparser;
 
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
 import org.testng.AssertJUnit;
 
 import java.io.File;
@@ -14,31 +14,30 @@ import org.testng.annotations.BeforeClass;
 import com.wuba.model.RTResult;
 
 public class AndroidLogParserTest {
-	private final static Logger logger = Logger
+	private final static Logger LOGGER = Logger
 			.getLogger(AndroidLogParserTest.class);
 	private LogParser androidLog;
 
-	@BeforeMethod
-	@BeforeClass
+	@BeforeGroups(groups = "unittest")
 	public void setUp() {
 		androidLog = new AndroidLogParser();
 	}
 
-	@Test(groups = { "main" })
+	@Test(groups ={"unittest"})
 	public void parserJsonTest() {
 		File file = new File(this.getClass().getResource("/time_points.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		AssertJUnit.assertNotNull(result);
-		logger.debug(result.toString());
+		LOGGER.debug(result.toString());
 	}
-	@Test(groups = { "main" })
+	@Test(groups = {"unittest"})
 	public void parserXMLTest() {
 
 		File file = new File(
 				this.getClass().getResource("/xml.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		AssertJUnit.assertNotNull(result);
-		logger.debug(result.toString());
+		LOGGER.debug(result.toString());
 	}
 	@Test
 	public void patternTest(){
@@ -46,7 +45,7 @@ public class AndroidLogParserTest {
 		String str = "D/time_points(23849): http://app.58.com/api/detail/xinfang/20527557035274?v=1&format=xml&localname=bt|1422421772044|begin******|1422421772044";
 		Matcher matcher = Pattern.compile(BEGIN_PATTERN).matcher(str);
 		if(matcher.find()){
-			logger.debug(matcher.group(1));
+			LOGGER.debug(matcher.group(1));
 			
 		}
 	}
@@ -54,6 +53,6 @@ public class AndroidLogParserTest {
 	public void formatPatternTest(){
 		String BEGIN_PATTERN = "\\|%s\\|begin\\*{6}\\|([0-9]+)$";
 		String str = String.format(BEGIN_PATTERN, "122934334343");
-		logger.debug(str);
+		LOGGER.debug(str);
 	}
 }

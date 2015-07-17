@@ -37,7 +37,9 @@ jacocoTestReport {
 
 test {
     systemProperties 'property': 'value'
-    useTestNG() 
+    useTestNG{
+    	includeGroups 'unittest'
+    }
     jacoco {
         append = false
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
