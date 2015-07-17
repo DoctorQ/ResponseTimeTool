@@ -105,7 +105,7 @@ public class IOSDevice implements Device{
 	public String sendActionCommand(String command){
 		System.out.println("SEND_CMD:"+command);
 		Helper.createFileAndWrite(command, Constant.iOS_CMD_FILE);
-		String resp = Helper.waitForReadFile(Constant.iOS_RESP_FILE);
+		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE);
 		System.out.println("RESPONSE:"+resp);
 		Helper.deleteFile(Constant.iOS_RESP_FILE);
 		return resp.trim();

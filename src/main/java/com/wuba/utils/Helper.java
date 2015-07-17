@@ -86,11 +86,11 @@ public class Helper {
 	}
 	
 	/**
-	 * 超时读取文件 5s
+	 * 读取文件，超时：10s
 	 * @param filename
 	 * @return
 	 */
-	public static String waitForReadFile(String filename){
+	public static String readFileTimeOut(String filename){
 		long startTime = System.currentTimeMillis();
 		long timeOut = 10*1000;
 		File file = new File(filename);
