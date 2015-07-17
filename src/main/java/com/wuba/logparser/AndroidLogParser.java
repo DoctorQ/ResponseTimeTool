@@ -61,7 +61,7 @@ public class AndroidLogParser extends AbstractLogParser {
 	 * 解析log文件，得到各个响应时间的数据
 	 * 
 	 * @param logFile
-	 * @return
+	 * @return RTResult 测试结果对象
 	 */
 	private RTResult parserFile(File logFile) {
 		InputStreamReader is = null;
@@ -201,7 +201,7 @@ public class AndroidLogParser extends AbstractLogParser {
 	 * 判断url是否为黑名单中url
 	 * 
 	 * @param url
-	 * @return
+	 * @return boolean 
 	 */
 	private boolean isBlack(String url) {
 		int size = URL_BLACK.length;
@@ -218,7 +218,7 @@ public class AndroidLogParser extends AbstractLogParser {
 	 * 
 	 * @param patternStr
 	 * @param parserStr
-	 * @return
+	 * @return Matcher
 	 */
 	private Matcher getMatcher(String patternStr, String parserStr) {
 		return Pattern.compile(patternStr).matcher(parserStr);
