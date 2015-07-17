@@ -6,6 +6,7 @@ public class Constant {
 	public static final String IOS_PLATFORM = "iOS";
 	public static final String ANDROID_PLATFORM = "android";
 	
+<<<<<<< HEAD
 	//iOS only
 	public static final String iOS_LOCAL_DIR = System.getProperty("user.dir") + File.separator + 
 			"ios_local";
@@ -26,5 +27,14 @@ public class Constant {
 	public static final String iOS_CLOSE_SERVER_CMD = "close record server;";
 	
 	
+=======
+
+	// iOS only
+	public static final String iOS_DEVICECONSOLE = System
+			.getProperty("user.dir")
+			+ File.separator
+			+ "ios_local"
+			+ File.separator + "bin" + File.separator + "deviceconsole";
+>>>>>>> 3ed4b68cfa991b60ed76377d1ffbaee47bd20796
 
 }

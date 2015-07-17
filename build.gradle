@@ -7,7 +7,7 @@ sourceCompatibility = 1.6
 version = '1.0'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
+        attributes 'Implementation-Title': '58autotest',
                    'Implementation-Version': version
     }
 }
@@ -55,7 +55,7 @@ sonarRunner {
         property "sonar.login", "admin"
         property "sonar.password", "admin"
         property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.profile", "Sonar way"
+        property "sonar.profile", "FindBugs"
           
     }  
 }  
