@@ -13,8 +13,10 @@ public interface Device {
 
 	String getDeviceName();
 
-	String getOSVersion();
+	String getOsVersion();
 
+	String getAppId();
+	
 	int[] getScreenSize();
 
 	void clickOnScreen(int x, int y);
