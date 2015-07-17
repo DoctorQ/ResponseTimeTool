@@ -1,8 +1,5 @@
 package com.wuba.device;
 
-import java.io.File;
-
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.wuba.utils.Constant;
 import com.wuba.utils.Helper;
 
