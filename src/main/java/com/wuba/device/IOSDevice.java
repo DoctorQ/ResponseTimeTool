@@ -108,6 +108,7 @@ public class IOSDevice implements Device{
 		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE);
 		System.out.println("RESPONSE:"+resp);
 		Helper.deleteFile(Constant.iOS_RESP_FILE);
+		if (resp == null){System.exit(0);};
 		return resp.trim();
 	}
 	
