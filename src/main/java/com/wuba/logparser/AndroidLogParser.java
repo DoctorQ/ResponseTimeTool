@@ -31,7 +31,7 @@ import com.wuba.utils.Constant;
  *       其中需要注意的是android中解析xml和json不一样,xml格式的数据读取和解析是同时的,所以只有解析数据时间.
  *       其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
-public class AndroidLogParser implements LogParser {
+public class AndroidLogParser extends AbstractLogParser {
 	private final static Logger LOG = Logger.getLogger(AndroidLogParser.class);
 
 	private static final String BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
@@ -42,8 +42,7 @@ public class AndroidLogParser implements LogParser {
 
 	private static final String XML_DATATYPE = "xml";
 	private static final String JSON_DATATYPE = "xml";
-	private static final String[] URL_BLACK = { "http://jump.zhineng.58.com",
-		"http://jing.58.com", "page=2" };
+	
 
 	public AndroidLogParser() {
 

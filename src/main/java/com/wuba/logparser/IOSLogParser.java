@@ -8,7 +8,7 @@ import com.wuba.model.RTResult;
  * @author hui.qian qianhui@58.com  
  * @date 2015年7月15日 下午5:49:08
  */
-public class IOSLogParser implements LogParser {
+public class IOSLogParser extends AbstractLogParser {
 
 	@Override
 	public RTResult parserLog(File logDir) {
