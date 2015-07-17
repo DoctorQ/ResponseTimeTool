@@ -2,15 +2,19 @@ package com.wuba.logparser;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
 import com.wuba.model.RTResult;
+import com.wuba.utils.Constant;
 
 /**
  * 
@@ -28,8 +32,7 @@ import com.wuba.model.RTResult;
  *       其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
 public class AndroidLogParser implements LogParser {
-	private final static Logger logger = Logger
-			.getLogger(AndroidLogParser.class);
+	private final static Logger LOG = Logger.getLogger(AndroidLogParser.class);
 
 	private static final String BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
 	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
@@ -39,6 +42,8 @@ public class AndroidLogParser implements LogParser {
 
 	private static final String XML_DATATYPE = "xml";
 	private static final String JSON_DATATYPE = "xml";
+	private static final String[] URL_BLACK = { "http://jump.zhineng.58.com",
+		"http://jing.58.com", "page=2" };
 
 	public AndroidLogParser() {
 
@@ -60,7 +65,7 @@ public class AndroidLogParser implements LogParser {
 	 * @return
 	 */
 	private RTResult parserFile(File logFile) {
-		FileReader fr = null;
+		InputStreamReader is = null;
 		BufferedReader br = null;
 		// 建立连接时间
 		String mBegin = null;
@@ -83,8 +88,8 @@ public class AndroidLogParser implements LogParser {
 		Matcher parserJsonMatcher = null;
 		Matcher parserXMLMatcher = null;
 		try {
-			fr = new FileReader(logFile);
-			br = new BufferedReader(fr);
+			is = new InputStreamReader(new FileInputStream(logFile), "utf-8");
+			br = new BufferedReader(is);
 
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -98,7 +103,7 @@ public class AndroidLogParser implements LogParser {
 					mUrl = beginMatcher.group(1);
 					mId = beginMatcher.group(2);
 					mBegin = beginMatcher.group(3);
-					logger.debug("begin time : " + mBegin);
+					LOG.debug("begin time : " + mBegin);
 					continue;
 				}
 				if (mId == null) {
@@ -113,77 +118,84 @@ public class AndroidLogParser implements LogParser {
 						String.format(PARSER_XML_PATTERN, mId), line);
 				if (connectMatcher.find()) {
 					mConnect = connectMatcher.group(1);
-					logger.debug("connect time : " + mConnect);
+					LOG.debug("connect time : " + mConnect);
+					continue;
 				} else if (readMatcher.find()) {
 					mRead = readMatcher.group(1);
-					logger.debug("read time :" + mRead);
+					LOG.debug("read time :" + mRead);
+					continue;
 				} else if (parserJsonMatcher.find()) {
 					mParserJson = parserJsonMatcher.group(1);
-					logger.debug("parser time : " + mParserJson);
+					LOG.debug("parser time : " + mParserJson);
+
 				} else if (parserXMLMatcher.find()) {
 					mParserXML = parserXMLMatcher.group(1);
-					logger.debug("parser time : " + mParserXML);
+					LOG.debug("parser time : " + mParserXML);
 				}
-				if (mParserJson != null || mParserXML != null) {
-					RTResult result = new RTResult();
-					result.setId(mId);
-					result.setUrl(mUrl);
-					result.setBeginTime(parserStringToLongForTime(mBegin));
-					result.setConnectTime(parserStringToLongForTime(mConnect));
-					if (mParserJson != null) {
-						result.setDataType(JSON_DATATYPE);
-						result.setReadTime(parserStringToLongForTime(mRead));
-						result.setParserTime(parserStringToLongForTime(mParserJson));
-						// 设置响应时间的准确值
-						result.setConnectCost(result.getConnectTime()
-								- result.getBeginTime());
-						result.setReadCost(result.getReadTime()
-								- result.getConnectTime());
-						result.setParserCost(result.getParserTime()
-								- result.getReadTime());
-					} else {
-						result.setDataType(XML_DATATYPE);
-						result.setParserTime(parserStringToLongForTime(mParserXML));
-						result.setConnectCost(result.getConnectTime()
-								- result.getBeginTime());
-						// xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
-						result.setParserCost(result.getParserTime()
-								- result.getConnectTime());
+				if (mParserJson == null && mParserXML == null)
+					continue;
+				RTResult result = new RTResult();
+				result.setId(mId);
+				result.setUrl(mUrl);
+				result.setBeginTime(parserStringToLongForTime(mBegin));
+				result.setConnectTime(parserStringToLongForTime(mConnect));
+				if (mParserJson != null) {
+					result.setDataType(JSON_DATATYPE);
+					result.setReadTime(parserStringToLongForTime(mRead));
+					result.setParserTime(parserStringToLongForTime(mParserJson));
+					// 设置响应时间的准确值
+					result.setConnectCost(result.getConnectTime()
+							- result.getBeginTime());
+					result.setReadCost(result.getReadTime()
+							- result.getConnectTime());
+					result.setParserCost(result.getParserTime()
+							- result.getReadTime());
+				} else {
+					result.setDataType(XML_DATATYPE);
+					result.setParserTime(parserStringToLongForTime(mParserXML));
+					result.setConnectCost(result.getConnectTime()
+							- result.getBeginTime());
+					// xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
+					result.setParserCost(result.getParserTime()
+							- result.getConnectTime());
 
-					}
-					logger.debug("结束解析");
-					return result;
+					LOG.debug("结束解析");
 				}
+				return result;
 				// begin的匹配器
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error(e.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error(e.toString());
 		} finally {
-			if (fr != null) {
-				try {
-					fr.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			close(is, br);
 
 		}
 
 		return null;
+	}
+
+	private void close(InputStreamReader is, BufferedReader br) {
+		if (is != null) {
+			try {
+				is.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				LOG.error(e.toString());
+			}
+		}
+
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				LOG.error(e.toString());
+			}
+		}
 	}
 
 	/**
@@ -193,9 +205,9 @@ public class AndroidLogParser implements LogParser {
 	 * @return
 	 */
 	private boolean isBlack(String url) {
-		int size = url_black.length;
+		int size = URL_BLACK.length;
 		for (int i = 0; i < size; i++) {
-			if (url.contains(url_black[i])) {
+			if (url.contains(URL_BLACK[i])) {
 				return true;
 			}
 		}
