@@ -45,6 +45,14 @@ test {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpFile = file("$buildDir/jacoco/classpathdumps")
     }
+    testLogging.showStandardStreams = true
+    beforeTest { descriptor ->
+     logger.lifecycle("Running test: " + descriptor)
+  	}
+    ignoreFailures = true
+    onOutput { descriptor, event ->
+     logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+  	}
 }
 
 sonarRunner {  
@@ -60,7 +68,17 @@ sonarRunner {
         property "sonar.profile", "FindBugs"
           
     }  
-}  
+}
+//隐藏编译过程中出现的警告信息 
+tasks.withType(JavaCompile){
+    options.warnings = false
+}
+
+//生成javadoc文档
+javadoc {
+	//解决中文乱码问题
+    options.charSet = 'UTF-8'
+} 
 uploadArchives {
     repositories {
        flatDir {

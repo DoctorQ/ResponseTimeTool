@@ -3,9 +3,6 @@
  */
 package com.wuba.logparser;
 
-import java.io.File;
-
-import com.wuba.model.RTResult;
 
 /**
  * @author hui.qian qianhui@58.com  

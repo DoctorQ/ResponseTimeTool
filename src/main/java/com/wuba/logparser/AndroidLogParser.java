@@ -158,8 +158,8 @@ public class AndroidLogParser extends AbstractLogParser {
 					result.setParserCost(result.getParserTime()
 							- result.getConnectTime());
 
-					LOG.debug("结束解析");
 				}
+				LOG.debug("结束解析");
 				return result;
 				// begin的匹配器
 			}
