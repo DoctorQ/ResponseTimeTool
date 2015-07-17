@@ -78,6 +78,7 @@ tasks.withType(JavaCompile){
 javadoc {
 	//解决中文乱码问题
     options.charSet = 'UTF-8'
+    failOnError = false
 } 
 uploadArchives {
     repositories {

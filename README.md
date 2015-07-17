@@ -35,6 +35,10 @@ Response  Time test tool for iOS and Android.
 
 [SonarQube](http://10.58.37.253:9000/dashboard/index/ResponseTimeTool)
 
+# Generate Javadoc
+
+`gradle clean javadoc`
+
 
 
 
