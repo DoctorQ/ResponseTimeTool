@@ -33,6 +33,7 @@ public class TestResultTest {
 	@Test(groups = { "unittest" })
 	public void generateXMLTest() {
 		testResult.serializeResultToXml(file);
+		LOGGER.info("generateXMLTest-Done");
 	}
 
 	@Test(groups = { "unittest" })
@@ -41,8 +42,9 @@ public class TestResultTest {
 		deviceInfo.setDeviceName("N6");
 		deviceInfo.setNetwork("4G");
 		testResult.serializeResultToXml(file);
+		LOGGER.info("generateDeviceInfoTest-Done");
 	}
-	
+	@Test(groups = { "unittest" })
 	public void generateTestCasesTest(){
 		TestCases testCases = testResult.getTestCases();
 		
