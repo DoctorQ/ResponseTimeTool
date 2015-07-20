@@ -38,8 +38,9 @@ jacocoTestReport {
 
 test {
     systemProperties 'property': 'value'
+    
     useTestNG{
-    	includeGroups 'unittest'
+    	//includeGroups 'unittest'
     	includeGroups 'iostest'
     }
     jacoco {
@@ -47,6 +48,7 @@ test {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpFile = file("$buildDir/jacoco/classpathdumps")
     }
+    /*
     testLogging.showStandardStreams = false
     beforeTest { descriptor ->
      logger.lifecycle("Running test: " + descriptor)
@@ -55,6 +57,7 @@ test {
     onOutput { descriptor, event ->
      logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
   	}
+  	*/
 }
 
 sonarRunner {  
