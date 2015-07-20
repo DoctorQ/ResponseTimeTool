@@ -16,6 +16,7 @@ public class Constant {
 			"deviceconsole";
 	public static final String iOS_TEMP_DIR = iOS_LOCAL_DIR + File.separator + 
 			"temp";
+	public static final String iOS_RUN1_DIR = iOS_TEMP_DIR + File.separator + "Run 1";
 	public static final String iOS_RECORD_SHELL = iOS_LOCAL_DIR + File.separator + 
 			"bin" + File.separator +
 			"record.sh";
