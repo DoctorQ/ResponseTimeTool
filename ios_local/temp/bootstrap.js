@@ -1,7 +1,7 @@
 /* ***** main loop ***** */
 
 // automation globals
-var iosAutoPath = "/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/ios_local"
+var iosAutoPath = "/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/ios_local"
 var target = UIATarget.localTarget();
 var application = target.frontMostApp();
 var host = target.host();

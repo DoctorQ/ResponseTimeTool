@@ -19,6 +19,7 @@ repositories {
 dependencies {
     compile 'org.testng:testng:6.8.13'
     compile 'log4j:log4j:1.2.17'
+    compile 'kxml2:kxml2:2.3.0'
     
    
 }
