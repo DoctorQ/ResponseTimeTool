@@ -70,6 +70,7 @@ public class Item implements XMLParser {
 		serializer.attribute(TestResult.NAMESPACE, RESPONSETIME_ATTR,
 				getResponseTime());
 		if (rtResult != null) {
+			rtResult.serialize(serializer);
 			
 		}
 		serializer.endTag(TestResult.NAMESPACE, XML_TAG);
