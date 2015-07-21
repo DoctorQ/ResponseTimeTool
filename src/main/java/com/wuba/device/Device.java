@@ -19,9 +19,9 @@ public interface Device {
 	
 	int[] getScreenSize();
 
-	void clickOnScreen(int x, int y);
+//	void clickOnScreen(int x, int y);
 
-	void dragFromToScreen(int startX, int startY, int endX, int endY);
+//	void dragFromToScreen(int startX, int startY, int endX, int endY);
 
 	void takeScreenShot();
 
