@@ -26,7 +26,7 @@ public class AndroidLogParserTest {
 
 	@Test(groups ={"unittest"})
 	public void parserJsonTest() {
-		File file = new File(this.getClass().getResource("/time_points.txt").getPath());
+		File file = new File(this.getClass().getResource("/data/time_points.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		AssertJUnit.assertNotNull(result);
 		LOGGER.debug(result.toString());
@@ -34,7 +34,7 @@ public class AndroidLogParserTest {
 	@Test(groups = {"unittest"})
 	public void parserXMLTest() {
 		File file = new File(
-				this.getClass().getResource("/xml.txt").getPath());
+				this.getClass().getResource("/data/xml.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		Assert.assertNotNull(result);
 		LOGGER.debug(result.toString());
@@ -51,7 +51,7 @@ public class AndroidLogParserTest {
 	@Test(groups = {"unittest"})
 	public void noMatcherFileTest(){
 		File file = new File(
-				this.getClass().getResource("/nomatch.txt").getPath());
+				this.getClass().getResource("/data/nomatch.txt").getPath());
 		RTResult result = androidLog.parserLog(file);
 		Assert.assertNull(result);
 		

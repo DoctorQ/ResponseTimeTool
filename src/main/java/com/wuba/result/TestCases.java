@@ -12,6 +12,8 @@ import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.utils.Constant;
+
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:48:41
@@ -29,12 +31,12 @@ public class TestCases implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		// TODO Auto-generated method stub
-		serializer.startTag(TestResult.NAMESPACE, XML_TAG);
+		serializer.startTag(Constant.NAMESPACE, XML_TAG);
 		Collection<TestCase> collection = testCases.values();
 		for (TestCase testCase : collection) {
 			testCase.serialize(serializer);
 		}
-		serializer.endTag(TestResult.NAMESPACE, XML_TAG);
+		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 	
 	public TestCase getTestCaseByName(String name) {

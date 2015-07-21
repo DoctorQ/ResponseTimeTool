@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.kxml2.io.KXmlSerializer;
 
-import com.wuba.result.TestResult;
 import com.wuba.result.XMLParser;
+import com.wuba.utils.Constant;
 
 /**
  * 
@@ -34,11 +34,6 @@ public class RTResult implements XMLParser {
 	private static final String CONNECT_ATTR = "connect";
 	private static final String READ_ATTR = "read";
 	private static final String PARSER_ATTR = "parser";
-
-	private static final String NATIVE = "native";
-	private static final String WEBVIEW = "webview";
-	private static final String JSON = "json";
-	private static final String XML = "xml";
 
 	public long getConnectCost() {
 		return connectCost;
@@ -155,17 +150,18 @@ public class RTResult implements XMLParser {
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
-		if (NATIVE.equals(viewType)) {
-			serializer.attribute(TestResult.NAMESPACE, CONNECT_ATTR,
+		
+		if (Constant.NATIVE.equals(viewType)) {
+			serializer.attribute(Constant.NAMESPACE, CONNECT_ATTR,
 					getConnectCost() + "");
-			if (JSON.equals(dataType)) {
-				serializer.attribute(TestResult.NAMESPACE, READ_ATTR,
+			if (Constant.JSON.equals(dataType)) {
+				serializer.attribute(Constant.NAMESPACE, READ_ATTR,
 						getReadCost() + "");
 			}
-			serializer.attribute(TestResult.NAMESPACE, PARSER_ATTR,
+			serializer.attribute(Constant.NAMESPACE, PARSER_ATTR,
 					getParserCost() + "");
-		} else if (WEBVIEW.equals(viewType)) {
-			serializer.attribute(TestResult.NAMESPACE, PARSER_ATTR,
+		} else if (Constant.WEBVIEW.equals(viewType)) {
+			serializer.attribute(Constant.NAMESPACE, PARSER_ATTR,
 					getParserCost() + "");
 		}
 

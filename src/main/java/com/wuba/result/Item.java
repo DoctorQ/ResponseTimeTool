@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.kxml2.io.KXmlSerializer;
 
 import com.wuba.model.RTResult;
+import com.wuba.utils.Constant;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -64,16 +65,16 @@ public class Item implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		// TODO Auto-generated method stub
-		serializer.startTag(TestResult.NAMESPACE, XML_TAG);
-		serializer.attribute(TestResult.NAMESPACE, INDEX_ATTR, getIndex());
-		serializer.attribute(TestResult.NAMESPACE, LOGFILE_ATTR, getLogFile());
-		serializer.attribute(TestResult.NAMESPACE, RESPONSETIME_ATTR,
-				getResponseTime());
+		serializer.startTag(Constant.NAMESPACE, XML_TAG);
+		serializer.attribute(Constant.NAMESPACE, INDEX_ATTR, getIndex());
+//		serializer.attribute(Constant.NAMESPACE, RESPONSETIME_ATTR,
+//				getResponseTime());
 		if (rtResult != null) {
 			rtResult.serialize(serializer);
 			
 		}
-		serializer.endTag(TestResult.NAMESPACE, XML_TAG);
+		serializer.attribute(Constant.NAMESPACE, LOGFILE_ATTR, getLogFile());
+		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
 }

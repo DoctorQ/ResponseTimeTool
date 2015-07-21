@@ -31,7 +31,8 @@ public class TestResultTest {
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		testResult = new TestResult();
-		file = new File("testResult.xml");
+		file = new File(this.getClass().getResource("/result").getPath(),"testResult.xml");
+		LOGGER.debug(file.getAbsolutePath());
 		androidLog = new AndroidLogParser();
 	}
 
@@ -70,22 +71,34 @@ public class TestResultTest {
 		TestCase testCase1 = testResult.getTestCaseByName("testcase1");
 		Item item0 = new Item();
 		item0.setIndex("0");
-		item0.setLogFile(this.getClass().getResource("/time_points.txt").getPath());
+		item0.setLogFile(this.getClass().getResource("/data/time_points.txt").getPath());
 		RTResult result = androidLog.parserLog(new File(item0.getLogFile()));
-		Item item1 = new Item();
-		item1.setIndex("1");
-		item1.setLogFile(this.getClass().getResource("/time_points.txt").getPath());
-		RTResult result2 = androidLog.parserLog(new File(item1.getLogFile()));
+		item0.setRtResult(result);
 		
 		testCase1.addItem(item0);
+		
+		
+		Item item1 = new Item();
+		item1.setIndex("1");
+		item1.setLogFile(this.getClass().getResource("/data/time_points.txt").getPath());
+		RTResult result2 = androidLog.parserLog(new File(item1.getLogFile()));
+		item1.setRtResult(result2);
 		testCase1.addItem(item1);
+		
+		
+		
+		
+		
 		TestCase testCase2 = testResult.getTestCaseByName("testcase2");
 		Item item2 = new Item();
 		item2.setIndex("0");
-		
-		item2.setLogFile(this.getClass().getResource("/xml.txt").getPath());
+		item2.setLogFile(this.getClass().getResource("/data/xml.txt").getPath());
 		RTResult result3 = androidLog.parserLog(new File(item2.getLogFile()));
+		item2.setRtResult(result3);
 		testCase2.addItem(item2);
+		
+		
+		
 		testResult.serializeResultToXml(file);
 		LOGGER.info("generateTestItemName-Done");
 	}

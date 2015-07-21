@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,11 +38,11 @@ public class AndroidLogParser extends AbstractLogParser {
 	private static final String PARSER_JSON_PATTERN = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String PARSER_XML_PATTERN = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
 
-	private static final String XML_DATATYPE = "json";
-	private static final String JSON_DATATYPE = "xml";
-
-	private static final String NATIVE_VIEWTYPE = "native";
-	private static final String WEBVIEW_VIEWTYPE = "webview";
+//	private static final String XML_DATATYPE = "json";
+//	private static final String JSON_DATATYPE = "xml";
+//
+//	private static final String NATIVE_VIEWTYPE = "native";
+//	private static final String WEBVIEW_VIEWTYPE = "webview";
 
 	// 建立连接时间
 	String mBegin = null;
@@ -98,7 +96,7 @@ public class AndroidLogParser extends AbstractLogParser {
 			br = new BufferedReader(is);
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				if (NATIVE_VIEWTYPE.equals(viewType)) {
+				if (Constant.NATIVE.equals(viewType)) {
 					parserNative(line);
 					if (mParserJson == null && mParserXML == null)
 						continue;
@@ -109,7 +107,7 @@ public class AndroidLogParser extends AbstractLogParser {
 					result.setBeginTime(parserStringToLongForTime(mBegin));
 					result.setConnectTime(parserStringToLongForTime(mConnect));
 					if (mParserJson != null) {
-						result.setDataType(JSON_DATATYPE);
+						result.setDataType(Constant.JSON);
 						result.setReadTime(parserStringToLongForTime(mRead));
 						result.setParserTime(parserStringToLongForTime(mParserJson));
 						// 设置响应时间的准确值
@@ -120,7 +118,7 @@ public class AndroidLogParser extends AbstractLogParser {
 						result.setParserCost(result.getParserTime()
 								- result.getReadTime());
 					} else {
-						result.setDataType(XML_DATATYPE);
+						result.setDataType(Constant.XML);
 						result.setParserTime(parserStringToLongForTime(mParserXML));
 						result.setConnectCost(result.getConnectTime()
 								- result.getBeginTime());
@@ -131,7 +129,7 @@ public class AndroidLogParser extends AbstractLogParser {
 					}
 					LOG.debug("结束解析");
 					return result;
-				} else if (WEBVIEW_VIEWTYPE.equals(viewType)) {
+				} else if (Constant.WEBVIEW.equals(viewType)) {
 					parserWebView(line);
 				} else {
 					beginMatcher = getMatcher(NATIVE_BEGIN_PATTERN, line);
@@ -145,7 +143,7 @@ public class AndroidLogParser extends AbstractLogParser {
 						mUrl = beginMatcher.group(1);
 						mId = beginMatcher.group(2);
 						mBegin = beginMatcher.group(3);
-						viewType = NATIVE_VIEWTYPE;
+						viewType = Constant.NATIVE;
 						LOG.debug("begin time : " + mBegin);
 						// 如果不处于黑名单,解析
 					}

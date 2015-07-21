@@ -29,4 +29,11 @@ public class Constant {
 	public static final String iOS_CLOSE_SERVER_CMD = "close record server;";
 	
 	
+	public static final String NATIVE = "native";
+	public static final String WEBVIEW = "webview";
+	public static final String JSON = "json";
+	public static final String XML = "xml";
+	public static final String NAMESPACE = null;
+	
+	
 }
