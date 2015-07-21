@@ -24,14 +24,6 @@ public class TestResult implements XMLParser {
 		this.mDeviceInfo = deviceInfo;
 	}
 
-	public TestCases getTestCases() {
-		return mTestCases;
-	}
-
-	public void setmTestCases(TestCases testCases) {
-		this.mTestCases = testCases;
-	}
-
 	private static final Logger LOGGER = Logger.getLogger(TestResult.class);
 	public static final String NAMESPACE = null;
 	private static final String XML_TAG = "TestResult";
@@ -40,7 +32,6 @@ public class TestResult implements XMLParser {
 	private TestCases mTestCases = new TestCases();
 
 	/*
-	 * (non-Javadoc)
 	 * 
 	 * @see com.wuba.result.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
 	 */
@@ -82,7 +73,6 @@ public class TestResult implements XMLParser {
 			LOGGER.error(e);
 			e.printStackTrace();
 		} finally {
-
 			if (stream != null) {
 				try {
 					stream.close();
@@ -92,6 +82,15 @@ public class TestResult implements XMLParser {
 				}
 			}
 		}
+
+	}
+
+	public TestCase getTestCaseByName(String name) {
+		if (name == null) {
+			LOGGER.error("You want get a name = null TestCase?");
+			return null;
+		}
+		return mTestCases.getTestCaseByName(name);
 
 	}
 }
