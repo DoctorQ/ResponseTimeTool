@@ -20,7 +20,6 @@ public class Replayer {
 
 	public void replay(String casePath) {
 		String command = "sh " + Constant.iOS_REPLAY_SHELL + " " + deviceId + " " + appId + " " + casePath;
-		System.out.println(command);
 		StringBuffer output = new StringBuffer();
 		Process p;
 		try {

@@ -11,6 +11,8 @@ import java.io.OutputStream;
 import org.apache.log4j.Logger;
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.utils.Constant;
+
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:47:45
@@ -24,32 +26,22 @@ public class TestResult implements XMLParser {
 		this.mDeviceInfo = deviceInfo;
 	}
 
-	public TestCases getTestCases() {
-		return mTestCases;
-	}
-
-	public void setmTestCases(TestCases testCases) {
-		this.mTestCases = testCases;
-	}
-
 	private static final Logger LOGGER = Logger.getLogger(TestResult.class);
-	public static final String NAMESPACE = null;
 	private static final String XML_TAG = "TestResult";
 
 	private DeviceInfo mDeviceInfo = new DeviceInfo();
 	private TestCases mTestCases = new TestCases();
 
 	/*
-	 * (non-Javadoc)
 	 * 
 	 * @see com.wuba.result.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
 	 */
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
-		serializer.startTag(NAMESPACE, XML_TAG);
+		serializer.startTag(Constant.NAMESPACE, XML_TAG);
 		mDeviceInfo.serialize(serializer);
 		mTestCases.serialize(serializer);
-		serializer.endTag(NAMESPACE, XML_TAG);
+		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
 	/**
@@ -82,7 +74,6 @@ public class TestResult implements XMLParser {
 			LOGGER.error(e);
 			e.printStackTrace();
 		} finally {
-
 			if (stream != null) {
 				try {
 					stream.close();
@@ -92,6 +83,15 @@ public class TestResult implements XMLParser {
 				}
 			}
 		}
+
+	}
+
+	public TestCase getTestCaseByName(String name) {
+		if (name == null) {
+			LOGGER.error("You want get a name = null TestCase?");
+			return null;
+		}
+		return mTestCases.getTestCaseByName(name);
 
 	}
 }

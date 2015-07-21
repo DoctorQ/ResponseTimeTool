@@ -4,11 +4,15 @@
 package com.wuba.result;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.utils.Constant;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -16,24 +20,33 @@ import org.kxml2.io.KXmlSerializer;
  */
 public class TestCases implements XMLParser {
 	private static final String XML_TAG = "TestCases";
-	
-	private List<TestCase> testCases = new LinkedList<TestCase>();
+
+	private Map<String, TestCase> testCases = new LinkedHashMap<String, TestCase>();
+
+	private TestCase currentCase = null;
 
 	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.wuba.result.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
 	 */
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		// TODO Auto-generated method stub
-		serializer.startTag(TestResult.NAMESPACE, XML_TAG);
-		for(TestCase testCase : testCases) {
+		serializer.startTag(Constant.NAMESPACE, XML_TAG);
+		Collection<TestCase> collection = testCases.values();
+		for (TestCase testCase : collection) {
 			testCase.serialize(serializer);
-			
 		}
-		
-		serializer.endTag(TestResult.NAMESPACE, XML_TAG);
+		serializer.endTag(Constant.NAMESPACE, XML_TAG);
+	}
+	
+	public TestCase getTestCaseByName(String name) {
+		currentCase = testCases.get(name);
+		if (currentCase == null) {
+			currentCase = new TestCase();
+			currentCase.setName(name);
+			testCases.put(name, currentCase);
+		}
+		return currentCase;
 	}
 
 }
