@@ -76,13 +76,12 @@ public class TestCase implements XMLParser {
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
 		serializer.attribute(Constant.NAMESPACE, NAME_ATTR, getName());
-		serializer
-				.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
-		serializer
-				.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
+
+		serializeDataFromItems(serializer);
+		serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
+		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
 		serializer.attribute(Constant.NAMESPACE, AVERAGERESPONSETIME_ATTR,
 				getAverageResponseTime());
-		serializeDataFromItems(serializer);
 		for (Item item : items) {
 			item.serialize(serializer);
 		}
@@ -98,7 +97,8 @@ public class TestCase implements XMLParser {
 	/**
 	 * 从Item信息从提取case的信息，比如case名,页面类型,数据类型
 	 */
-	private void serializeDataFromItems(KXmlSerializer serializer) throws IOException{
+	private void serializeDataFromItems(KXmlSerializer serializer)
+			throws IOException {
 		if (items.size() <= 0)
 			return;
 		Item item = items.get(0);
@@ -107,7 +107,6 @@ public class TestCase implements XMLParser {
 		viewType = result.getViewType();
 		serializer.attribute(Constant.NAMESPACE, VIEWTYPE_ATTR, viewType);
 		serializer.attribute(Constant.NAMESPACE, DATATYPE_ATTR, dataType);
-		
 
 	}
 
