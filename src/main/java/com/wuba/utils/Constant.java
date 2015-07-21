@@ -7,6 +7,12 @@ public class Constant {
 	public static final String ANDROID_PLATFORM = "android";
 	
 	//Android only
+	//本地存放android文件root目录
+	public static final String ANDROID_LOCAL_DIR = System.getProperty("user.dir") + File.separator + 
+			"android_local";
+	//本地存放android文件root下的temp目录
+	public static final String ANDROID_TEMP_DIR = ANDROID_LOCAL_DIR + File.separator + 
+			"temp";
 	
 	//iOS only
 	public static final String iOS_LOCAL_DIR = System.getProperty("user.dir") + File.separator + 
