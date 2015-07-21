@@ -2,10 +2,11 @@ package com.wuba.device;
 
 /**
  * Android设备信息，控制
+ * 
  * @author vigoss
  *
  */
-public class AndroidDevice implements Device{
+public class AndroidDevice implements Device {
 
 	public AndroidDevice() {
 		// TODO Auto-generated constructor stub
@@ -47,24 +48,22 @@ public class AndroidDevice implements Device{
 		return null;
 	}
 
-	@Override
-	public void clickOnScreen(int x, int y) {
-		// TODO Auto-generated method stub
-		
+	public void touchDown(int x, int y) {
+
 	}
 
-	@Override
-	public void dragFromToScreen(int startX, int startY, int endX, int endY) {
-		// TODO Auto-generated method stub
-		
+	public void touchUp(int x, int y) {
+
+	}
+
+	public void touchMove(int x, int y) {
+
 	}
 
 	@Override
 	public void takeScreenShot() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
+	}
 
 }

@@ -92,13 +92,11 @@ public class IOSDevice implements Device {
 		return screenSize;
 	}
 
-	@Override
 	public void clickOnScreen(int x, int y) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void dragFromToScreen(int startX, int startY, int endX, int endY) {
 		// TODO Auto-generated method stub
 
