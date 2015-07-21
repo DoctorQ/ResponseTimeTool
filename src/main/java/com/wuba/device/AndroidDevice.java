@@ -23,13 +23,16 @@ public class AndroidDevice implements Device {
 	private int[] screenSize;
 	private boolean adbConnected = false;
 	
+	/**
+	 * 初始化android本地存放目录
+	 */
 	public AndroidDevice() {
 		// TODO Auto-generated constructor stub
 		this.deviceId = deviceId;
 		this.appId = appId;
-		// 清空temp目录
-		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
-		Helper.createDir(Constant.iOS_TEMP_DIR);
+		// 清空，并再次创建temp目录
+		Helper.deleteDirectory(Constant.ANDROID_TEMP_DIR);
+		Helper.createDir(Constant.ANDROID_TEMP_DIR);
 	}
 
 	@Override
@@ -85,5 +88,6 @@ public class AndroidDevice implements Device {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	
 }
