@@ -80,7 +80,7 @@ public class TestResultTest {
 		
 		Item item1 = new Item();
 		item1.setIndex("1");
-		item1.setLogFile(this.getClass().getResource("/data/time_points.txt").getPath());
+		item1.setLogFile(this.getClass().getResource("/data/time_points1.txt").getPath());
 		RTResult result2 = androidLog.parserLog(new File(item1.getLogFile()));
 		item1.setRtResult(result2);
 		testCase1.addItem(item1);

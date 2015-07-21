@@ -54,7 +54,9 @@ public class TestCase implements XMLParser {
 	private static final String NAME_ATTR = "name";
 	private static final String STARTTIME_ATTR = "starttime";
 	private static final String ENDTIME_ATTR = "endtime";
-	private static final String AVERAGERESPONSETIME_ATTR = "averageresponsetime";
+	private static final String ACONNECT_ATTR = "aconnecttime";
+	private static final String AREAD_ATTR = "areadtime";
+	private static final String APARSER_ATTR = "aparsertime";
 	private static final String VIEWTYPE_ATTR = "viewtype";
 	private static final String DATATYPE_ATTR = "datatype";
 
@@ -80,8 +82,7 @@ public class TestCase implements XMLParser {
 		serializeDataFromItems(serializer);
 		serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
 		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
-		serializer.attribute(Constant.NAMESPACE, AVERAGERESPONSETIME_ATTR,
-				getAverageResponseTime());
+
 		for (Item item : items) {
 			item.serialize(serializer);
 		}
@@ -107,6 +108,31 @@ public class TestCase implements XMLParser {
 		viewType = result.getViewType();
 		serializer.attribute(Constant.NAMESPACE, VIEWTYPE_ATTR, viewType);
 		serializer.attribute(Constant.NAMESPACE, DATATYPE_ATTR, dataType);
+
+		int size = items.size();
+		long totalConnectCost = 0;
+		long totalReadCost = 0;
+		long totalParserCost = 0;
+		for (Item indexItem : items) {
+			if (Constant.NATIVE.equals(viewType)) {
+				totalConnectCost += indexItem.getRtResult().getConnectCost();
+				if (Constant.JSON.equals(dataType)) {
+					totalReadCost += indexItem.getRtResult().getReadCost();
+				}
+			}
+			totalParserCost += indexItem.getRtResult().getParserCost();
+		}
+		if (Constant.NATIVE.equals(viewType)) {
+
+			serializer.attribute(Constant.NAMESPACE, ACONNECT_ATTR,
+					totalConnectCost / size + "");
+			if (Constant.JSON.equals(dataType)) {
+				serializer.attribute(Constant.NAMESPACE, AREAD_ATTR,
+						totalReadCost / size + "");
+			}
+		}
+		serializer.attribute(Constant.NAMESPACE, APARSER_ATTR, totalParserCost
+				/ size + "");
 
 	}
 
