@@ -1,15 +1,35 @@
 package com.wuba.device;
 
+import com.wuba.utils.Constant;
+import com.wuba.utils.Helper;
+
 /**
  * Android设备信息，控制
  * 
  * @author vigoss
  *
  */
-public class AndroidDevice implements Device {
 
+
+
+
+public class AndroidDevice implements Device {
+	
+	private String platform;	//
+	private String deviceId;
+	private String deviceName;
+	private String osVersion;
+	private String appId;
+	private int[] screenSize;
+	private boolean adbConnected = false;
+	
 	public AndroidDevice() {
 		// TODO Auto-generated constructor stub
+		this.deviceId = deviceId;
+		this.appId = appId;
+		// 清空temp目录
+		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
+		Helper.createDir(Constant.iOS_TEMP_DIR);
 	}
 
 	@Override
