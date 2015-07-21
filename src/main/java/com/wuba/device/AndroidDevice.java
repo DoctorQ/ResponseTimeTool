@@ -80,6 +80,7 @@ public class AndroidDevice implements Device {
 	}
 
 	public void touchMove(int x, int y) {
+		
 
 	}
 
