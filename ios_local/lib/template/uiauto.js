@@ -18,22 +18,31 @@ function FailureException(message) {
 	};
 };
 
-function verifyImage(image){
-	var pyfile = iosAutoPath + "/image_matcher.py";
+function verifyImage(image, timeout){
+	var jarfile = iosAutoPath + "/ImageMatcher.jar";
 	target.captureScreenWithName("screen_verify");
 	target.delay(2);
 	var sourceimage = iosAutoPath + "/Run 1/screen_verify.png";
 	var subimage = iosAutoPath + "/" +image;
-	var res = host.performTaskWithPathArgumentsTimeout("/usr/bin/python", [pyfile, sourceimage, subimage], 10);
+
+	var res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", jarfile, "-s", sourceimage, "-t", subimage], 10);
 	var exitCode = res.exitCode;
 	var stdout = res.stdout.toString().trim();
-	if (exitCode == 0 && stdout == "ok"){
-		UIALogger.logDebug("Verify Image OK - " + image);
-	}else{
-		result = -1;
-		UIALogger.logError("Verify Image FAIL - " + image);
-		throw new FailureException("test");
+	
+	var startTime = new Date().getTime();
+	while (!(exitCode == 0 && stdout == "match")){
+		var duration = new Date().getTime() - startTime;
+		UIALogger.logDebug(duration.toString());
+		if(duration > timeout) {
+			UIALogger.logError("Verify Image FAIL - " + image);
+			throw new FailureException("Timout = " + timeout.toString() + "ms");
+		}
+		target.captureScreenWithName("screen_verify");
+		res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", jarfile, "-s", sourceimage, "-t", subimage], 10);
+		exitCode = res.exitCode;
+		stdout = res.stdout.toString().trim();
 	}
+	UIALogger.logDebug("Verify Image OK - " + image);
 };
 
 try{
@@ -45,6 +54,7 @@ try{
 /*COMMAND-LINES-END*/
 
 }catch(e){
+	UIALogger.logError(e.toString());
 	result = -1;
 }finally{
 	if (result == 0){
