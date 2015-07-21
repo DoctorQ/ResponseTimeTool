@@ -33,18 +33,13 @@ public class AndroidLogParser extends AbstractLogParser {
 	private final static Logger LOG = Logger.getLogger(AndroidLogParser.class);
 
 	private static final String NATIVE_BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
-	
-	
+
+	private static final String WEBVIEW_BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|webview begin\\*{6}\\|([0-9]+)$";
+
 	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String READ_PATTERN = "\\|%s\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String PARSER_JSON_PATTERN = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
 	private static final String PARSER_XML_PATTERN = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
-
-//	private static final String XML_DATATYPE = "json";
-//	private static final String JSON_DATATYPE = "xml";
-//
-//	private static final String NATIVE_VIEWTYPE = "native";
-//	private static final String WEBVIEW_VIEWTYPE = "webview";
 
 	// 建立连接时间
 	String mBegin = null;
@@ -68,7 +63,8 @@ public class AndroidLogParser extends AbstractLogParser {
 	Matcher parserJsonMatcher = null;
 	Matcher parserXMLMatcher = null;
 
-	Matcher beginMatcher = null;
+	Matcher nativeBeginMatcher = null;
+	Matcher webViewBeginMatcher = null;
 
 	public AndroidLogParser() {
 
@@ -134,20 +130,28 @@ public class AndroidLogParser extends AbstractLogParser {
 				} else if (Constant.WEBVIEW.equals(viewType)) {
 					parserWebView(line);
 				} else {
-					beginMatcher = getMatcher(NATIVE_BEGIN_PATTERN, line);
-					if (beginMatcher.find()) {
-						
-						String url = beginMatcher.group(1);
+					nativeBeginMatcher = getMatcher(NATIVE_BEGIN_PATTERN, line);
+					webViewBeginMatcher = getMatcher(WEBVIEW_BEGIN_PATTERN,
+							line);
+					if (nativeBeginMatcher.find()) {
+
+						String url = nativeBeginMatcher.group(1);
 
 						// 如果处于黑名单的话,不做处理
 						if (isBlack(url))
 							continue;
-						mUrl = beginMatcher.group(1);
-						mId = beginMatcher.group(2);
-						mBegin = beginMatcher.group(3);
+						parserBeginMatcher(nativeBeginMatcher);
 						viewType = Constant.NATIVE;
 						LOG.debug("begin time : " + mBegin);
 						// 如果不处于黑名单,解析
+					} else if (webViewBeginMatcher.find()) {
+						String url = webViewBeginMatcher.group(1);
+						// 如果处于黑名单的话,不做处理
+						if (isBlack(url))
+							continue;
+						parserBeginMatcher(webViewBeginMatcher);
+						viewType = Constant.WEBVIEW;
+						LOG.debug("webview begin time : " + mBegin);
 					}
 				}
 
@@ -166,6 +170,12 @@ public class AndroidLogParser extends AbstractLogParser {
 		}
 
 		return null;
+	}
+
+	private void parserBeginMatcher(Matcher beginMatcher) {
+		mUrl = beginMatcher.group(1);
+		mId = beginMatcher.group(2);
+		mBegin = beginMatcher.group(3);
 	}
 
 	/**
@@ -223,8 +233,8 @@ public class AndroidLogParser extends AbstractLogParser {
 			}
 		}
 	}
-	
-	private void tearDown(){
+
+	private void tearDown() {
 		// 建立连接时间
 		mBegin = null;
 		// 连接成功时间
