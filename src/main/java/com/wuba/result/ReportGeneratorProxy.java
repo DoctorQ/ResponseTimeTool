@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class ReportGeneratorProxy implements ReportGenerator {
 
+	public List<ReportGenerator> getReportGenerators() {
+		return reportGenerators;
+	}
+
 	private List<ReportGenerator> reportGenerators = new ArrayList<ReportGenerator>();
 
 	/*
@@ -50,7 +54,7 @@ public class ReportGeneratorProxy implements ReportGenerator {
 		reportGenerators.add(reportGenerator);
 	}
 
-	public void removeGenerator(ReportGenerator reportGenerator) {
+	public void removeReportGenerator(ReportGenerator reportGenerator) {
 		int index = reportGenerators.indexOf(reportGenerator);
 		if (index != -1) {
 			reportGenerators.remove(reportGenerator);
