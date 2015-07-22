@@ -3,7 +3,6 @@ package com.wuba.gui;
 import java.io.File;
 import java.util.LinkedHashMap;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.wuba.device.IOSDevice;
 import com.wuba.replayer.IOSPlayer;
 import com.wuba.utils.Constant;

@@ -31,10 +31,11 @@ public class XmlReportGenerator implements ReportGenerator {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-
 		// 获取case名,每个目录代表一个case
 		File[] cases = rootDir.listFiles();
 		for (File caseFile : cases) {
+			if (caseFile.isFile())
+				continue;
 			TestCase testCase = mTestResult.getTestCaseByName(caseFile
 					.getName());
 			File[] itemFiles = caseFile.listFiles();

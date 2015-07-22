@@ -2,13 +2,15 @@
 <TestResult>
   <DeviceInfo devicename="" network="" />
   <TestRunner>
-    <TestCase name="case1" viewtype="native" datatype="json" aconnecttime="449" areadtime="184" aparsertime="497" starttime="" endtime="">
+    <TestCase name="case1" viewtype="native" datatype="json" aconnecttime="674" areadtime="277" aparsertime="408" starttime="" endtime="">
       <Item index="0" connect="674" read="272" parser="407" logfile="/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/0/result.txt" />
       <Item index="1" connect="674" read="282" parser="410" logfile="/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/1/result.txt" />
-      <Item index="2" parser="674" logfile="/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/2/result.txt" />
     </TestCase>
     <TestCase name="case2" viewtype="native" datatype="xml" aconnecttime="2980" aparsertime="303" starttime="" endtime="">
       <Item index="0" connect="2980" parser="303" logfile="/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case2/0/result.txt" />
+    </TestCase>
+    <TestCase name="case3" viewtype="webview" aparsertime="674" starttime="" endtime="">
+      <Item index="0" parser="674" logfile="/Users/wuxian/Documents/sourcecode/self/ResponseTimeTool/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case3/0/result.txt" />
     </TestCase>
   </TestRunner>
 </TestResult>
