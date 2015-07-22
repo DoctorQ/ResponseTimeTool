@@ -19,13 +19,13 @@ public class DirStructureUtilTest {
 	@Test(groups = { "unittest" })
 	public void getResultAndroidTest() {
 		File file = DirStructureUtil.getResultAndroid();
-		LOG.debug(file.getAbsolutePath());
+		LOG.info(file.getAbsolutePath());
 	}
 
 	@Test(groups = { "unittest" })
 	public void getResultIOSTest() {
 		File file = DirStructureUtil.getResultIOS();
-		LOG.debug(file.getAbsolutePath());
+		LOG.info(file.getAbsolutePath());
 	}
 
 }

@@ -39,22 +39,14 @@ public class Item implements XMLParser {
 		this.logFile = logFile;
 	}
 
-	public String getResponseTime() {
-		return responseTime;
-	}
-
-	public void setResponseTime(String responseTime) {
-		this.responseTime = responseTime;
-	}
+	
 
 	private static final String XML_TAG = "Item";
 	private static final String INDEX_ATTR = "index";
 	private static final String LOGFILE_ATTR = "logfile";
-	private static final String RESPONSETIME_ATTR = "responsetime";
 
 	private String index = "";
 	private String logFile = "";
-	private String responseTime = "";
 	private RTResult rtResult;
 
 	/*
