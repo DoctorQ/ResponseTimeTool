@@ -85,10 +85,6 @@ public class TestResultTest {
 		item1.setRtResult(result2);
 		testCase1.addItem(item1);
 		
-		
-		
-		
-		
 		TestCase testCase2 = testResult.getTestCaseByName("testcase2");
 		Item item2 = new Item();
 		item2.setIndex("0");
