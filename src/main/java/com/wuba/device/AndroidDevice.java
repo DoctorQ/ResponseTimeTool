@@ -10,9 +10,6 @@ import com.wuba.utils.Helper;
  *
  */
 
-
-
-
 public class AndroidDevice implements Device {
 	
 	private String platform;	//
@@ -21,6 +18,8 @@ public class AndroidDevice implements Device {
 	private String osVersion;
 	private String appId;
 	private int[] screenSize;
+	private ADBEnv mADB;
+	public static AdbChimpDevice mChimpDevice = null;
 	private boolean adbConnected = false;
 	
 	/**
