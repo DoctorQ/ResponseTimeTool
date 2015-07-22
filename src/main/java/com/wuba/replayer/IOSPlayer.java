@@ -29,12 +29,12 @@ public class IOSPlayer extends BasePlayer implements Player {
 		this.appId = device.getAppId();
 	}
 	
-	public IOSPlayer(Device device, String taskName) {
-		// TODO Auto-generated constructor stub
-		super(device, taskName);
-		this.deviceId = device.getDeviceId();
-		this.appId = device.getAppId();
-	}
+//	public IOSPlayer(Device device, String taskName) {
+//		// TODO Auto-generated constructor stub
+//		super(device, taskName);
+//		this.deviceId = device.getDeviceId();
+//		this.appId = device.getAppId();
+//	}
 
 	/**
 	 * 回放测试脚本
