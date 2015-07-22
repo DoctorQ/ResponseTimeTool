@@ -22,20 +22,13 @@ public class IOSPlayer extends BasePlayer implements Player {
 	private String deviceId;
 	private String appId;
 
-	public IOSPlayer(Device device) {
+	public IOSPlayer(Device device, String network) {
 		// TODO Auto-generated constructor stub
-		super(device, Constant.DEFAULT_TASK_NAME);
+		super(device, network);
 		this.deviceId = device.getDeviceId();
 		this.appId = device.getAppId();
 	}
 	
-//	public IOSPlayer(Device device, String taskName) {
-//		// TODO Auto-generated constructor stub
-//		super(device, taskName);
-//		this.deviceId = device.getDeviceId();
-//		this.appId = device.getAppId();
-//	}
-
 	/**
 	 * 回放测试脚本
 	 * 
@@ -49,8 +42,6 @@ public class IOSPlayer extends BasePlayer implements Player {
 		while(it.hasNext()) {
 			File testCase = (File)it.next();
 	    	int iteration = taskMap.get(testCase);
-//	    	System.out.println("testCase:" + testCase.getName() + " iteration:" + iteration);
-//	    	System.out.println(super.taskName);
 	    	casePlay(testCase, iteration);
 		}
 		return false;
@@ -74,12 +65,12 @@ public class IOSPlayer extends BasePlayer implements Player {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String output = Helper.executeCommand(cmd);
-			if (output.contains("Replay Test Success")) {
-				System.out.println("OKOKOKOKOKOKOKOK!!!!!!!");
-			}
-			System.out.println(resDir);
-			System.out.println(cmd);
+//			String output = Helper.executeCommand(cmd);
+//			if (output.contains("Replay Test Success")) {
+//				System.out.println("OKOKOKOKOKOKOKOK!!!!!!!");
+//			}
+//			System.out.println(resDir);
+//			System.out.println(cmd);
 //			System.out.println("1");
 			i++;
 		}

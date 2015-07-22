@@ -1,9 +1,15 @@
 package com.wuba.device;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.robovm.libimobiledevice.IDevice;
+import org.robovm.libimobiledevice.LockdowndClient;
+
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSObject;
 import com.wuba.utils.Constant;
 import com.wuba.utils.Helper;
 
@@ -17,11 +23,14 @@ public class IOSDevice implements Device {
 
 	private String platform = Constant.IOS_PLATFORM;
 	private String deviceId;
-	private String deviceName;
-	private String osVersion;
 	private String appId;
 	private int[] screenSize;
+	private IDevice iDevice;
+	private LockdowndClient iClient;
+	private NSObject iNode;
+	private NSDictionary iDict;
 	private boolean serverConnected = false;
+	
 
 	public IOSDevice(String deviceId, String appId) {
 		// TODO Auto-generated constructor stub
@@ -30,27 +39,31 @@ public class IOSDevice implements Device {
 		// 清空temp目录
 		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
 		Helper.createDir(Constant.iOS_TEMP_DIR);
+		//init iDict
+		initIdict();
 	}
-
-//	public void setPlatform(String platform) {
-//		this.platform = platform;
-//	}
-
-	// public void setDeviceId(String deviceId) {
-	// this.deviceId = deviceId;
-	// }
-
-	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
+	
+	protected void initIdict(){
+		try {
+			iDevice = new IDevice(deviceId);
+			iClient = new LockdowndClient(iDevice, null, true);
+			iNode = iClient.getValue(null, null);
+			iDict = (NSDictionary) iNode;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			if (iClient != null) {
+				iClient.dispose();
+				iClient = null;
+	        }
+	        if (iDevice != null) {
+	        	iDevice.dispose();
+	        	iDevice = null;
+	        }
+		}
+		
 	}
-
-	public void setOsVersion(String osVersion) {
-		this.osVersion = osVersion;
-	}
-
-	// public void setAppId(String appId) {
-	// this.appId = appId;
-	// }
 
 	public void setScreenSize(int[] screenSize) {
 		this.screenSize = screenSize;
@@ -71,13 +84,14 @@ public class IOSDevice implements Device {
 	@Override
 	public String getDeviceName() {
 		// TODO Auto-generated method stub
-		return deviceName;
+		String key = iDict.objectForKey("ProductType").toString();
+		return Constant.IPHONE_MAP.get(key);
 	}
 
 	@Override
 	public String getOsVersion() {
 		// TODO Auto-generated method stub
-		return osVersion;
+		return iDict.objectForKey("ProductVersion").toString();
 	}
 
 	@Override
@@ -190,5 +204,6 @@ public class IOSDevice implements Device {
 		}
 		return false;
 	}
+	
 
 }
