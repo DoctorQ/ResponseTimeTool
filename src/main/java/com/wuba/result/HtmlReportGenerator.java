@@ -6,6 +6,8 @@ package com.wuba.result;
 import java.io.File;
 import java.util.List;
 
+import com.wuba.logparser.LogParser;
+
 
 /**
  * @author hui.qian qianhui@58.com  
@@ -17,7 +19,7 @@ public class HtmlReportGenerator implements ReportGenerator {
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
 	@Override
-	public void generateReporter(File rootDir) {
+	public void generateReporter(File rootDir,LogParser logParser) {
 		// TODO Auto-generated method stub
 
 	}

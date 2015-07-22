@@ -7,6 +7,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wuba.logparser.LogParser;
+
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月22日 下午5:28:10
@@ -25,11 +27,11 @@ public class ReportGeneratorProxy implements ReportGenerator {
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
 	@Override
-	public void generateReporter(File rootDir) {
+	public void generateReporter(File rootDir,LogParser logParser) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		for (ReportGenerator reportGenerator : reportGenerators) {
-			reportGenerator.generateReporter(rootDir);
+			reportGenerator.generateReporter(rootDir,logParser);
 		}
 
 	}

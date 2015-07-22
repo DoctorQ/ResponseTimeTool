@@ -9,6 +9,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
+import com.wuba.logparser.AndroidLogParser;
+import com.wuba.utils.DirStructureUtil;
+
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月22日 下午5:35:16
@@ -24,7 +27,8 @@ public class ReportGeneratorProxyTest {
 		proxy.addReportGenerator(new HtmlReportGenerator());
 		csv = new CsvReportGenerator();
 		proxy.addReportGenerator(csv);
-		
+		proxy.addReportGenerator(new XmlReportGenerator());
+
 		logFile = new File("");
 
 	}
@@ -56,9 +60,7 @@ public class ReportGeneratorProxyTest {
 	 * 测试多目录合成报告
 	 */
 	@Test(groups = { "unittest" })
-	public void generatorReportByMuiltDirTest() {
-		File file = new File("");
-		proxy.generateReporter(file);
+	public void generatorAndroidReportByMuiltDirTest() {
 
 	}
 
@@ -66,8 +68,10 @@ public class ReportGeneratorProxyTest {
 	 * 测试单目录报告
 	 */
 	@Test(groups = { "unittest" })
-	public void generatorReportByDirTest() {
-
+	public void generatorAndroidReportByDirTest() {
+		File file = new File(DirStructureUtil.getResultAndroid(),
+				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
+		proxy.generateReporter(file,new AndroidLogParser());
 	}
 
 }
