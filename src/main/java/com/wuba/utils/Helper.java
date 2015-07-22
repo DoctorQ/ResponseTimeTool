@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 
 /**
  * 公共方法
@@ -27,7 +28,7 @@ public class Helper {
 
 			String line;
 			while ((line = reader.readLine()) != null) {
-				System.out.println("INST: " + line);
+				System.out.println(line);
 				output.append(line + "\n");
 			}
 
@@ -176,11 +177,16 @@ public class Helper {
 		// if the directory does not exist, create it
 		if (!theDir.exists()) {
 			try {
-				theDir.mkdir();
+				theDir.mkdirs();
 			} catch (SecurityException se) {
 				// handle it
 			}
 		}
 	}
 
+	public static String getCurrFormatTime(String format) {
+		SimpleDateFormat sDateFormat = new SimpleDateFormat(format);
+		String date = sDateFormat.format(new java.util.Date());
+		return date;
+	}
 }
