@@ -15,7 +15,7 @@ import com.wuba.utils.Helper;
  */
 public class IOSDevice implements Device {
 
-	private String platform;
+	private String platform = Constant.IOS_PLATFORM;
 	private String deviceId;
 	private String deviceName;
 	private String osVersion;
@@ -32,9 +32,9 @@ public class IOSDevice implements Device {
 		Helper.createDir(Constant.iOS_TEMP_DIR);
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
-	}
+//	public void setPlatform(String platform) {
+//		this.platform = platform;
+//	}
 
 	// public void setDeviceId(String deviceId) {
 	// this.deviceId = deviceId;

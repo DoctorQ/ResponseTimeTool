@@ -39,6 +39,15 @@ public class AndroidLogParserTest {
 		Assert.assertNotNull(result);
 		LOGGER.debug(result.toString());
 	}
+	//测试webview的响应时间
+	@Test(groups = {"unittest"})
+	public void webViewTest(){
+		File file = new File(
+				this.getClass().getResource("/data/webview_time_points.txt").getPath());
+		RTResult result = androidLog.parserLog(file);
+		Assert.assertNotNull(result);
+		LOGGER.info(result.toString());
+	}
 	//log文件不存在测试
 	@Test(groups = {"unittest"})
 	public void nullLogFileTest(){

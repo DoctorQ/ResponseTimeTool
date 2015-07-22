@@ -3,8 +3,9 @@ package com.wuba.utils;
 import java.io.File;
 
 public class Constant {
-	public static final String IOS_PLATFORM = "iOS";
+	public static final String IOS_PLATFORM = "ios";
 	public static final String ANDROID_PLATFORM = "android";
+	public static final String DEFAULT_TASK_NAME = "task";
 	
 	//Android only
 	//本地存放android文件root目录
@@ -34,6 +35,13 @@ public class Constant {
 	public static final String iOS_START_SERVER_CMD = "start record server;";
 	public static final String iOS_CLOSE_SERVER_CMD = "close record server;";
 	
+	//result
+	public static final String RESULT_BASE_ROOT = System.getProperty("user.dir") + File.separator + 
+			"result";
+	public static final String RESULT_ANDROID_ROOT = RESULT_BASE_ROOT + File.separator +
+			ANDROID_PLATFORM;
+	public static final String RESULT_IOS_ROOT = RESULT_BASE_ROOT + File.separator +
+			IOS_PLATFORM;
 	
 	public static final String NATIVE = "native";
 	public static final String WEBVIEW = "webview";

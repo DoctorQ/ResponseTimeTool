@@ -19,7 +19,7 @@ import com.wuba.utils.Constant;
  * @date 2015年7月20日 下午2:48:41
  */
 public class TestCases implements XMLParser {
-	private static final String XML_TAG = "TestCases";
+	private static final String XML_TAG = "TestRunner";
 
 	private Map<String, TestCase> testCases = new LinkedHashMap<String, TestCase>();
 

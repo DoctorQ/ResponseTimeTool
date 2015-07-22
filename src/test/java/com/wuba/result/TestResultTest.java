@@ -85,10 +85,6 @@ public class TestResultTest {
 		item1.setRtResult(result2);
 		testCase1.addItem(item1);
 		
-		
-		
-		
-		
 		TestCase testCase2 = testResult.getTestCaseByName("testcase2");
 		Item item2 = new Item();
 		item2.setIndex("0");
@@ -98,6 +94,21 @@ public class TestResultTest {
 		testCase2.addItem(item2);
 		
 		
+		TestCase testCase3 = testResult.getTestCaseByName("testcase3");
+		Item item3 = new Item();
+		item3.setIndex("0");
+		item3.setLogFile(this.getClass().getResource("/data/webview_time_points.txt").getPath());
+		RTResult result4 = androidLog.parserLog(new File(item3.getLogFile()));
+		item3.setRtResult(result4);
+		testCase3.addItem(item3);
+		
+		TestCase testCase4 = testResult.getTestCaseByName("testcase3");
+		Item item4 = new Item();
+		item4.setIndex("0");
+		item4.setLogFile(this.getClass().getResource("/data/webview_time_points.txt").getPath());
+		RTResult result5 = androidLog.parserLog(new File(item4.getLogFile()));
+		item4.setRtResult(result5);
+		testCase4.addItem(item3);
 		
 		testResult.serializeResultToXml(file);
 		LOGGER.info("generateTestItemName-Done");

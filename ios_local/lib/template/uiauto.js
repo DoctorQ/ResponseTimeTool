@@ -37,7 +37,11 @@ function verifyImage(image, timeout){
 			UIALogger.logError("Verify Image FAIL - " + image);
 			throw new FailureException("Timout = " + timeout.toString() + "ms");
 		}
+		//rm-screen-shot
+		host.performTaskWithPathArgumentsTimeout("/bin/rm", ["-rf", sourceimage], 5);
+		//new-screen-shot
 		target.captureScreenWithName("screen_verify");
+		target.delay(1);
 		res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", jarfile, "-s", sourceimage, "-t", subimage], 10);
 		exitCode = res.exitCode;
 		stdout = res.stdout.toString().trim();

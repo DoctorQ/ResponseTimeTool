@@ -1,4 +1,4 @@
-package com.wuba.logparser;
+package com.wuba.device;
 
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
