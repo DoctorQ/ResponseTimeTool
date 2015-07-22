@@ -106,8 +106,10 @@ public class TestCase implements XMLParser {
 		RTResult result = item.getRtResult();
 		dataType = result.getDataType();
 		viewType = result.getViewType();
-		serializer.attribute(Constant.NAMESPACE, VIEWTYPE_ATTR, viewType);
-		serializer.attribute(Constant.NAMESPACE, DATATYPE_ATTR, dataType);
+		if (viewType != null)
+			serializer.attribute(Constant.NAMESPACE, VIEWTYPE_ATTR, viewType);
+		if (dataType != null)
+			serializer.attribute(Constant.NAMESPACE, DATATYPE_ATTR, dataType);
 
 		int size = items.size();
 		long totalConnectCost = 0;

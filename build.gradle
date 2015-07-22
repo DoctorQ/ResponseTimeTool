@@ -49,7 +49,7 @@ test {
         classDumpFile = file("$buildDir/jacoco/classpathdumps")
     }
     
-    testLogging.showStandardStreams = false
+    testLogging.showStandardStreams = true
     beforeTest { descriptor ->
      logger.lifecycle("Running test: " + descriptor)
   	}
