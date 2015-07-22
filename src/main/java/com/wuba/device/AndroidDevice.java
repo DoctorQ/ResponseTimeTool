@@ -1,5 +1,9 @@
 package com.wuba.device;
 
+import java.util.ArrayList;
+
+import com.android.chimpchat.adb.AdbChimpDevice;
+import com.android.ddmlib.IDevice;
 import com.wuba.utils.Constant;
 import com.wuba.utils.Helper;
 
@@ -18,9 +22,13 @@ public class AndroidDevice implements Device {
 	private String osVersion;
 	private String appId;
 	private int[] screenSize;
+	private boolean adbConnected = false;
+	
+	//FOR ADB 
 	private ADBEnv mADB;
 	public static AdbChimpDevice mChimpDevice = null;
-	private boolean adbConnected = false;
+	private IDevice[] mDevices;
+	private IDevice mDevice;
 	
 	/**
 	 * 初始化android本地存放目录
