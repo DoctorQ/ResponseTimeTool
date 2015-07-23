@@ -100,6 +100,7 @@ public class Constant {
 	public static final String JSON = "json";
 	public static final String XML = "xml";
 	public static final String NAMESPACE = null;
+	public static final String TESTRESULT_XML = "testResult.xml";
 	
 	
 }

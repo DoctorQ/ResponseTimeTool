@@ -36,8 +36,6 @@ public class TestResult implements XMLParser {
 
 	private static final Logger LOG = Logger.getLogger(TestResult.class);
 
-	private static final String TESTRESULT_XML = "testResult.xml";
-
 	// 当前任务的根目录
 	private File rootDir;
 
@@ -120,7 +118,7 @@ public class TestResult implements XMLParser {
 	public void serializeResultToXml() {
 
 		OutputStream stream = null;
-		File resultFile = new File(rootDir, TESTRESULT_XML);
+		File resultFile = new File(rootDir, Constant.TESTRESULT_XML);
 		try {
 			stream = createOutputResultStream(resultFile);
 			KXmlSerializer serializer = new KXmlSerializer();
