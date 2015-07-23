@@ -26,15 +26,36 @@ import com.wuba.utils.TimeUtil;
  * @date 2015年7月23日 下午2:37:28
  */
 public class TestResult implements XMLParser {
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
 	private static final Logger LOG = Logger.getLogger(TestResult.class);
 
-	private static final String TESTRESULT_XML = "testResult_%s.xml";
+	private static final String TESTRESULT_XML = "testResult.xml";
 
 	// 当前任务的根目录
 	private File rootDir;
 
 	public TestResult(File rootDir) {
 		this.rootDir = rootDir;
+		init();
+	}
+
+	private void init() {
+		String name = rootDir.getName();
+		String[] array = name.split("_");
+		if (array.length < 5)
+			return;
+
+		device = array[0];
+		network = array[1];
+		sn = array[2];
+		platform = array[3];
 	}
 
 	public String getDevice() {
@@ -65,11 +86,13 @@ public class TestResult implements XMLParser {
 	private static final String DEVICE_ATTR = "device";
 	private static final String NETWORK_ATTR = "network";
 	private static final String SN_ATTR = "sn";
+	private static final String PLATFORM_ATTR = "platform";
 
 	private Map<String, TestCaseLoop> loops = new LinkedHashMap<String, TestCaseLoop>();
 	private String device = "";
 	private String network = "";
 	private String sn = "";
+	private String platform = "";
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
@@ -77,6 +100,7 @@ public class TestResult implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
+		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
 		Collection<TestCaseLoop> collection = loops.values();
 		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
@@ -96,8 +120,7 @@ public class TestResult implements XMLParser {
 	public void serializeResultToXml() {
 
 		OutputStream stream = null;
-		File resultFile = new File(rootDir, String.format(TESTRESULT_XML,
-				TimeUtil.formatTimeForFile(System.currentTimeMillis())));
+		File resultFile = new File(rootDir, TESTRESULT_XML);
 		try {
 			stream = createOutputResultStream(resultFile);
 			KXmlSerializer serializer = new KXmlSerializer();
@@ -106,9 +129,7 @@ public class TestResult implements XMLParser {
 			serializer.setFeature(
 					"http://xmlpull.org/v1/doc/features.html#indent-output",
 					true);
-			// serializer
-			// .processingInstruction("xml-stylesheet type=\"text/xsl\"  "
-			// + "href=\"result.xsl\"");
+
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
@@ -138,6 +159,6 @@ public class TestResult implements XMLParser {
 		}
 
 		return loop;
-
 	}
+
 }
