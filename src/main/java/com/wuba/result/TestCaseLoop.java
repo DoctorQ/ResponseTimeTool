@@ -5,12 +5,10 @@ package com.wuba.result;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
@@ -20,6 +18,7 @@ import com.wuba.utils.Constant;
  * @date 2015年7月23日 下午2:38:11
  */
 public class TestCaseLoop implements XMLParser {
+
 	public String getName() {
 		return name;
 	}
@@ -28,27 +27,27 @@ public class TestCaseLoop implements XMLParser {
 		this.name = name;
 	}
 
-	public String getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 
-	public String getPass() {
+	public int getPass() {
 		return pass;
 	}
 
-	public void setPass(String pass) {
+	public void setPass(int pass) {
 		this.pass = pass;
 	}
 
-	public String getFail() {
+	public int getFail() {
 		return fail;
 	}
 
-	public void setFail(String fail) {
+	public void setFail(int fail) {
 		this.fail = fail;
 	}
 
@@ -60,12 +59,20 @@ public class TestCaseLoop implements XMLParser {
 		this.path = path;
 	}
 
-	public String getLoop() {
+	public int getLoop() {
 		return loop;
 	}
 
-	public void setLoop(String loop) {
+	public void setLoop(int loop) {
 		this.loop = loop;
+	}
+
+	public Map<Integer, TestCase> getTestCases() {
+		return testCases;
+	}
+
+	public void setTestCases(Map<Integer, TestCase> testCases) {
+		this.testCases = testCases;
 	}
 
 	public String getStartTime() {
@@ -97,15 +104,15 @@ public class TestCaseLoop implements XMLParser {
 	// case名
 	private String name = "";
 	// 执行的总次数
-	private String total = "";
+	private int total;
 	// case的pass数
-	private String pass = "";
+	private int pass;
 	// case的fail数
-	private String fail = "";
+	private int fail;
 	// case的路径
 	private String path = "";
-	// case的重复次数
-	private String loop = "";
+	// case的设置的重复次数
+	private int loop;
 	// case执行的开始时间
 	private String startTime = "";
 	// case执行的结束时间
@@ -121,18 +128,20 @@ public class TestCaseLoop implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		// TODO Auto-generated method stub
+		Collection<TestCase> collection = testCases.values();
+		statistics(collection);
 		serializer.startTag(Constant.NAMESPACE, TESTCASELOOP_TAG);
 		serializer.attribute(Constant.NAMESPACE, NAME_ATTR, getName());
-		serializer.attribute(Constant.NAMESPACE, TOTAL_ATTR, getTotal());
-		serializer.attribute(Constant.NAMESPACE, PASS_ATTR, getPass());
-		serializer.attribute(Constant.NAMESPACE, FAIL_ATTR, getFail());
+		serializer.attribute(Constant.NAMESPACE, TOTAL_ATTR, getTotal() + "");
+		serializer.attribute(Constant.NAMESPACE, PASS_ATTR, getPass() + "");
+		serializer.attribute(Constant.NAMESPACE, FAIL_ATTR, getFail() + "");
 		serializer.attribute(Constant.NAMESPACE, CASE_PATH_ATTR, getPath());
-		serializer.attribute(Constant.NAMESPACE, CASE_LOOP_ATTR, getLoop());
+		serializer
+				.attribute(Constant.NAMESPACE, CASE_LOOP_ATTR, getLoop() + "");
 		serializer
 				.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getStartTime());
 		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getEndTime());
-		Collection<TestCase> collection = testCases.values();
-		for(TestCase testCase : collection){
+		for (TestCase testCase : collection) {
 			testCase.serialize(serializer);
 		}
 		serializer.endTag(Constant.NAMESPACE, TESTCASELOOP_TAG);
@@ -148,8 +157,19 @@ public class TestCaseLoop implements XMLParser {
 			testCases.put(index, testCase);
 
 		}
-
 		return testCase;
+
+	}
+
+	private void statistics(Collection<TestCase> collection) {
+		total = collection.size();
+
+		for (TestCase test : collection) {
+			if (test.isPass())
+				pass++;
+		}
+
+		fail = total - pass;
 
 	}
 
