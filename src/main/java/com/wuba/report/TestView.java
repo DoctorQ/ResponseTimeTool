@@ -14,7 +14,7 @@ import com.wuba.utils.Constant;
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:49:33
  */
-public class Item implements XMLParser {
+public class TestView implements XMLParser {
 	public RTResult getRtResult() {
 		return rtResult;
 	}
@@ -41,7 +41,7 @@ public class Item implements XMLParser {
 
 	
 
-	private static final String XML_TAG = "Item";
+	private static final String XML_TAG = "TestView";
 	private static final String INDEX_ATTR = "index";
 	private static final String LOGFILE_ATTR = "logfile";
 

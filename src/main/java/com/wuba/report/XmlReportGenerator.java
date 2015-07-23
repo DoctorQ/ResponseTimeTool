@@ -20,7 +20,7 @@ public class XmlReportGenerator implements ReportGenerator {
 
 	private static final String XML_RESULT = "testReport.xml";
 	private static final String LOG_TXT_FILE = "result.txt";
-	private TestResult mTestResult = new TestResult();
+	private TestReport mTestResult = new TestReport();
 
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
@@ -36,11 +36,11 @@ public class XmlReportGenerator implements ReportGenerator {
 		for (File caseFile : cases) {
 			if (caseFile.isFile())
 				continue;
-			TestCase testCase = mTestResult.getTestCaseByName(caseFile
+			TestViewLoop testCase = mTestResult.getTestCaseByName(caseFile
 					.getName());
 			File[] itemFiles = caseFile.listFiles();
 			for (File itemFile : itemFiles) {
-				Item item = new Item();
+				TestView item = new TestView();
 				item.setIndex(itemFile.getName());
 				File logFile = new File(itemFile, LOG_TXT_FILE);
 				item.setLogFile(logFile.getAbsolutePath());

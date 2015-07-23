@@ -17,7 +17,7 @@ import com.wuba.utils.Constant;
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:47:45
  */
-public class TestResult implements XMLParser {
+public class TestReport implements XMLParser {
 	public DeviceInfo getDeviceInfo() {
 		return mDeviceInfo;
 	}
@@ -26,11 +26,11 @@ public class TestResult implements XMLParser {
 		this.mDeviceInfo = deviceInfo;
 	}
 
-	private static final Logger LOGGER = Logger.getLogger(TestResult.class);
-	private static final String XML_TAG = "TestResult";
+	private static final Logger LOGGER = Logger.getLogger(TestReport.class);
+	private static final String XML_TAG = "TestReport";
 
 	private DeviceInfo mDeviceInfo = new DeviceInfo();
-	private TestCases mTestCases = new TestCases();
+	private TestDevice mTestCases = new TestDevice();
 
 	/*
 	 * 
@@ -86,7 +86,7 @@ public class TestResult implements XMLParser {
 
 	}
 
-	public TestCase getTestCaseByName(String name) {
+	public TestViewLoop getTestCaseByName(String name) {
 		if (name == null) {
 			LOGGER.error("You want get a name = null TestCase?");
 			return null;

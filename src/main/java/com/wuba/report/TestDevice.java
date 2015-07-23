@@ -18,12 +18,12 @@ import com.wuba.utils.Constant;
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:48:41
  */
-public class TestCases implements XMLParser {
-	private static final String XML_TAG = "TestRunner";
+public class TestDevice implements XMLParser {
+	private static final String XML_TAG = "TestDevice";
 
-	private Map<String, TestCase> testCases = new LinkedHashMap<String, TestCase>();
+	private Map<String, TestViewLoop> testCases = new LinkedHashMap<String, TestViewLoop>();
 
-	private TestCase currentCase = null;
+	private TestViewLoop currentCase = null;
 
 	/*
 	 * @see com.wuba.result.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
@@ -32,17 +32,17 @@ public class TestCases implements XMLParser {
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		// TODO Auto-generated method stub
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		Collection<TestCase> collection = testCases.values();
-		for (TestCase testCase : collection) {
+		Collection<TestViewLoop> collection = testCases.values();
+		for (TestViewLoop testCase : collection) {
 			testCase.serialize(serializer);
 		}
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 	
-	public TestCase getTestCaseByName(String name) {
+	public TestViewLoop getTestCaseByName(String name) {
 		currentCase = testCases.get(name);
 		if (currentCase == null) {
-			currentCase = new TestCase();
+			currentCase = new TestViewLoop();
 			currentCase.setName(name);
 			testCases.put(name, currentCase);
 		}

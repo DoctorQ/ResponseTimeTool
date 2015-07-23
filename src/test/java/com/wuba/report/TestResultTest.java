@@ -14,10 +14,10 @@ import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.LogParser;
 import com.wuba.model.RTResult;
 import com.wuba.report.DeviceInfo;
-import com.wuba.report.Item;
-import com.wuba.report.TestCase;
-import com.wuba.report.TestCases;
-import com.wuba.report.TestResult;
+import com.wuba.report.TestView;
+import com.wuba.report.TestViewLoop;
+import com.wuba.report.TestDevice;
+import com.wuba.report.TestReport;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -26,13 +26,13 @@ import com.wuba.report.TestResult;
 public class TestResultTest {
 	private static final Logger LOGGER = Logger.getLogger(TestResultTest.class);
 
-	private TestResult testResult = null;
+	private TestReport testResult = null;
 	private File file = null;
 	private LogParser androidLog;
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
-		testResult = new TestResult();
+		testResult = new TestReport();
 		file = new File(this.getClass().getResource("/result").getPath(),"testResult.xml");
 		LOGGER.debug(file.getAbsolutePath());
 		androidLog = new AndroidLogParser();
@@ -63,15 +63,15 @@ public class TestResultTest {
 
 	@Test(groups = { "unittest" })
 	public void generateTestCasesByNullName() {
-		TestCase testCase = testResult.getTestCaseByName(null);
+		TestViewLoop testCase = testResult.getTestCaseByName(null);
 		Assert.assertNull(testCase);
 		LOGGER.info("generateTestCasesByNullName-Done");
 	}
 
 	@Test(groups = { "unittest" })
 	public void generateTestItemName() {
-		TestCase testCase1 = testResult.getTestCaseByName("testcase1");
-		Item item0 = new Item();
+		TestViewLoop testCase1 = testResult.getTestCaseByName("testcase1");
+		TestView item0 = new TestView();
 		item0.setIndex("0");
 		item0.setLogFile(this.getClass().getResource("/data/time_points.txt").getPath());
 		RTResult result = androidLog.parserLog(new File(item0.getLogFile()));
@@ -80,15 +80,15 @@ public class TestResultTest {
 		testCase1.addItem(item0);
 		
 		
-		Item item1 = new Item();
+		TestView item1 = new TestView();
 		item1.setIndex("1");
 		item1.setLogFile(this.getClass().getResource("/data/time_points1.txt").getPath());
 		RTResult result2 = androidLog.parserLog(new File(item1.getLogFile()));
 		item1.setRtResult(result2);
 		testCase1.addItem(item1);
 		
-		TestCase testCase2 = testResult.getTestCaseByName("testcase2");
-		Item item2 = new Item();
+		TestViewLoop testCase2 = testResult.getTestCaseByName("testcase2");
+		TestView item2 = new TestView();
 		item2.setIndex("0");
 		item2.setLogFile(this.getClass().getResource("/data/xml.txt").getPath());
 		RTResult result3 = androidLog.parserLog(new File(item2.getLogFile()));
@@ -96,16 +96,16 @@ public class TestResultTest {
 		testCase2.addItem(item2);
 		
 		
-		TestCase testCase3 = testResult.getTestCaseByName("testcase3");
-		Item item3 = new Item();
+		TestViewLoop testCase3 = testResult.getTestCaseByName("testcase3");
+		TestView item3 = new TestView();
 		item3.setIndex("0");
 		item3.setLogFile(this.getClass().getResource("/data/webview_time_points.txt").getPath());
 		RTResult result4 = androidLog.parserLog(new File(item3.getLogFile()));
 		item3.setRtResult(result4);
 		testCase3.addItem(item3);
 		
-		TestCase testCase4 = testResult.getTestCaseByName("testcase3");
-		Item item4 = new Item();
+		TestViewLoop testCase4 = testResult.getTestCaseByName("testcase3");
+		TestView item4 = new TestView();
 		item4.setIndex("0");
 		item4.setLogFile(this.getClass().getResource("/data/webview_time_points.txt").getPath());
 		RTResult result5 = androidLog.parserLog(new File(item4.getLogFile()));

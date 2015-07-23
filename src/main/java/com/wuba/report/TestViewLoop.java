@@ -16,7 +16,7 @@ import com.wuba.utils.Constant;
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午2:49:05
  */
-public class TestCase implements XMLParser {
+public class TestViewLoop implements XMLParser {
 
 	public String getStartTime() {
 		return startTime;
@@ -50,7 +50,7 @@ public class TestCase implements XMLParser {
 		this.averageResponseTime = averageResponseTime;
 	}
 
-	private static final String XML_TAG = "TestCase";
+	private static final String XML_TAG = "TestViewLoop";
 	private static final String NAME_ATTR = "name";
 	private static final String STARTTIME_ATTR = "starttime";
 	private static final String ENDTIME_ATTR = "endtime";
@@ -68,7 +68,7 @@ public class TestCase implements XMLParser {
 	private String dataType;
 	private String viewType;
 
-	private List<Item> items = new LinkedList<Item>();
+	private List<TestView> items = new LinkedList<TestView>();
 
 	/*
 	 * 
@@ -83,13 +83,13 @@ public class TestCase implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
 		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
 
-		for (Item item : items) {
+		for (TestView item : items) {
 			item.serialize(serializer);
 		}
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
-	public void addItem(Item item) {
+	public void addItem(TestView item) {
 		if (item == null)
 			return;
 		items.add(item);
@@ -102,7 +102,7 @@ public class TestCase implements XMLParser {
 			throws IOException {
 		if (items.size() <= 0)
 			return;
-		Item item = items.get(0);
+		TestView item = items.get(0);
 		RTResult result = item.getRtResult();
 		dataType = result.getDataType();
 		viewType = result.getViewType();
@@ -115,7 +115,7 @@ public class TestCase implements XMLParser {
 		long totalConnectCost = 0;
 		long totalReadCost = 0;
 		long totalParserCost = 0;
-		for (Item indexItem : items) {
+		for (TestView indexItem : items) {
 			if (Constant.NATIVE.equals(viewType)) {
 				totalConnectCost += indexItem.getRtResult().getConnectCost();
 				if (Constant.JSON.equals(dataType)) {
