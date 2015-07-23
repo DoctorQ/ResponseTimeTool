@@ -9,6 +9,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wuba.logparser.LogParser;
+import com.wuba.utils.Constant;
+import com.wuba.utils.DirStructureUtil;
+import com.wuba.utils.TimeUtil;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -18,7 +21,7 @@ public class XmlReportGenerator implements ReportGenerator {
 	private static final Logger LOG = Logger
 			.getLogger(XmlReportGenerator.class);
 
-	private static final String XML_RESULT = "testReport.xml";
+	private static final String XML_RESULT = "testReport_%s.xml";
 	private static final String LOG_TXT_FILE = "result.txt";
 	private TestReport mTestResult = new TestReport();
 
@@ -48,7 +51,7 @@ public class XmlReportGenerator implements ReportGenerator {
 				testCase.addItem(item);
 			}
 		}
-		mTestResult.serializeResultToXml(new File(rootDir, XML_RESULT));
+		mTestResult.serializeResultToXml(new File(DirStructureUtil.getReportAndroid(), String.format(XML_RESULT, TimeUtil.formatTimeForFile(System.currentTimeMillis()))));
 
 	}
 

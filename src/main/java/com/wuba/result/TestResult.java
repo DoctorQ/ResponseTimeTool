@@ -19,6 +19,7 @@ import org.kxml2.io.KXmlSerializer;
 import com.wuba.report.TestReport;
 import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
+import com.wuba.utils.TimeUtil;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -26,6 +27,15 @@ import com.wuba.utils.Constant;
  */
 public class TestResult implements XMLParser {
 	private static final Logger LOG = Logger.getLogger(TestResult.class);
+
+	private static final String TESTRESULT_XML = "testResult_%s.xml";
+
+	// 当前任务的根目录
+	private File rootDir;
+
+	public TestResult(File rootDir) {
+		this.rootDir = rootDir;
+	}
 
 	public String getDevice() {
 		return device;
@@ -68,7 +78,7 @@ public class TestResult implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
 		Collection<TestCaseLoop> collection = loops.values();
-		for(TestCaseLoop loop : collection){
+		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
 		}
 		serializer.endTag(Constant.NAMESPACE, TESTRESULT_TAG);
@@ -83,21 +93,22 @@ public class TestResult implements XMLParser {
 		return new FileOutputStream(reportFile);
 	}
 
-	public void serializeResultToXml(File reportFile) {
+	public void serializeResultToXml() {
 
 		OutputStream stream = null;
-
+		File resultFile = new File(rootDir, String.format(TESTRESULT_XML,
+				TimeUtil.formatTimeForFile(System.currentTimeMillis())));
 		try {
-			stream = createOutputResultStream(reportFile);
+			stream = createOutputResultStream(resultFile);
 			KXmlSerializer serializer = new KXmlSerializer();
 			serializer.setOutput(stream, "UTF-8");
 			serializer.startDocument("UTF-8", false);
 			serializer.setFeature(
 					"http://xmlpull.org/v1/doc/features.html#indent-output",
 					true);
-//			serializer
-//					.processingInstruction("xml-stylesheet type=\"text/xsl\"  "
-//							+ "href=\"result.xsl\"");
+			// serializer
+			// .processingInstruction("xml-stylesheet type=\"text/xsl\"  "
+			// + "href=\"result.xsl\"");
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {

@@ -8,6 +8,7 @@ import java.io.File;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
+import com.wuba.utils.DirStructureUtil;
 import com.wuba.utils.TimeUtil;
 
 /**
@@ -19,7 +20,9 @@ public class TestResultTest {
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
-		testResult = new TestResult();
+		testResult = new TestResult(new File(
+				DirStructureUtil.getResultAndroid(),
+				"MI_2G_dksldfdffdf_4.4.2_201507210823923"));
 	}
 
 	@Test(groups = { "unittest" })
@@ -71,9 +74,7 @@ public class TestResultTest {
 		nativeXml.setEndTime(TimeUtil.formatTimeStamp(System
 				.currentTimeMillis()));
 
-		testResult.serializeResultToXml(new File(String.format(
-				"repo/report/testReport_%s.xml",
-				TimeUtil.formatTimeForFile(System.currentTimeMillis()))));
+		testResult.serializeResultToXml();
 	}
 
 }
