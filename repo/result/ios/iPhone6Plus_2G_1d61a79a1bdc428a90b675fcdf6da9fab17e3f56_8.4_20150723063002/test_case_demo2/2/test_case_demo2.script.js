@@ -1,6 +1,6 @@
 //automation globals define
-var casePath = "TEST_CASE_PATH"
-var imageMatcherJar = "IMAGE_MATCH_JAR"
+var casePath = "/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/result/ios/iPhone6Plus_2G_1d61a79a1bdc428a90b675fcdf6da9fab17e3f56_8.4_20150723063002/test_case_demo2/2"
+var imageMatcherJar = "/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/ios_local/bin/ImageMatcher.jar"
 var target      = UIATarget.localTarget();
 var application = target.frontMostApp();
 var host = target.host();
@@ -53,8 +53,12 @@ try{
 	
 /*COMMAND-LINES-START*/
 
-/*REPLACE_COMMAND_LINES*/
 
+target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});
+target.model();
+target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});
+verifyImage("sub.png", 10000);
+target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});
 /*COMMAND-LINES-END*/
 
 }catch(e){

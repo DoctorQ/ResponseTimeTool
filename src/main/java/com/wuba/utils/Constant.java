@@ -20,6 +20,7 @@ public class Constant {
 			"temp";
 	
 	//iOS only
+	public static final String iOS_INST_TRACE = "instrumentscli0.trace";
 	public static final String iOS_LOCAL_DIR = System.getProperty("user.dir") + File.separator + 
 			"ios_local";
 	public static final String iOS_DEVICECONSOLE = iOS_LOCAL_DIR + File.separator + 
@@ -89,6 +90,7 @@ public class Constant {
 	
 	//result
 	public static final String RESULT_BASE_ROOT = System.getProperty("user.dir") + File.separator + 
+			"repo" + File.separator +
 			"result";
 	public static final String RESULT_ANDROID_ROOT = RESULT_BASE_ROOT + File.separator +
 			ANDROID_PLATFORM;

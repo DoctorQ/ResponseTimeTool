@@ -5,6 +5,6 @@ import java.util.LinkedHashMap;
 
 public interface Player {
 	
-	boolean play(LinkedHashMap<File, Integer> taskMap);
+	void play(LinkedHashMap<File, Integer> taskMap);
 
 }

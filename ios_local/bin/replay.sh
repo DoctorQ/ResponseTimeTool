@@ -5,7 +5,7 @@ CasePath=$3
 
 CurrDir=$(cd "$(dirname "$0")"; pwd)
 UIAutoOriginPath=${CurrDir}/../lib/template/uiauto.js
-ImageMatchOriginPath=${CurrDir}/../bin/ImageMatcher.jar
+ImageMatchOriginPath=${CurrDir}/ImageMatcher.jar
 TestDir=`dirname $CasePath`
 TestScriptFile=`basename $CasePath`
 TestJSFile=${TestScriptFile}.js
@@ -13,11 +13,11 @@ Template=/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/
 
 cd $TestDir
 
-#copy ImageMatcher.jar
-cp  $ImageMatchOriginPath ImageMatcher.jar
-
 #copy uiauto.js
 cp  $UIAutoOriginPath uiauto.js
+
+#set imageMatcher jar
+sed -i '' "s:IMAGE_MATCH_JAR:$ImageMatchOriginPath:" uiauto.js
 
 #set test case path
 sed -i '' "s:TEST_CASE_PATH:$TestDir:" uiauto.js

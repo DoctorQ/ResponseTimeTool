@@ -39,7 +39,7 @@ public class IOSDevice implements Device {
 		// 清空temp目录
 		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
 		Helper.createDir(Constant.iOS_TEMP_DIR);
-		//init iDict
+		// 初始化iDict
 		initIdict();
 	}
 	
@@ -108,12 +108,13 @@ public class IOSDevice implements Device {
 
 	public void clickOnScreen(int x, int y) {
 		// TODO Auto-generated method stub
+		sendActionCommand("target.tapWithOptions({ x: " + x + ", y: " + y + " }, {tapCount: 1, touchCount: 1, duration: 0.5});");
 
 	}
 
 	public void dragFromToScreen(int startX, int startY, int endX, int endY) {
 		// TODO Auto-generated method stub
-
+		sendActionCommand("target.dragFromToForDuration({ x: " + startX + ", y: " + startY + " },{ x: " + endX + ", y: " + endY + " }, 0.5);");
 	}
 
 	@Override
@@ -151,6 +152,10 @@ public class IOSDevice implements Device {
 
 	/**
 	 * 向设备发送UIAutomation命令
+	 * e.g.
+	 * 点击:target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});
+	 * 滑瓶:target.dragFromToForDuration({ x: 50, y: 50 },{ x: 50, y: 100 }, 0.5);
+	 * 获取设备信息:target.model();
 	 * @param command
 	 * @return 响应结果
 	 */
@@ -163,7 +168,6 @@ public class IOSDevice implements Device {
 		if (resp == null) {
 			System.exit(0);
 		}
-		;
 		return resp.trim();
 	}
 
@@ -205,5 +209,4 @@ public class IOSDevice implements Device {
 		return false;
 	}
 	
-
 }
