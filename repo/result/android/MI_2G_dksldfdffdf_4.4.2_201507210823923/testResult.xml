@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestResult device="MI" network="2G" sn="">
+
+	<TestCase name="case1" pass="1" fail="1" starttime="" endtime="">
+		<TestItem status="pass" logfile="" />
+		<TestItem status="fail" logfile="" />
+	</TestCase>
+
+	<TestCase name="case2" pass="2" fail="0" starttime="" endtime="">
+		<TestLoop index="0" status="pass" logfile="" />
+		<TestLoop index="1" status="pass" logfile="" />
+	</TestCase>
+</TestResult>
