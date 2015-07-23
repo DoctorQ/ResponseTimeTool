@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TestResult device="MI" network="2G" sn="">
+<TestResult device="MI" network="2G" sn="23wrffffffgh">
 
 	<TestCase name="case1" pass="1" fail="1" starttime="" endtime="">
 		<TestItem status="pass" logfile="" />
