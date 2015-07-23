@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>All Samples</key>
+	<array>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"33", y:"268"}, {touchCount:"1", tapCount:"1", duration:"0.5"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:52Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"33", y:"268"}, {touchCount:"1", tapCount:"1", duration:"0.5"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:53Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectOnScreenWithName("{origin:{x:0.00,y:0.00}, size:{height:736.00,width:414.00}}", UIScreen, "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:53Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>C44703DE-C47E-4554-9780-D0911443D44B</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:54Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.frontMostApp().alert().buttons()[0].tap()</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:55Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image Time-consuming:0</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:30:59Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectOnScreenWithName("{origin:{x:0.00,y:0.00}, size:{height:736.00,width:414.00}}", UIScreen, "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:00Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>B6E8B0AB-D003-4E7A-AC50-4713365351C8</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:00Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image Time-consuming:5158</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:04Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectOnScreenWithName("{origin:{x:0.00,y:0.00}, size:{height:736.00,width:414.00}}", UIScreen, "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:05Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>390B4403-9506-4090-8A41-7122A2024FF8</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:05Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image Time-consuming:10321</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:09Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>test_case_demo1.script.js</string>
+			<key>Line</key>
+			<integer>37</integer>
+			<key>LogType</key>
+			<string>Error</string>
+			<key>Message</key>
+			<string>Verify Image FAIL - fail.png</string>
+			<key>Screenshot</key>
+			<string>8069466F-B81D-445F-9248-5E678DE1ADE0</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:10Z</date>
+			<key>Type</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>test_case_demo1.script.js</string>
+			<key>Line</key>
+			<integer>65</integer>
+			<key>LogType</key>
+			<string>Error</string>
+			<key>Message</key>
+			<string>FailureException: "Timout = 10000ms"</string>
+			<key>Screenshot</key>
+			<string>23D5B4D2-49B4-485F-829C-2A41D7368F8C</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:10Z</date>
+			<key>Type</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>test_case_demo1.script.js</string>
+			<key>Line</key>
+			<integer>71</integer>
+			<key>LogType</key>
+			<string>Fail</string>
+			<key>Message</key>
+			<string>Replay Test Failed</string>
+			<key>Screenshot</key>
+			<string>5DFBBBB5-921A-4E41-8AA5-68DC3E9870DA</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:10Z</date>
+			<key>Type</key>
+			<integer>7</integer>
+		</dict>
+	</array>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
