@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wuba.result;
+package com.wuba.report;
 
 import java.io.File;
 import java.util.List;
@@ -9,6 +9,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wuba.logparser.LogParser;
+import com.wuba.result.Item;
+import com.wuba.result.TestCase;
+import com.wuba.result.TestResult;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -18,7 +21,7 @@ public class XmlReportGenerator implements ReportGenerator {
 	private static final Logger LOG = Logger
 			.getLogger(XmlReportGenerator.class);
 
-	private static final String XML_RESULT = "testResult.xml";
+	private static final String XML_RESULT = "testReport.xml";
 	private static final String LOG_TXT_FILE = "result.txt";
 	private TestResult mTestResult = new TestResult();
 

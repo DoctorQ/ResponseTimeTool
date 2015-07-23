@@ -17,14 +17,14 @@ public class DirStructureUtil {
 	 * @return File
 	 */
 	public static File getResultAndroid() {
-		return new File(ROOT, "result/android/");
+		return new File(ROOT, "repo/result/android/");
 	}
 	/**
 	 * 获取iOS的结果目录根目录
 	 * @return File
 	 */
 	public static File getResultIOS(){
-		return new File(ROOT, "result/ios/");
+		return new File(ROOT, "repo/result/ios/");
 	}
 
 }

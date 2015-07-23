@@ -10,6 +10,11 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 import com.wuba.logparser.AndroidLogParser;
+import com.wuba.report.CsvReportGenerator;
+import com.wuba.report.HtmlReportGenerator;
+import com.wuba.report.ReportGenerator;
+import com.wuba.report.ReportGeneratorProxy;
+import com.wuba.report.XmlReportGenerator;
 import com.wuba.utils.DirStructureUtil;
 
 /**
