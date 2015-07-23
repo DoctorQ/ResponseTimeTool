@@ -11,8 +11,8 @@ import java.io.OutputStream;
 import org.apache.log4j.Logger;
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;
-import com.wuba.utils.XMLParser;
 
 /**
  * @author hui.qian qianhui@58.com

@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.kxml2.io.KXmlSerializer;
 
 import com.wuba.utils.Constant;
-import com.wuba.utils.XMLParser;
 
 /**
  * @author hui.qian qianhui@58.com

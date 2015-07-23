@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wuba.utils;
+package com.wuba.result;
 
 import java.io.IOException;
 

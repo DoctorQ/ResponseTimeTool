@@ -19,7 +19,6 @@ import org.kxml2.io.KXmlSerializer;
 import com.wuba.report.TestReport;
 import com.wuba.utils.Constant;
 import com.wuba.utils.TimeUtil;
-import com.wuba.utils.XMLParser;
 
 /**
  * @author hui.qian qianhui@58.com

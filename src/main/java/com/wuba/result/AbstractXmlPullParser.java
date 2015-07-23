@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.wuba.report;
+package com.wuba.result;
 
 
 import org.xmlpull.v1.XmlPullParser;
