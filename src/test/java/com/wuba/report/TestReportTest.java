@@ -23,8 +23,8 @@ import com.wuba.report.TestReport;
  * @author hui.qian qianhui@58.com
  * @date 2015年7月20日 下午4:24:04
  */
-public class TestResultTest {
-	private static final Logger LOGGER = Logger.getLogger(TestResultTest.class);
+public class TestReportTest {
+	private static final Logger LOGGER = Logger.getLogger(TestReportTest.class);
 
 	private TestReport testResult = null;
 	private File file = null;
