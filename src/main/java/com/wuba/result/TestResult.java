@@ -4,27 +4,27 @@
 package com.wuba.result;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.kxml2.io.KXmlSerializer;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
-import com.wuba.report.TestReport;
 import com.wuba.utils.Constant;
-import com.wuba.utils.TimeUtil;
 
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月23日 下午2:37:28
  */
-public class TestResult implements XMLParser {
+public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	public String getPlatform() {
 		return platform;
 	}
@@ -40,7 +40,15 @@ public class TestResult implements XMLParser {
 
 	public TestResult(File rootDir) {
 		this.rootDir = rootDir;
-		init();
+	}
+
+	public void parserXml() {
+		try {
+			parse(new FileReader(new File(rootDir, Constant.TESTRESULT_XML)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void init() {
@@ -93,6 +101,9 @@ public class TestResult implements XMLParser {
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
+
+		init();
+
 		serializer.startTag(Constant.NAMESPACE, TESTRESULT_TAG);
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
@@ -156,6 +167,39 @@ public class TestResult implements XMLParser {
 		}
 
 		return loop;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.wuba.result.AbstractXmlPullParser#parse(org.xmlpull.v1.XmlPullParser)
+	 */
+	@Override
+	public void parse(XmlPullParser parser) throws XmlPullParserException,
+			IOException {
+		// TODO Auto-generated method stub
+		if (!parser.getName().equals(TESTRESULT_TAG)) {
+			return;
+		}
+		setDevice(getAttribute(parser, DEVICE_ATTR));
+		setNetwork(getAttribute(parser, NETWORK_ATTR));
+		setSn(getAttribute(parser, SN_ATTR));
+		setPlatform(getAttribute(parser, PLATFORM_ATTR));
+		int eventType = parser.next();
+		while (eventType != XmlPullParser.END_DOCUMENT) {
+			if (eventType == XmlPullParser.START_TAG
+					&& parser.getName().equals(TestCaseLoop.TESTCASELOOP_TAG)) {
+				TestCaseLoop loop = new TestCaseLoop();
+				loop.parse(parser);
+				loops.put(loop.getName(), loop);
+			} else if (eventType == XmlPullParser.END_TAG
+					&& parser.getName().equals(TESTRESULT_TAG)) {
+				return;
+			}
+			eventType = parser.next();
+		}
+
 	}
 
 }

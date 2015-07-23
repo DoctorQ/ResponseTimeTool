@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wuba.logparser.LogParser;
+import com.wuba.result.TestResult;
 import com.wuba.utils.Constant;
 import com.wuba.utils.DirStructureUtil;
 import com.wuba.utils.TimeUtil;
@@ -32,9 +33,10 @@ public class XmlReportGenerator implements ReportGenerator {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-		File xmlFile = new File(rootDir, Constant.TESTRESULT_XML);
+		TestResult testResult = new TestResult(rootDir);
+		//解析testResult.xml文件
+		testResult.parserXml();
 
-		
 	}
 
 	/*
