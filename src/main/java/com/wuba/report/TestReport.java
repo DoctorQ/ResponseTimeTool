@@ -26,7 +26,7 @@ public class TestReport implements XMLParser {
 		this.mDeviceInfo = deviceInfo;
 	}
 
-	private static final Logger LOGGER = Logger.getLogger(TestReport.class);
+	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 
 	private DeviceInfo mDeviceInfo = new DeviceInfo();
@@ -48,7 +48,7 @@ public class TestReport implements XMLParser {
 	 * Creates the output stream to use for test results. Exposed for mocking.
 	 */
 	OutputStream createOutputResultStream(File reportFile) throws IOException {
-		LOGGER.info(String.format("Created xml report file at file://%s",
+		LOG.info(String.format("Created testReport.xml  file at file://%s",
 				reportFile.getAbsolutePath()));
 		return new FileOutputStream(reportFile);
 	}
@@ -71,7 +71,7 @@ public class TestReport implements XMLParser {
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
-			LOGGER.error(e);
+			LOG.error(e);
 			e.printStackTrace();
 		} finally {
 			if (stream != null) {
@@ -88,7 +88,7 @@ public class TestReport implements XMLParser {
 
 	public TestViewLoop getTestCaseByName(String name) {
 		if (name == null) {
-			LOGGER.error("You want get a name = null TestCase?");
+			LOG.error("You want get a name = null TestCase?");
 			return null;
 		}
 		return mTestCases.getTestCaseByName(name);
