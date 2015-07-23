@@ -22,7 +22,7 @@ public class XmlReportGenerator implements ReportGenerator {
 			.getLogger(XmlReportGenerator.class);
 
 	private static final String XML_RESULT = "testReport_%s.xml";
-	private static final String LOG_TXT_FILE = "result.txt";
+
 	private TestReport mTestResult = new TestReport();
 
 	/*
@@ -34,24 +34,27 @@ public class XmlReportGenerator implements ReportGenerator {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-		// 获取case名,每个目录代表一个case
-		File[] cases = rootDir.listFiles();
-		for (File caseFile : cases) {
-			if (caseFile.isFile())
-				continue;
-			TestViewLoop testCase = mTestResult.getTestCaseByName(caseFile
-					.getName());
-			File[] itemFiles = caseFile.listFiles();
-			for (File itemFile : itemFiles) {
-				TestView item = new TestView();
-				item.setIndex(itemFile.getName());
-				File logFile = new File(itemFile, LOG_TXT_FILE);
-				item.setLogFile(logFile.getAbsolutePath());
-				item.setRtResult(logParser.parserLog(logFile));
-				testCase.addItem(item);
-			}
-		}
-		mTestResult.serializeResultToXml(new File(DirStructureUtil.getReportAndroid(), String.format(XML_RESULT, TimeUtil.formatTimeForFile(System.currentTimeMillis()))));
+		
+		// // 获取case名,每个目录代表一个case
+		// File[] cases = rootDir.listFiles();
+		// for (File caseFile : cases) {
+		// if (caseFile.isFile())
+		// continue;
+		// TestViewLoop testCase = mTestResult.getTestCaseByName(caseFile
+		// .getName());
+		// File[] itemFiles = caseFile.listFiles();
+		// for (File itemFile : itemFiles) {
+		// TestView item = new TestView();
+		// item.setIndex(itemFile.getName());
+		// File logFile = new File(itemFile, LOG_TXT_FILE);
+		// item.setLogFile(logFile.getAbsolutePath());
+		// item.setRtResult(logParser.parserLog(logFile));
+		// testCase.addItem(item);
+		// }
+		// }
+		// mTestResult.serializeResultToXml(new
+		// File(DirStructureUtil.getReportAndroid(), String.format(XML_RESULT,
+		// TimeUtil.formatTimeForFile(System.currentTimeMillis()))));
 
 	}
 
