@@ -13,9 +13,11 @@ import org.testng.annotations.Test;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.LogParser;
 import com.wuba.model.RTResult;
-import com.wuba.result.DeviceInfo;
-import com.wuba.result.TestCases;
-import com.wuba.result.TestResult;
+import com.wuba.report.DeviceInfo;
+import com.wuba.report.Item;
+import com.wuba.report.TestCase;
+import com.wuba.report.TestCases;
+import com.wuba.report.TestResult;
 
 /**
  * @author hui.qian qianhui@58.com

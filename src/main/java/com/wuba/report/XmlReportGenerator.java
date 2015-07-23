@@ -9,9 +9,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wuba.logparser.LogParser;
-import com.wuba.result.Item;
-import com.wuba.result.TestCase;
-import com.wuba.result.TestResult;
 
 /**
  * @author hui.qian qianhui@58.com

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.kxml2.io.KXmlSerializer;
 
-import com.wuba.result.XMLParser;
+import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
 
 /**

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wuba.result;
+package com.wuba.report;
 
 import java.io.IOException;
 import java.util.Collection;
