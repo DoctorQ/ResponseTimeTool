@@ -4,8 +4,13 @@
 package com.wuba.result;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
@@ -106,6 +111,8 @@ public class TestCaseLoop implements XMLParser {
 	// case执行的结束时间
 	private String endTime = "";
 
+	private Map<Integer, TestCase> testCases = new LinkedHashMap<Integer, TestCase>();
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -124,8 +131,25 @@ public class TestCaseLoop implements XMLParser {
 		serializer
 				.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getStartTime());
 		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getEndTime());
-
+		Collection<TestCase> collection = testCases.values();
+		for(TestCase testCase : collection){
+			testCase.serialize(serializer);
+		}
 		serializer.endTag(Constant.NAMESPACE, TESTCASELOOP_TAG);
+
+	}
+
+	public TestCase getTestCase(int index) {
+
+		TestCase testCase = testCases.get(index);
+		if (testCase == null) {
+			testCase = new TestCase();
+			testCase.setIndex(index + "");
+			testCases.put(index, testCase);
+
+		}
+
+		return testCase;
 
 	}
 

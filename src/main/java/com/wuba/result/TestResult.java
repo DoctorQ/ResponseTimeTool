@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.kxml2.io.KXmlSerializer;
@@ -51,12 +56,7 @@ public class TestResult implements XMLParser {
 	private static final String NETWORK_ATTR = "network";
 	private static final String SN_ATTR = "sn";
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wuba.report.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
-	 */
-
+	private Map<String, TestCaseLoop> loops = new LinkedHashMap<String, TestCaseLoop>();
 	private String device = "";
 	private String network = "";
 	private String sn = "";
@@ -67,10 +67,13 @@ public class TestResult implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
-
+		Collection<TestCaseLoop> collection = loops.values();
+		for(TestCaseLoop loop : collection){
+			loop.serialize(serializer);
+		}
 		serializer.endTag(Constant.NAMESPACE, TESTRESULT_TAG);
 	}
-	
+
 	/**
 	 * Creates the output stream to use for test results. Exposed for mocking.
 	 */
@@ -92,9 +95,9 @@ public class TestResult implements XMLParser {
 			serializer.setFeature(
 					"http://xmlpull.org/v1/doc/features.html#indent-output",
 					true);
-			serializer
-					.processingInstruction("xml-stylesheet type=\"text/xsl\"  "
-							+ "href=\"result.xsl\"");
+//			serializer
+//					.processingInstruction("xml-stylesheet type=\"text/xsl\"  "
+//							+ "href=\"result.xsl\"");
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
@@ -110,6 +113,20 @@ public class TestResult implements XMLParser {
 				}
 			}
 		}
+	}
+
+	public TestCaseLoop getTestCaseLoop(String caseName) {
+		if (caseName == null)
+			return null;
+
+		TestCaseLoop loop = loops.get(caseName);
+		if (loop == null) {
+			loop = new TestCaseLoop();
+			loop.setName(caseName);
+			loops.put(caseName, loop);
+		}
+
+		return loop;
 
 	}
 }
