@@ -5,6 +5,7 @@ package com.wuba.report;
 
 import java.io.File;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
@@ -25,6 +26,7 @@ public class ReportGeneratorProxyTest {
 	private ReportGeneratorProxy proxy;
 	private ReportGenerator csv;
 	private File logFile;
+	private static final Logger LOG = Logger.getLogger(ReportGeneratorProxyTest.class);
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
@@ -77,6 +79,11 @@ public class ReportGeneratorProxyTest {
 		File file = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
 		proxy.generateReporter(file,new AndroidLogParser());
+	}
+	@Test
+	public void filePathTest(){
+		File file = new File(DirStructureUtil.getReportAndroid(),"testResult.xml");
+		LOG.info(file.getAbsolutePath());
 	}
 
 }

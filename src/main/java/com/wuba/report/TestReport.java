@@ -19,19 +19,11 @@ import com.wuba.utils.Constant;
  * @date 2015年7月20日 下午2:47:45
  */
 public class TestReport implements XMLParser {
-	public DeviceInfo getDeviceInfo() {
-		return mDeviceInfo;
-	}
-
-	public void setDeviceInfo(DeviceInfo deviceInfo) {
-		this.mDeviceInfo = deviceInfo;
-	}
 
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 
-	private DeviceInfo mDeviceInfo = new DeviceInfo();
-	private TestDevice mTestCases = new TestDevice();
+	private TestDevice mTestDevice = new TestDevice();
 
 	/*
 	 * 
@@ -40,8 +32,7 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		mDeviceInfo.serialize(serializer);
-		mTestCases.serialize(serializer);
+		mTestDevice.serialize(serializer);
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
@@ -92,7 +83,7 @@ public class TestReport implements XMLParser {
 			LOG.error("You want get a name = null TestCase?");
 			return null;
 		}
-		return mTestCases.getTestCaseByName(name);
+		return mTestDevice.getTestCaseByName(name);
 
 	}
 }

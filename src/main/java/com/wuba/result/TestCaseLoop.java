@@ -187,9 +187,13 @@ public class TestCaseLoop extends AbstractXmlPullParser implements XMLParser {
 		if (!parser.getName().equals(TESTCASELOOP_TAG)) {
 			return;
 		}
+		setName(getAttribute(parser, NAME_ATTR));
 		setStartTime(getAttribute(parser, STARTTIME_ATTR));
 		setTotal(Integer.parseInt(getAttribute(parser, TOTAL_ATTR)));
-		
+		setPass(Integer.parseInt(getAttribute(parser, PASS_ATTR)));
+		setFail(Integer.parseInt(getAttribute(parser, FAIL_ATTR)));
+		setLoop(Integer.parseInt(getAttribute(parser, CASE_LOOP_ATTR)));
+		setPath(getAttribute(parser, CASE_PATH_ATTR));
 		setEndTime(getAttribute(parser, ENDTIME_ATTR));
 		int eventType = parser.next();
 		while (eventType != XmlPullParser.END_DOCUMENT) {

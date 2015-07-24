@@ -27,7 +27,6 @@ public class TestResultTest {
 
 	@Test(groups = { "unittest" })
 	public void generateXmlTest() {
-
 		// webview
 		TestCaseLoop webview = testResult.getTestCaseLoop("case3");
 		webview.setStartTime(TimeUtil.formatTimeStamp(System

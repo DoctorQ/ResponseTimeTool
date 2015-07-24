@@ -13,11 +13,6 @@ import org.testng.annotations.Test;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.LogParser;
 import com.wuba.model.RTResult;
-import com.wuba.report.DeviceInfo;
-import com.wuba.report.TestView;
-import com.wuba.report.TestViewLoop;
-import com.wuba.report.TestDevice;
-import com.wuba.report.TestReport;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -46,11 +41,6 @@ public class TestReportTest {
 
 	@Test(groups = { "unittest" })
 	public void generateDeviceInfoTest() {
-		DeviceInfo deviceInfo = testResult.getDeviceInfo();
-		deviceInfo.setDeviceName("N6");
-		deviceInfo.setNetwork("4G");
-		testResult.serializeResultToXml(file);
-		LOGGER.info("generateDeviceInfoTest-Done");
 	}
 
 	@Test(groups = { "unittest" })

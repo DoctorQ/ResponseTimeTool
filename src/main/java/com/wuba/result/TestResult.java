@@ -44,7 +44,8 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 
 	public void parserXml() {
 		try {
-			parse(new FileReader(new File(rootDir, Constant.TESTRESULT_XML)));
+			File file = new File(rootDir, Constant.TESTRESULT_XML);
+			parse(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -178,14 +179,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	@Override
 	public void parse(XmlPullParser parser) throws XmlPullParserException,
 			IOException {
-		// TODO Auto-generated method stub
-		if (!parser.getName().equals(TESTRESULT_TAG)) {
-			return;
-		}
-		setDevice(getAttribute(parser, DEVICE_ATTR));
-		setNetwork(getAttribute(parser, NETWORK_ATTR));
-		setSn(getAttribute(parser, SN_ATTR));
-		setPlatform(getAttribute(parser, PLATFORM_ATTR));
+
 		int eventType = parser.next();
 		while (eventType != XmlPullParser.END_DOCUMENT) {
 			if (eventType == XmlPullParser.START_TAG
@@ -193,6 +187,13 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				TestCaseLoop loop = new TestCaseLoop();
 				loop.parse(parser);
 				loops.put(loop.getName(), loop);
+			} else if (eventType == XmlPullParser.START_TAG
+					&& parser.getName().equals(TESTRESULT_TAG)) {
+				setDevice(getAttribute(parser, DEVICE_ATTR));
+				setNetwork(getAttribute(parser, NETWORK_ATTR));
+				setSn(getAttribute(parser, SN_ATTR));
+				setPlatform(getAttribute(parser, PLATFORM_ATTR));
+
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

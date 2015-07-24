@@ -22,7 +22,7 @@ public class XmlReportGenerator implements ReportGenerator {
 	private static final Logger LOG = Logger
 			.getLogger(XmlReportGenerator.class);
 
-	private TestReport mTestResult = new TestReport();
+	private TestReport mTestReport = new TestReport();
 
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
@@ -36,7 +36,12 @@ public class XmlReportGenerator implements ReportGenerator {
 		TestResult testResult = new TestResult(rootDir);
 		//解析testResult.xml文件
 		testResult.parserXml();
-
+		
+		LOG.info(String.format("Read %s finished", "testResult.xml"));
+		
+		
+		
+		
 	}
 
 	/*

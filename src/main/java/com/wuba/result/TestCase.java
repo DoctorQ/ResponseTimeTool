@@ -65,14 +65,25 @@ public class TestCase extends AbstractXmlPullParser implements XMLParser {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.wuba.result.AbstractXmlPullParser#parse(org.xmlpull.v1.XmlPullParser)
+	/*
+	 * 
+	 * @see
+	 * com.wuba.result.AbstractXmlPullParser#parse(org.xmlpull.v1.XmlPullParser)
 	 */
 	@Override
 	public void parse(XmlPullParser parser) throws XmlPullParserException,
 			IOException {
 		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		if (!parser.getName().equals(TESTCASE_TAG)) {
+			return;
+		}
+		setIndex(getAttribute(parser, INDEX_ATTR));
+		setLogFile(getAttribute(parser, LOGFILE_ATTR));
+		setPass(getAttribute(parser, STATUS_ATTR).equals("pass") ? true : false);
 		
+
 	}
 
 }
