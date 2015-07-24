@@ -54,6 +54,13 @@ public class XmlReportGenerator implements ReportGenerator {
 		
 		LOG.info(String.format("Read %s finished", "testResult.xml"));
 		
+		//配置testReport.xml对象
+		TestDevice testDevice = mTestReport.getTestDevice(testResult.getSn());
+		testDevice.setDevice(testResult.getDevice());
+		testDevice.setPlatform(testResult.getPlatform());
+		
+		TestNetWork netWork = testDevice.getTestNetWork(testResult.getNetwork());
+		
 		
 		mTestReport.serializeResultToXml();
 		

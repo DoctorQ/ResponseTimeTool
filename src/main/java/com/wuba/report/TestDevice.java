@@ -5,8 +5,10 @@ package com.wuba.report;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
 
@@ -49,6 +51,8 @@ public class TestDevice implements XMLParser {
 
 	private TestNetWork netWork = new TestNetWork();
 
+	private Map<String, TestNetWork> netTypes = new LinkedHashMap<String, TestNetWork>();
+
 	private String device = "";
 	private String sn = "";
 	private String platform = "";
@@ -70,6 +74,19 @@ public class TestDevice implements XMLParser {
 
 	public TestViewLoop getTestCaseByName(String name) {
 		return netWork.getTestCaseByName(name);
+	}
+
+	public TestNetWork getTestNetWork(String type) {
+		TestNetWork netWork = netTypes.get(type);
+
+		if (netWork == null) {
+			netWork = new TestNetWork();
+			netWork.setType(type);
+			netTypes.put(type, netWork);
+		}
+		
+		return netWork;
+
 	}
 
 }
