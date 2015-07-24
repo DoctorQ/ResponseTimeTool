@@ -53,7 +53,7 @@ public class TestResultTest {
 		nativeJsonCase0
 				.setLogFile("repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/0/result.txt");
 		TestCase nativeJsonCase1 = nativeJson.getTestCase(1);
-		nativeJsonCase1.setPass(false);
+		nativeJsonCase1.setPass(true);
 		nativeJsonCase1
 				.setLogFile("repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/1/result.txt");
 		nativeJson.setEndTime(TimeUtil.formatTimeStamp(System
@@ -66,7 +66,7 @@ public class TestResultTest {
 		nativeXml.setPath("/nativeXml");
 		nativeXml.setLoop(1);
 		TestCase nativeXmlCase0 = nativeXml.getTestCase(0);
-		nativeXmlCase0.setPass(false);
+		nativeXmlCase0.setPass(true);
 		nativeXmlCase0
 				.setLogFile("repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case2/0/result.txt");
 
