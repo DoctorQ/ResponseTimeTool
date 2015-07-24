@@ -24,10 +24,20 @@ public class IOSRecordTest {
 	public void testIosDevice() {
 		// test ios record step
 		if (iosDevice.connectRecordServer()) {
-			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
-			iosDevice.sendActionCommand("target.model();");
+			//点击
+			iosDevice.clickOnScreen(33, 268);
+			//获取model
+			String model = iosDevice.sendActionCommand("target.model();");
+			//验图
 			iosDevice.sendActionCommand("verifyImage('sub.png');");
-			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
+			//点击
+			iosDevice.clickOnScreen(33, 268);
+			//滑动
+			iosDevice.dragFromToScreen(196, 394, 260, 394);
+//			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
+//			iosDevice.sendActionCommand("target.model();");
+//			iosDevice.sendActionCommand("verifyImage('sub.png');");
+//			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
 		}
 		
 	}
