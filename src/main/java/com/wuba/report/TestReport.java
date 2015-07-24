@@ -7,10 +7,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;
 
 /**
@@ -18,19 +21,22 @@ import com.wuba.utils.Constant;
  * @date 2015年7月20日 下午2:47:45
  */
 public class TestReport implements XMLParser {
-	public DeviceInfo getDeviceInfo() {
-		return mDeviceInfo;
-	}
-
-	public void setDeviceInfo(DeviceInfo deviceInfo) {
-		this.mDeviceInfo = deviceInfo;
-	}
 
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 
-	private DeviceInfo mDeviceInfo = new DeviceInfo();
-	private TestDevice mTestCases = new TestDevice();
+	private TestDevice mTestDevice = new TestDevice();
+	
+	
+	
+	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
+	
+	private File xmlFile;
+	public TestReport(File xmlFile) {
+		// TODO Auto-generated constructor stub
+		this.xmlFile = xmlFile;
+	}
+	
 
 	/*
 	 * 
@@ -39,8 +45,7 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		mDeviceInfo.serialize(serializer);
-		mTestCases.serialize(serializer);
+		mTestDevice.serialize(serializer);
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
@@ -53,12 +58,12 @@ public class TestReport implements XMLParser {
 		return new FileOutputStream(reportFile);
 	}
 
-	public void serializeResultToXml(File reportFile) {
+	public void serializeResultToXml() {
 
 		OutputStream stream = null;
 
 		try {
-			stream = createOutputResultStream(reportFile);
+			stream = createOutputResultStream(xmlFile);
 			KXmlSerializer serializer = new KXmlSerializer();
 			serializer.setOutput(stream, "UTF-8");
 			serializer.startDocument("UTF-8", false);
@@ -85,13 +90,18 @@ public class TestReport implements XMLParser {
 		}
 
 	}
-
+	/**
+	 * 根据case名得到TestViewLoop对象
+	 * @param name
+	 * @return TestViewLoop
+	 */
 	public TestViewLoop getTestCaseByName(String name) {
 		if (name == null) {
 			LOG.error("You want get a name = null TestCase?");
 			return null;
 		}
-		return mTestCases.getTestCaseByName(name);
-
+		return mTestDevice.getTestCaseByName(name);
 	}
+	
+	
 }

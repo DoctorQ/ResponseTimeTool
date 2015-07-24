@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>All Samples</key>
+	<array>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"33", y:"268"}, {touchCount:"1", tapCount:"1", duration:"0.5"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:47Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"33", y:"268"}, {touchCount:"1", tapCount:"1", duration:"0.5"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:48Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectOnScreenWithName("{origin:{x:0.00,y:0.00}, size:{height:736.00,width:414.00}}", UIScreen, "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:48Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>57432949-48B4-49F0-9753-18B4BBCAE242</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:49Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.frontMostApp().alert().buttons()[0].tap()</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:50Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image OK - sub.png</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:54Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"33", y:"268"}, {touchCount:"1", tapCount:"1", duration:"0.5"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:54Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Pass</string>
+			<key>Message</key>
+			<string>Replay Test Success</string>
+			<key>Timestamp</key>
+			<date>2015-07-23T10:31:55Z</date>
+			<key>Type</key>
+			<integer>5</integer>
+		</dict>
+	</array>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

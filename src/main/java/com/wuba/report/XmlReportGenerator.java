@@ -8,7 +8,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.wuba.logparser.AndroidLogParser;
+import com.wuba.logparser.IOSLogParser;
 import com.wuba.logparser.LogParser;
+import com.wuba.result.TestResult;
+import com.wuba.utils.Constant;
+import com.wuba.utils.DirStructureUtil;
+import com.wuba.utils.TimeUtil;
 
 /**
  * @author hui.qian qianhui@58.com
@@ -18,38 +24,43 @@ public class XmlReportGenerator implements ReportGenerator {
 	private static final Logger LOG = Logger
 			.getLogger(XmlReportGenerator.class);
 
-	private static final String XML_RESULT = "testReport.xml";
-	private static final String LOG_TXT_FILE = "result.txt";
-	private TestReport mTestResult = new TestReport();
+	private TestReport mTestReport = null;
+	private LogParser mLogParser = null;
+	private static final String TESTREPORT_XML = "testReport_%s.xml";
+	
 
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
+	
 	@Override
-	public void generateReporter(File rootDir, LogParser logParser) {
+	public void generateReporter(File rootDir, String platform) {
 		if (rootDir == null || !rootDir.exists()) {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-		// 获取case名,每个目录代表一个case
-		File[] cases = rootDir.listFiles();
-		for (File caseFile : cases) {
-			if (caseFile.isFile())
-				continue;
-			TestViewLoop testCase = mTestResult.getTestCaseByName(caseFile
-					.getName());
-			File[] itemFiles = caseFile.listFiles();
-			for (File itemFile : itemFiles) {
-				TestView item = new TestView();
-				item.setIndex(itemFile.getName());
-				File logFile = new File(itemFile, LOG_TXT_FILE);
-				item.setLogFile(logFile.getAbsolutePath());
-				item.setRtResult(logParser.parserLog(logFile));
-				testCase.addItem(item);
-			}
+		if(Constant.ANDROID_PLATFORM.equals(platform)){
+			mLogParser = new AndroidLogParser();
+			mTestReport = new TestReport(new File(DirStructureUtil.getReportAndroid(),getFileNameFromTimeStamp()));
+			
+		}else if(Constant.IOS_PLATFORM.equals(platform)){
+			mLogParser = new IOSLogParser();
+			mTestReport = new TestReport(new File(DirStructureUtil.getReportIOS(),getFileNameFromTimeStamp()));
 		}
-		mTestResult.serializeResultToXml(new File(rootDir, XML_RESULT));
+		
+		TestResult testResult = new TestResult(rootDir);
+		//解析testResult.xml文件
+		testResult.parserXml();
+		
+		LOG.info(String.format("Read %s finished", "testResult.xml"));
+		
+		
+		mTestReport.serializeResultToXml();
+		
+	}
 
+	private String getFileNameFromTimeStamp() {
+		return String.format(TESTREPORT_XML, TimeUtil.formatTimeForFile(System.currentTimeMillis()));
 	}
 
 	/*

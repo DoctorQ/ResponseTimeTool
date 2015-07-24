@@ -6,8 +6,6 @@ package com.wuba.report;
 import java.io.File;
 import java.util.List;
 
-import com.wuba.logparser.LogParser;
-
 
 /**
  * @author hui.qian qianhui@58.com  
@@ -19,7 +17,7 @@ public class CsvReportGenerator implements ReportGenerator{
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
 	@Override
-	public void generateReporter(File rootDir,LogParser logParser) {
+	public void generateReporter(File rootDir,String platform) {
 		// TODO Auto-generated method stub
 		
 	}

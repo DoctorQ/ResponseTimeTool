@@ -9,15 +9,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.kxml2.io.KXmlSerializer;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
-import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
 
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月23日 下午2:38:11
  */
-public class TestCaseLoop implements XMLParser {
+public class TestCaseLoop extends AbstractXmlPullParser implements XMLParser {
 
 	public String getName() {
 		return name;
@@ -91,7 +92,7 @@ public class TestCaseLoop implements XMLParser {
 		this.endTime = endTime;
 	}
 
-	private static final String TESTCASELOOP_TAG = "TestCaseLoop";
+	public static final String TESTCASELOOP_TAG = "TestCaseLoop";
 	private static final String NAME_ATTR = "name";
 	private static final String TOTAL_ATTR = "total";
 	private static final String PASS_ATTR = "pass";
@@ -170,6 +171,43 @@ public class TestCaseLoop implements XMLParser {
 		}
 
 		fail = total - pass;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.wuba.result.AbstractXmlPullParser#parse(org.xmlpull.v1.XmlPullParser)
+	 */
+	@Override
+	public void parse(XmlPullParser parser) throws XmlPullParserException,
+			IOException {
+		// TODO Auto-generated method stub
+		if (!parser.getName().equals(TESTCASELOOP_TAG)) {
+			return;
+		}
+		setName(getAttribute(parser, NAME_ATTR));
+		setStartTime(getAttribute(parser, STARTTIME_ATTR));
+		setTotal(Integer.parseInt(getAttribute(parser, TOTAL_ATTR)));
+		setPass(Integer.parseInt(getAttribute(parser, PASS_ATTR)));
+		setFail(Integer.parseInt(getAttribute(parser, FAIL_ATTR)));
+		setLoop(Integer.parseInt(getAttribute(parser, CASE_LOOP_ATTR)));
+		setPath(getAttribute(parser, CASE_PATH_ATTR));
+		setEndTime(getAttribute(parser, ENDTIME_ATTR));
+		int eventType = parser.next();
+		while (eventType != XmlPullParser.END_DOCUMENT) {
+			if (eventType == XmlPullParser.START_TAG
+					&& parser.getName().equals(TestCase.TESTCASE_TAG)) {
+				TestCase testCase = new TestCase();
+				testCase.parse(parser);
+				testCases.put(Integer.parseInt(testCase.getIndex()), testCase);
+			} else if (eventType == XmlPullParser.END_TAG
+					&& parser.getName().equals(TESTCASELOOP_TAG)) {
+				return;
+			}
+			eventType = parser.next();
+		}
 
 	}
 

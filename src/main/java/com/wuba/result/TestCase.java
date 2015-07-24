@@ -6,15 +6,16 @@ package com.wuba.result;
 import java.io.IOException;
 
 import org.kxml2.io.KXmlSerializer;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
-import com.wuba.report.XMLParser;
 import com.wuba.utils.Constant;
 
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月23日 下午2:45:24
  */
-public class TestCase implements XMLParser {
+public class TestCase extends AbstractXmlPullParser implements XMLParser {
 
 	public boolean isPass() {
 		return pass;
@@ -40,7 +41,7 @@ public class TestCase implements XMLParser {
 		this.logFile = logFile;
 	}
 
-	private static final String TESTCASE_TAG = "TestCase";
+	public static final String TESTCASE_TAG = "TestCase";
 	private static final String INDEX_ATTR = "index";
 	private static final String STATUS_ATTR = "status";
 	private static final String LOGFILE_ATTR = "logfile";
@@ -61,6 +62,27 @@ public class TestCase implements XMLParser {
 				: "fail");
 		serializer.attribute(Constant.NAMESPACE, LOGFILE_ATTR, getLogFile());
 		serializer.endTag(Constant.NAMESPACE, TESTCASE_TAG);
+
+	}
+
+	/*
+	 * 
+	 * @see
+	 * com.wuba.result.AbstractXmlPullParser#parse(org.xmlpull.v1.XmlPullParser)
+	 */
+	@Override
+	public void parse(XmlPullParser parser) throws XmlPullParserException,
+			IOException {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		if (!parser.getName().equals(TESTCASE_TAG)) {
+			return;
+		}
+		setIndex(getAttribute(parser, INDEX_ATTR));
+		setLogFile(getAttribute(parser, LOGFILE_ATTR));
+		setPass(getAttribute(parser, STATUS_ATTR).equals("pass") ? true : false);
+		
 
 	}
 

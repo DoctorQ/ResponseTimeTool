@@ -1,5 +1,6 @@
 //automation globals define
-var iosAutoPath = "TEST_CASE_PATH"
+var casePath = "TEST_CASE_PATH"
+var imageMatcherJar = "IMAGE_MATCH_JAR"
 var target      = UIATarget.localTarget();
 var application = target.frontMostApp();
 var host = target.host();
@@ -19,20 +20,19 @@ function FailureException(message) {
 };
 
 function verifyImage(image, timeout){
-	var jarfile = iosAutoPath + "/ImageMatcher.jar";
 	target.captureScreenWithName("screen_verify");
 	target.delay(2);
-	var sourceimage = iosAutoPath + "/Run 1/screen_verify.png";
-	var subimage = iosAutoPath + "/" +image;
+	var sourceimage = casePath + "/Run 1/screen_verify.png";
+	var subimage = casePath + "/" +image;
 
-	var res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", jarfile, "-s", sourceimage, "-t", subimage], 10);
+	var res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", imageMatcherJar, "-s", sourceimage, "-t", subimage], 10);
 	var exitCode = res.exitCode;
 	var stdout = res.stdout.toString().trim();
 	
 	var startTime = new Date().getTime();
 	while (!(exitCode == 0 && stdout == "match")){
 		var duration = new Date().getTime() - startTime;
-		UIALogger.logDebug(duration.toString());
+		UIALogger.logDebug("Verify Image Time-consuming:" + duration.toString());
 		if(duration > timeout) {
 			UIALogger.logError("Verify Image FAIL - " + image);
 			throw new FailureException("Timout = " + timeout.toString() + "ms");
@@ -42,7 +42,7 @@ function verifyImage(image, timeout){
 		//new-screen-shot
 		target.captureScreenWithName("screen_verify");
 		target.delay(1);
-		res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", jarfile, "-s", sourceimage, "-t", subimage], 10);
+		res = host.performTaskWithPathArgumentsTimeout("/usr/bin/java", ["-jar", imageMatcherJar, "-s", sourceimage, "-t", subimage], 10);
 		exitCode = res.exitCode;
 		stdout = res.stdout.toString().trim();
 	}
