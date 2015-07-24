@@ -29,6 +29,7 @@ Response  Time test tool for iOS and Android.
 
 `gradle clean test jacoco`
 
+
 # Code Quality-SonarRunner
 
 `gradle clean sonarRunner`
