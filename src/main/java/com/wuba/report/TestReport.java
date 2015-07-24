@@ -26,17 +26,15 @@ public class TestReport implements XMLParser {
 	private static final String XML_TAG = "TestReport";
 
 	private TestDevice mTestDevice = new TestDevice();
-	
-	
-	
+
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
-	
+
 	private File xmlFile;
+
 	public TestReport(File xmlFile) {
 		// TODO Auto-generated constructor stub
 		this.xmlFile = xmlFile;
 	}
-	
 
 	/*
 	 * 
@@ -90,8 +88,10 @@ public class TestReport implements XMLParser {
 		}
 
 	}
+
 	/**
 	 * 根据case名得到TestViewLoop对象
+	 * 
 	 * @param name
 	 * @return TestViewLoop
 	 */
@@ -102,6 +102,22 @@ public class TestReport implements XMLParser {
 		}
 		return mTestDevice.getTestCaseByName(name);
 	}
-	
-	
+
+	/**
+	 * 根据sn号得到TestDevice对象
+	 * 
+	 * @param sn
+	 * @return
+	 */
+	public TestDevice getTestDevice(String sn) {
+		TestDevice mTestDevice = testDevices.get(sn);
+		if (mTestDevice == null) {
+			mTestDevice = new TestDevice();
+			mTestDevice.setSn(sn);
+			testDevices.put(sn, mTestDevice);
+		}
+		return mTestDevice;
+
+	}
+
 }
