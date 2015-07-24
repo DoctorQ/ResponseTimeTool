@@ -35,7 +35,6 @@ public class ReportGeneratorProxyTest {
 		csv = new CsvReportGenerator();
 		proxy.addReportGenerator(csv);
 		proxy.addReportGenerator(new XmlReportGenerator());
-
 		logFile = new File("");
 
 	}

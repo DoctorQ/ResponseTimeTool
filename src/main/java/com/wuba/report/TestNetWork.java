@@ -31,12 +31,11 @@ public class TestNetWork implements XMLParser {
 
 	private static final String TYPE_ATTR = "type";
 
-	private String type;
+	private String type = "";
 
 	private Map<String, TestViewLoop> testCases = new LinkedHashMap<String, TestViewLoop>();
-	
+
 	private TestViewLoop currentCase = null;
-	
 
 	/*
 	 * (non-Javadoc)
@@ -55,6 +54,7 @@ public class TestNetWork implements XMLParser {
 		serializer.endTag(Constant.NAMESPACE, TESTNETWORK_TAG);
 
 	}
+
 	public TestViewLoop getTestCaseByName(String name) {
 		currentCase = testCases.get(name);
 		if (currentCase == null) {
