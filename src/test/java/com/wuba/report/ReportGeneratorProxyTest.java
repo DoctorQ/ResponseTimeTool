@@ -10,12 +10,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
-import com.wuba.logparser.AndroidLogParser;
 import com.wuba.report.CsvReportGenerator;
 import com.wuba.report.HtmlReportGenerator;
 import com.wuba.report.ReportGenerator;
 import com.wuba.report.ReportGeneratorProxy;
 import com.wuba.report.XmlReportGenerator;
+import com.wuba.utils.Constant;
 import com.wuba.utils.DirStructureUtil;
 
 /**
@@ -78,7 +78,7 @@ public class ReportGeneratorProxyTest {
 	public void generatorAndroidReportByDirTest() {
 		File file = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
-		proxy.generateReporter(file,new AndroidLogParser());
+		proxy.generateReporter(file,Constant.ANDROID_PLATFORM);
 	}
 	@Test
 	public void filePathTest(){

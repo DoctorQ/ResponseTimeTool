@@ -24,6 +24,13 @@ public class TestReport implements XMLParser {
 	private static final String XML_TAG = "TestReport";
 
 	private TestDevice mTestDevice = new TestDevice();
+	
+	private File xmlFile;
+	public TestReport(File xmlFile) {
+		// TODO Auto-generated constructor stub
+		this.xmlFile = xmlFile;
+	}
+	
 
 	/*
 	 * 
@@ -45,12 +52,12 @@ public class TestReport implements XMLParser {
 		return new FileOutputStream(reportFile);
 	}
 
-	public void serializeResultToXml(File reportFile) {
+	public void serializeResultToXml() {
 
 		OutputStream stream = null;
 
 		try {
-			stream = createOutputResultStream(reportFile);
+			stream = createOutputResultStream(xmlFile);
 			KXmlSerializer serializer = new KXmlSerializer();
 			serializer.setOutput(stream, "UTF-8");
 			serializer.startDocument("UTF-8", false);
