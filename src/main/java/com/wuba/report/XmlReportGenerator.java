@@ -55,7 +55,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		LOG.info(String.format("Read %s finished", "testResult.xml"));
 		
 		
-		
+		mTestReport.serializeResultToXml();
 		
 	}
 
