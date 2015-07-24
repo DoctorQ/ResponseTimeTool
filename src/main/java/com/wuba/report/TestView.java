@@ -3,11 +3,14 @@
  */
 package com.wuba.report;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.logparser.LogParser;
 import com.wuba.model.RTResult;
+import com.wuba.result.TestCase;
 import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;
 
@@ -40,8 +43,6 @@ public class TestView implements XMLParser {
 		this.logFile = logFile;
 	}
 
-	
-
 	private static final String XML_TAG = "TestView";
 	private static final String INDEX_ATTR = "index";
 	private static final String LOGFILE_ATTR = "logfile";
@@ -60,14 +61,27 @@ public class TestView implements XMLParser {
 		// TODO Auto-generated method stub
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
 		serializer.attribute(Constant.NAMESPACE, INDEX_ATTR, getIndex());
-//		serializer.attribute(Constant.NAMESPACE, RESPONSETIME_ATTR,
-//				getResponseTime());
+		// serializer.attribute(Constant.NAMESPACE, RESPONSETIME_ATTR,
+		// getResponseTime());
 		if (rtResult != null) {
 			rtResult.serialize(serializer);
-			
 		}
 		serializer.attribute(Constant.NAMESPACE, LOGFILE_ATTR, getLogFile());
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
+	}
+
+	/**
+	 * @param testCase
+	 * @param logParser
+	 */
+	public void parserTestViewFromTestCase(TestCase testCase,
+			LogParser logParser) {
+		// TODO Auto-generated method stub
+		setIndex(testCase.getIndex());
+		setLogFile(testCase.getLogFile());
+
+		setRtResult(logParser.parserLog(new File(testCase.getLogFile())));
+
 	}
 
 }

@@ -4,6 +4,7 @@
 package com.wuba.report;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.IOSLogParser;
 import com.wuba.logparser.LogParser;
+import com.wuba.result.TestCaseLoop;
 import com.wuba.result.TestResult;
 import com.wuba.utils.Constant;
 import com.wuba.utils.DirStructureUtil;
@@ -60,6 +62,9 @@ public class XmlReportGenerator implements ReportGenerator {
 		testDevice.setPlatform(testResult.getPlatform());
 		
 		TestNetWork netWork = testDevice.getTestNetWork(testResult.getNetwork());
+		
+		
+		netWork.setTestViewLoops(testResult.getLoops(), mLogParser);
 		
 		
 		mTestReport.serializeResultToXml();

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,8 +26,6 @@ public class TestReport implements XMLParser {
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 
-	private TestDevice mTestDevice = new TestDevice();
-
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
 	private File xmlFile;
@@ -43,7 +42,10 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		mTestDevice.serialize(serializer);
+		Collection<TestDevice> collection = testDevices.values();
+		for (TestDevice mTestDevice : collection) {
+			mTestDevice.serialize(serializer);
+		}
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
 	}
 
@@ -89,19 +91,8 @@ public class TestReport implements XMLParser {
 
 	}
 
-	/**
-	 * 根据case名得到TestViewLoop对象
-	 * 
-	 * @param name
-	 * @return TestViewLoop
-	 */
-	public TestViewLoop getTestCaseByName(String name) {
-		if (name == null) {
-			LOG.error("You want get a name = null TestCase?");
-			return null;
-		}
-		return mTestDevice.getTestCaseByName(name);
-	}
+	
+	
 
 	/**
 	 * 根据sn号得到TestDevice对象

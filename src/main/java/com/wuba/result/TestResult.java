@@ -25,6 +25,10 @@ import com.wuba.utils.Constant;
  * @date 2015年7月23日 下午2:37:28
  */
 public class TestResult extends AbstractXmlPullParser implements XMLParser {
+	public Map<String, TestCaseLoop> getLoops() {
+		return loops;
+	}
+
 	public String getPlatform() {
 		return platform;
 	}
@@ -193,7 +197,6 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				setNetwork(getAttribute(parser, NETWORK_ATTR));
 				setSn(getAttribute(parser, SN_ATTR));
 				setPlatform(getAttribute(parser, PLATFORM_ATTR));
-
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

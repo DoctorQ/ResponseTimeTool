@@ -5,11 +5,15 @@ package com.wuba.report;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.logparser.LogParser;
+import com.wuba.result.TestCaseLoop;
 import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;
 
@@ -33,9 +37,7 @@ public class TestNetWork implements XMLParser {
 
 	private String type = "";
 
-	private Map<String, TestViewLoop> testCases = new LinkedHashMap<String, TestViewLoop>();
-
-	private TestViewLoop currentCase = null;
+	private Map<String, TestViewLoop> testViewLoops = new LinkedHashMap<String, TestViewLoop>();
 
 	/*
 	 * (non-Javadoc)
@@ -47,7 +49,7 @@ public class TestNetWork implements XMLParser {
 		// TODO Auto-generated method stub
 		serializer.startTag(Constant.NAMESPACE, TESTNETWORK_TAG);
 		serializer.attribute(Constant.NAMESPACE, TYPE_ATTR, getType());
-		Collection<TestViewLoop> collection = testCases.values();
+		Collection<TestViewLoop> collection = testViewLoops.values();
 		for (TestViewLoop testCase : collection) {
 			testCase.serialize(serializer);
 		}
@@ -55,13 +57,27 @@ public class TestNetWork implements XMLParser {
 
 	}
 
-	public TestViewLoop getTestCaseByName(String name) {
-		currentCase = testCases.get(name);
-		if (currentCase == null) {
-			currentCase = new TestViewLoop();
-			currentCase.setName(name);
-			testCases.put(name, currentCase);
+	public TestViewLoop getTestViewLoopByName(String name) {
+		TestViewLoop testViewLoop = testViewLoops.get(name);
+		if (testViewLoop == null) {
+			testViewLoop = new TestViewLoop();
+			testViewLoop.setName(name);
+			testViewLoops.put(name, testViewLoop);
 		}
-		return currentCase;
+		return testViewLoop;
+	}
+
+	public void setTestViewLoops(Map<String, TestCaseLoop> map,LogParser logParser) {
+		Iterator<Entry<String, TestCaseLoop>> iterator = map.entrySet()
+				.iterator();
+		TestViewLoop vieweLoop = null;
+		while (iterator.hasNext()) {
+			Entry<String, TestCaseLoop> entry = iterator.next();
+			String key = entry.getKey();
+			TestCaseLoop caseLoop = entry.getValue();
+			vieweLoop = new TestViewLoop();
+			vieweLoop.parserTestViewLoopByTestCaseLoop(caseLoop, logParser);
+			testViewLoops.put(key, vieweLoop);
+		}
 	}
 }

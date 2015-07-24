@@ -4,12 +4,18 @@
 package com.wuba.report;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.kxml2.io.KXmlSerializer;
 
+import com.wuba.logparser.LogParser;
 import com.wuba.model.RTResult;
+import com.wuba.result.TestCase;
+import com.wuba.result.TestCaseLoop;
 import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;
 
@@ -69,7 +75,7 @@ public class TestViewLoop implements XMLParser {
 	private String dataType;
 	private String viewType;
 
-	private List<TestView> items = new LinkedList<TestView>();
+	private List<TestView> testViews = new LinkedList<TestView>();
 
 	/*
 	 * 
@@ -84,7 +90,7 @@ public class TestViewLoop implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
 		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
 
-		for (TestView item : items) {
+		for (TestView item : testViews) {
 			item.serialize(serializer);
 		}
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
@@ -93,7 +99,7 @@ public class TestViewLoop implements XMLParser {
 	public void addItem(TestView item) {
 		if (item == null)
 			return;
-		items.add(item);
+		testViews.add(item);
 	}
 
 	/**
@@ -101,9 +107,9 @@ public class TestViewLoop implements XMLParser {
 	 */
 	private void serializeDataFromItems(KXmlSerializer serializer)
 			throws IOException {
-		if (items.size() <= 0)
+		if (testViews.size() <= 0)
 			return;
-		TestView item = items.get(0);
+		TestView item = testViews.get(0);
 		RTResult result = item.getRtResult();
 		dataType = result.getDataType();
 		viewType = result.getViewType();
@@ -112,11 +118,11 @@ public class TestViewLoop implements XMLParser {
 		if (dataType != null)
 			serializer.attribute(Constant.NAMESPACE, DATATYPE_ATTR, dataType);
 
-		int size = items.size();
+		int size = testViews.size();
 		long totalConnectCost = 0;
 		long totalReadCost = 0;
 		long totalParserCost = 0;
-		for (TestView indexItem : items) {
+		for (TestView indexItem : testViews) {
 			if (Constant.NATIVE.equals(viewType)) {
 				totalConnectCost += indexItem.getRtResult().getConnectCost();
 				if (Constant.JSON.equals(dataType)) {
@@ -137,6 +143,34 @@ public class TestViewLoop implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, APARSER_ATTR, totalParserCost
 				/ size + "");
 
+	}
+
+	public void parserTestViewLoopByTestCaseLoop(TestCaseLoop caseLoop, LogParser logParser) {
+		if (caseLoop == null)
+			return;
+		// 期望统计的次数
+		int loop = caseLoop.getLoop();
+		// 成功的次数
+		int pass = caseLoop.getPass();
+
+		int size = pass >= loop ? loop : pass;
+
+		Iterator<Entry<Integer, TestCase>> iterator = caseLoop.getTestCases()
+				.entrySet().iterator();
+		while (iterator.hasNext()) {
+			if (testViews.size() > size)
+				break;
+
+			Entry<Integer, TestCase> entry = iterator.next();
+			TestCase testCase = entry.getValue();
+
+			if (!testCase.isPass())
+				continue;
+
+			TestView testView = new TestView();
+			testView.parserTestViewFromTestCase(testCase, logParser);
+			testViews.add(testView);
+		}
 	}
 
 }

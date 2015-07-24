@@ -49,8 +49,6 @@ public class TestDevice implements XMLParser {
 	private static final String SN_ATTR = "sn";
 	private static final String PLATFORM_ATTR = "platform";
 
-	private TestNetWork netWork = new TestNetWork();
-
 	private Map<String, TestNetWork> netTypes = new LinkedHashMap<String, TestNetWork>();
 
 	private String device = "";
@@ -67,13 +65,12 @@ public class TestDevice implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
-		netWork.serialize(serializer);
+		Collection<TestNetWork> collection = netTypes.values();
 
+		for (TestNetWork netWork : collection) {
+			netWork.serialize(serializer);
+		}
 		serializer.endTag(Constant.NAMESPACE, XML_TAG);
-	}
-
-	public TestViewLoop getTestCaseByName(String name) {
-		return netWork.getTestCaseByName(name);
 	}
 
 	public TestNetWork getTestNetWork(String type) {
@@ -84,7 +81,7 @@ public class TestDevice implements XMLParser {
 			netWork.setType(type);
 			netTypes.put(type, netWork);
 		}
-		
+
 		return netWork;
 
 	}
