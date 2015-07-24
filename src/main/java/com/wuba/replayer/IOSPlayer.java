@@ -29,11 +29,10 @@ public class IOSPlayer extends BasePlayer implements Player {
 		this.appId = device.getAppId();
 	}
 
+	
 	/**
-	 * 回放测试脚本
-	 * 
-	 * @param testScriptPath
-	 *            : 脚本绝对路径，/the/script/path/name.script
+	 * 执行测试suite
+	 * @param taskMap 测试suite
 	 */
 	@Override
 	public void play(LinkedHashMap<File, Integer> taskMap) {
@@ -46,6 +45,11 @@ public class IOSPlayer extends BasePlayer implements Player {
 		}
 	}
 
+	/**
+	 * 迭代执行指定脚本达到目标轮数（即成功次数），迭代上限 ＝ 目标轮数 * 2
+	 * @param testCase 测试脚本
+	 * @param iteration 目标轮数
+	 */
 	private void casePlay(File testCase, int iteration) {
 		int i = 0;
 		int tempNum = 0;
@@ -84,10 +88,6 @@ public class IOSPlayer extends BasePlayer implements Player {
 		int passCount = tempNum;
 		int failCount = i - passCount;
 		System.out.println("passCount:"+passCount+" failCount:"+failCount);
-	}
-
-	private void createCaseDir() {
-
 	}
 
 }
