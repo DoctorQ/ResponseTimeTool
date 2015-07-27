@@ -187,7 +187,8 @@ public class HomePage extends JFrame {
 		if (openFileButton == null) {
 			openFileButton = new JButton();
 			openFileButton.setToolTipText("open file");
-			openFileButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/folder.png")));
+			System.out.println(HomePage.class.getResource(""));
+			openFileButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/folder.png")));
 			openFileButton.setEnabled(true);			
 			openFileButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -206,7 +207,7 @@ public class HomePage extends JFrame {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setMultiSelectionEnabled(true);
-		fileChooser.setDialogTitle("Load Script(.script File)");
+		fileChooser.setDialogTitle("Load Script");
 		fileChooser.setCurrentDirectory(new File("scripts"));
 		fileChooser.setFileFilter(new FileFilter() {
 			@Override
@@ -264,7 +265,7 @@ public class HomePage extends JFrame {
 		if (connectButton == null) {
 			connectButton = new JButton();
 			connectButton.setToolTipText("connect button");
-			connectButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/connect.png")));
+			connectButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/connect.png")));
 			connectButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(connectAndroid.isSelected()){
@@ -326,11 +327,9 @@ public class HomePage extends JFrame {
 		if (recordButton == null) {
 			recordButton = new JButton();
 			recordButton.setToolTipText("start record");
-			recordButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/start_record.png")));
+			recordButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/start_record.png")));
 			recordButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					asm = new AndroidScreenMonitor();
-//					asm.launch(mArgs, mADB);
 					openFileButton.setEnabled(false);
 					recordButton.setEnabled(true);
 					openFileButton.setEnabled(true);
@@ -348,7 +347,7 @@ public class HomePage extends JFrame {
 		if (stopButton == null) {
 			stopButton = new JButton();
 			stopButton.setToolTipText("stop record");
-			stopButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/stop_record.png")));
+			stopButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/stop_record.png")));
 			stopButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					openFileButton.setEnabled(false);
@@ -368,7 +367,7 @@ public class HomePage extends JFrame {
 		if (replayButton == null) {
 			replayButton = new JButton();
 			replayButton.setToolTipText("stop record");
-			replayButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/replay.jpeg")));
+			replayButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/replay.png")));
 			replayButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					replayButton.setEnabled(false);
@@ -388,7 +387,7 @@ public class HomePage extends JFrame {
 		if (clearLogButton == null) {
 			clearLogButton = new JButton();
 			clearLogButton.setToolTipText("stop record");
-			clearLogButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/clear.png")));
+			clearLogButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/clear.png")));
 			clearLogButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					replayButton.setEnabled(false);
@@ -409,7 +408,7 @@ public class HomePage extends JFrame {
 		if (aboutButton == null) {
 			aboutButton = new JButton();
 			aboutButton.setToolTipText("stop record");
-			aboutButton.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/about.png")));
+			aboutButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/about.png")));
 			aboutButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					replayButton.setEnabled(false);
@@ -739,8 +738,11 @@ public class HomePage extends JFrame {
 	private JButton getBtnSelectNetwork() {
 		if (btnSelectNetwork == null) {
 			btnSelectNetwork = new JButton("");
-			btnSelectNetwork.setIcon(new ImageIcon(HomePage.class.getResource("/com/wuba/image/replay3.png")));
-//			btnSelectNetwork.setIcon(new ImageIcon(reactingtime.class.getResource("/image/connect.png")));
+			btnSelectNetwork.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			btnSelectNetwork.setIcon(new ImageIcon(HomePage.class.getResource("/image/android_1024.png")));
 		}
 		return btnSelectNetwork;
 	}

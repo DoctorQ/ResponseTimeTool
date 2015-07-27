@@ -78,12 +78,13 @@ sonarRunner {
         property "sonar.password", "admin"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.profile", "FindBugs"
-          
     }  
 }
+
 //隐藏编译过程中出现的警告信息 
 tasks.withType(JavaCompile){
     options.warnings = false
+    options.encoding = "UTF-8" 
 }
 
 //生成javadoc文档
@@ -92,6 +93,8 @@ javadoc {
     options.charSet = 'UTF-8'
     failOnError = false
 } 
+
+
 uploadArchives {
     repositories {
        flatDir {
