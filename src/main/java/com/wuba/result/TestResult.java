@@ -28,19 +28,19 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	@Override
 	public String toString() {
 		return "TestResult [device=" + device + ", network=" + network
-				+ ", sn=" + sn + ", platform=" + platform + "]";
+				+ ", sn=" + sn + ", platform=" + version + "]";
 	}
 
 	public Map<String, TestCaseLoop> getLoops() {
 		return loops;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public String getVersion() {
+		return version;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	private static final Logger LOG = Logger.getLogger(TestResult.class);
@@ -72,7 +72,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		device = array[0];
 		network = array[1];
 		sn = array[2];
-		platform = array[3];
+		version= array[3];
 		
 		LOG.info(toString());
 	}
@@ -111,7 +111,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	private String device = "";
 	private String network = "";
 	private String sn = "";
-	private String platform = "";
+	private String version = "";
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
@@ -122,7 +122,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
-		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
+		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getVersion());
 		Collection<TestCaseLoop> collection = loops.values();
 		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
@@ -205,7 +205,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				setDevice(getAttribute(parser, DEVICE_ATTR));
 				setNetwork(getAttribute(parser, NETWORK_ATTR));
 				setSn(getAttribute(parser, SN_ATTR));
-				setPlatform(getAttribute(parser, PLATFORM_ATTR));
+				setVersion(getAttribute(parser, PLATFORM_ATTR));
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

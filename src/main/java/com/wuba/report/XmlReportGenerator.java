@@ -80,7 +80,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		// 配置testReport.xml对象
 		TestDevice testDevice = mTestReport.getTestDevice(testResult.getSn());
 		testDevice.setDevice(testResult.getDevice());
-		testDevice.setPlatform(testResult.getPlatform());
+		testDevice.setPlatform(testResult.getVersion());
 
 		TestNetWork netWork = testDevice
 				.getTestNetWork(testResult.getNetwork());
