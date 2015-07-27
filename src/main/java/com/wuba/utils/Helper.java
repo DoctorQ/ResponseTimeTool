@@ -28,7 +28,7 @@ public class Helper {
 
 			String line;
 			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
+				System.out.println("STDOUT: " + line);
 				output.append(line + "\n");
 			}
 
@@ -46,11 +46,11 @@ public class Helper {
 	 * @param line
 	 * @param filename
 	 */
-	public static void createFileAndWrite(String line, String filename) {
+	public static void createFileAndWrite(String lines, String filename) {
 		FileWriter fw;
 		try {
 			fw = new FileWriter(filename, false);
-			fw.write(line);
+			fw.write(lines);
 			fw.flush();
 			fw.close();
 		} catch (IOException e) {
@@ -90,14 +90,14 @@ public class Helper {
 	}
 
 	/**
-	 * 读取文件，超时：10s
+	 * 读取文件，超时：20s
 	 * 
 	 * @param filename
 	 * @return
 	 */
 	public static String readFileTimeOut(String filename) {
 		long startTime = System.currentTimeMillis();
-		long timeOut = 10 * 1000;
+		long timeOut = 20 * 1000;
 		File file = new File(filename);
 		boolean exist = file.exists();
 		while (!exist) {

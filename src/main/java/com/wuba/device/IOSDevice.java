@@ -1,9 +1,13 @@
 package com.wuba.device;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.robovm.libimobiledevice.IDevice;
 import org.robovm.libimobiledevice.LockdowndClient;
@@ -160,15 +164,15 @@ public class IOSDevice implements Device {
 	 * @return 响应结果
 	 */
 	public String sendActionCommand(String command) {
-		System.out.println("SEND_CMD:" + command);
+		System.out.println("SEND_CMD: " + command);
 		Helper.createFileAndWrite(command, Constant.iOS_CMD_FILE);
-		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE);
-		System.out.println("RESPONSE:" + resp);
+		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE).trim();
+		System.out.println("RESPONSE: " + resp);
 		Helper.deleteFile(Constant.iOS_RESP_FILE);
 		if (resp == null) {
 			System.exit(0);
 		}
-		return resp.trim();
+		return resp;
 	}
 
 	/**
@@ -177,10 +181,12 @@ public class IOSDevice implements Device {
 	 * @return
 	 */
 	public boolean connectRecordServer() {
+		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Helper.executeCommand("sh " + Constant.iOS_RECORD_SHELL + " " + deviceId + " " + appId + " " + Constant.iOS_LOCAL_DIR);
+				String cmd = "sh " + Constant.iOS_RECORD_SHELL + " " + deviceId + " " + appId + " " + Constant.iOS_LOCAL_DIR;
+				Helper.executeCommand(cmd);
 			}
 		});
 		thread.start();
@@ -206,6 +212,7 @@ public class IOSDevice implements Device {
 				return true;
 			}
 		}
+		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
 		return false;
 	}
 	
