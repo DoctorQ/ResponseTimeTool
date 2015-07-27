@@ -138,7 +138,7 @@ public class IOSPlayer extends BasePlayer implements Player {
 				BufferedReader reader;
 				Pattern pattern = Pattern.compile(Constant.iOS_DEVICELOG_REGEX);
 				try {
-					fw = new FileWriter(resDir + File.separator + "timelog.log", true);
+					fw = new FileWriter(resDir + File.separator + "time.log", true);
 					p = Runtime.getRuntime().exec(cmd);
 					reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 					String line;
