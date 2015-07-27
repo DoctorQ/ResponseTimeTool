@@ -26,7 +26,7 @@ public class TestResultTest {
 	}
 
 	@Test(groups = { "unittest" })
-	public void generateXmlTest() {
+	public void generateAndroidXmlTestResult() {
 		// webview
 		TestCaseLoop webview = testResult.getTestCaseLoop("case3");
 		webview.setStartTime(TimeUtil.formatTimeStamp(System
@@ -74,6 +74,14 @@ public class TestResultTest {
 				.currentTimeMillis()));
 
 		testResult.serializeResultToXml();
+	}
+
+	@Test(groups = { "unittest" })
+	public void generateIOSXmlTestResult() {
+		//native
+		TestCaseLoop nativeLoop =  testResult.getTestCaseLoop("test_native_zhengzu_list");
+		
+		TestCaseLoop webViewLoop =  testResult.getTestCaseLoop("test_web_xinfang_list");
 	}
 
 }
