@@ -129,10 +129,8 @@ public class ReportGeneratorProxyTest {
 	 */
 	@Test(groups = { "unittest" })
 	public void generatorIOSReportByDirTest() {
-		File file = new File(DirStructureUtil.getResultAndroid(),
-				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
-		proxy.generateReporter(file,Constant.ANDROID_PLATFORM);
+		File file = new File(DirStructureUtil.getResultIOS(),
+				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
+		proxy.generateReporter(file,Constant.IOS_PLATFORM);
 	}
-	
-
 }

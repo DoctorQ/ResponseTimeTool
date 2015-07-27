@@ -25,8 +25,6 @@ import com.wuba.utils.Constant;
  */
 public class TestViewLoop implements XMLParser {
 
-
-
 	public String getName() {
 		return name;
 	}
@@ -35,14 +33,10 @@ public class TestViewLoop implements XMLParser {
 		this.name = name;
 	}
 
-	
-
-	
-
 	private static final String XML_TAG = "TestViewLoop";
 	private static final String NAME_ATTR = "name";
-//	private static final String STARTTIME_ATTR = "starttime";
-//	private static final String ENDTIME_ATTR = "endtime";
+	// private static final String STARTTIME_ATTR = "starttime";
+	// private static final String ENDTIME_ATTR = "endtime";
 	private static final String ACONNECT_ATTR = "aconnecttime";
 	private static final String AREAD_ATTR = "areadtime";
 	private static final String APARSER_ATTR = "aparsertime";
@@ -50,8 +44,8 @@ public class TestViewLoop implements XMLParser {
 	private static final String DATATYPE_ATTR = "datatype";
 
 	private String name = "";
-//	private String startTime = "";
-//	private String endTime = "";
+	// private String startTime = "";
+	// private String endTime = "";
 
 	private String dataType;
 	private String viewType;
@@ -68,8 +62,10 @@ public class TestViewLoop implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, NAME_ATTR, getName());
 
 		serializeDataFromItems(serializer);
-//		serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR, getEndTime());
-//		serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR, getStartTime());
+		// serializer.attribute(Constant.NAMESPACE, STARTTIME_ATTR,
+		// getEndTime());
+		// serializer.attribute(Constant.NAMESPACE, ENDTIME_ATTR,
+		// getStartTime());
 
 		for (TestView item : testViews) {
 			item.serialize(serializer);
@@ -126,7 +122,8 @@ public class TestViewLoop implements XMLParser {
 
 	}
 
-	public void parserTestViewLoopByTestCaseLoop(TestCaseLoop caseLoop, LogParser logParser) {
+	public void parserTestViewLoopByTestCaseLoop(TestCaseLoop caseLoop,
+			LogParser logParser) {
 		if (caseLoop == null)
 			return;
 		// 期望统计的次数
@@ -135,7 +132,7 @@ public class TestViewLoop implements XMLParser {
 		int pass = caseLoop.getPass();
 
 		int size = pass >= loop ? loop : pass;
-		
+
 		setName(caseLoop.getName());
 
 		Iterator<Entry<Integer, TestCase>> iterator = caseLoop.getTestCases()
