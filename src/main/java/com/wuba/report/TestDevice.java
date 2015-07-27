@@ -36,24 +36,24 @@ public class TestDevice implements XMLParser {
 		this.sn = sn;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public String getVersion() {
+		return version;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	private static final String XML_TAG = "TestDevice";
 	private static final String DEVICE_ATTR = "device";
 	private static final String SN_ATTR = "sn";
-	private static final String PLATFORM_ATTR = "platform";
+	private static final String VERSION_ATTR = "version";
 
 	private Map<String, TestNetWork> netTypes = new LinkedHashMap<String, TestNetWork>();
 
 	private String device = "";
 	private String sn = "";
-	private String platform = "";
+	private String version = "";
 
 	/*
 	 * @see com.wuba.result.XMLParser#serialize(org.kxml2.io.KXmlSerializer)
@@ -64,7 +64,7 @@ public class TestDevice implements XMLParser {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
-		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
+		serializer.attribute(Constant.NAMESPACE, VERSION_ATTR, getVersion());
 		Collection<TestNetWork> collection = netTypes.values();
 
 		for (TestNetWork netWork : collection) {

@@ -25,10 +25,13 @@ import com.wuba.utils.Constant;
  * @date 2015年7月23日 下午2:37:28
  */
 public class TestResult extends AbstractXmlPullParser implements XMLParser {
+
+	
 	@Override
 	public String toString() {
-		return "TestResult [device=" + device + ", network=" + network
-				+ ", sn=" + sn + ", platform=" + version + "]";
+		return "TestResult [rootDir=" + rootDir + ", loops=" + loops
+				+ ", device=" + device + ", network=" + network + ", sn=" + sn
+				+ ", version=" + version + "]";
 	}
 
 	public Map<String, TestCaseLoop> getLoops() {
@@ -58,7 +61,6 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 			File file = new File(rootDir, Constant.TESTRESULT_XML);
 			parse(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -105,7 +107,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	private static final String DEVICE_ATTR = "device";
 	private static final String NETWORK_ATTR = "network";
 	private static final String SN_ATTR = "sn";
-	private static final String PLATFORM_ATTR = "platform";
+	private static final String VERSION_ATTR = "version";
 
 	private Map<String, TestCaseLoop> loops = new LinkedHashMap<String, TestCaseLoop>();
 	private String device = "";
@@ -122,7 +124,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
-		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getVersion());
+		serializer.attribute(Constant.NAMESPACE, VERSION_ATTR, getVersion());
 		Collection<TestCaseLoop> collection = loops.values();
 		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
@@ -205,7 +207,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				setDevice(getAttribute(parser, DEVICE_ATTR));
 				setNetwork(getAttribute(parser, NETWORK_ATTR));
 				setSn(getAttribute(parser, SN_ATTR));
-				setVersion(getAttribute(parser, PLATFORM_ATTR));
+				setVersion(getAttribute(parser, VERSION_ATTR));
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

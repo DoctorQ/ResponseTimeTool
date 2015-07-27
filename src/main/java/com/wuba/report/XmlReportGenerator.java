@@ -80,7 +80,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		// 配置testReport.xml对象
 		TestDevice testDevice = mTestReport.getTestDevice(testResult.getSn());
 		testDevice.setDevice(testResult.getDevice());
-		testDevice.setPlatform(testResult.getVersion());
+		testDevice.setVersion(testResult.getVersion());
 
 		TestNetWork netWork = testDevice
 				.getTestNetWork(testResult.getNetwork());
@@ -99,12 +99,14 @@ public class XmlReportGenerator implements ReportGenerator {
 			mTestReport = new TestReport(new File(
 					DirStructureUtil.getReportAndroid(),
 					getFileNameFromTimeStamp()));
+			mTestReport.setPlatform(Constant.ANDROID_PLATFORM);
 
 		} else if (Constant.IOS_PLATFORM.equals(platform)) {
 			mLogParser = new IOSLogParser();
 			mTestReport = new TestReport(
 					new File(DirStructureUtil.getReportIOS(),
 							getFileNameFromTimeStamp()));
+			mTestReport.setPlatform(Constant.IOS_PLATFORM);
 		}
 	}
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no' ?>
-<TestResult device="MI" network="3G" sn="dksldfdffdf" platform="4.4.2">
+<TestResult device="MI" network="3G" sn="dksldfdffdf" version="4.4.2">
   <TestCaseLoop name="case4" total="1" pass="1" fail="0" path="/webview" loop="1" starttime="2015-07-27 10:18:02" endtime="2015-07-27 10:18:02">
     <TestCase index="0" status="pass" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case3/0/result.txt" />
   </TestCaseLoop>
