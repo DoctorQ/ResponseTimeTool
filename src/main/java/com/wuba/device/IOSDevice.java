@@ -37,8 +37,7 @@ public class IOSDevice implements Device {
 		this.deviceId = deviceId;
 		this.appId = appId;
 		// 清空temp目录
-		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
-		Helper.createDir(Constant.iOS_TEMP_DIR);
+		cleanTempDir();
 		// 初始化iDict
 		initIdict();
 	}
@@ -98,6 +97,24 @@ public class IOSDevice implements Device {
 	public String getAppId() {
 		// TODO Auto-generated method stub
 		return appId;
+	}
+	
+	@Override
+	public void insertLogStartFlag() {
+		// TODO Auto-generated method stub
+		sendActionCommand("UIALogger.logDebug('BEGIN CAPTURE TIME-LOG');");
+	}
+
+	@Override
+	public void insertLogStopFlag() {
+		// TODO Auto-generated method stub
+		sendActionCommand("UIALogger.logDebug('END CAPTURE TIME-LOG');");
+	}
+	
+	@Override
+	public void instertImgCheckPoint(String image) {
+		// TODO Auto-generated method stub
+		sendActionCommand("verifyImage('" + image + "');");
 	}
 
 	@Override
@@ -201,6 +218,7 @@ public class IOSDevice implements Device {
 	 * @return
 	 */
 	public boolean disConnectRecordServer() {
+		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
 		if (serverConnected) {
 			String resp = sendActionCommand(Constant.iOS_CLOSE_SERVER_CMD);
 			if (resp.equals("1|")) {
@@ -208,8 +226,13 @@ public class IOSDevice implements Device {
 				return true;
 			}
 		}
-		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
+		
 		return false;
 	}
-	
+
+	private void cleanTempDir() {
+		// 清空temp目录
+		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
+		Helper.createDir(Constant.iOS_TEMP_DIR);
+	}
 }

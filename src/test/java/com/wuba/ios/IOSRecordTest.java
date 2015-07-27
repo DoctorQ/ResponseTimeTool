@@ -26,17 +26,21 @@ public class IOSRecordTest {
 		// test ios record step
 		boolean connectedFlag = iosDevice.connectRecordServer();
 		if (connectedFlag) {
-			//点击
+			// 点击
 			iosDevice.clickOnScreen(33, 268);
-			//获取model
+			// 获取model
 			String model = iosDevice.sendActionCommand("target.model();");
 			Assert.assertEquals(model.split("\\|")[1], "iPhone");
-			//验图
-			iosDevice.sendActionCommand("verifyImage('sub.png');");
-			//点击
+			// 验图
+			iosDevice.instertImgCheckPoint("sub.png");
+			// 插入timelog开始记录flag
+			iosDevice.insertLogStartFlag();
+			// 点击
 			iosDevice.clickOnScreen(33, 268);
-			//滑动
+			// 滑动
 			iosDevice.dragFromToScreen(196, 394, 260, 394);
+			// 插入timelog结束记录flag
+			iosDevice.insertLogStopFlag();
 		}
 		
 	}

@@ -17,6 +17,12 @@ public interface Device {
 
 	String getAppId();
 	
+	void insertLogStartFlag();
+	
+	void insertLogStopFlag();
+	
+	void instertImgCheckPoint(String image);
+	
 	int[] getScreenSize();
 
 //	void clickOnScreen(int x, int y);

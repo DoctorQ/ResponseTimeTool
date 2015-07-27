@@ -29,7 +29,7 @@ public class IOSReplayTest {
 	public void testReplay() {
 		IOSPlayer iosPlayer = new IOSPlayer(iosDevice,Constant.NETWORK_MODEL_2G);
 		LinkedHashMap<File, Integer> hashMap = new LinkedHashMap<File, Integer>();
-		hashMap.put(new File("/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/testcase/ios/test_native_zhengzu_list/test_native_zhengzu_list.script"), 1);
+//		hashMap.put(new File("/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/testcase/ios/test_native_zhengzu_list/test_native_zhengzu_list.script"), 1);
 		hashMap.put(new File("/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/testcase/ios/test_web_xinfang_list/test_web_xinfang_list.script"), 1);
 //		hashMap.put(new File("/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/testcase/ios/test_case_demo1/test_case_demo1.script"), 2);
 //		hashMap.put(new File("/Users/vigoss/Project/iOS_UI_Recorder/ResponseTimeTool/repo/testcase/ios/test_case_demo2/test_case_demo2.script"), 3);
