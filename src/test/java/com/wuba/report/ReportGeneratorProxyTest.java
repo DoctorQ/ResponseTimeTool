@@ -65,7 +65,7 @@ public class ReportGeneratorProxyTest {
 	}
 
 	/**
-	 * 测试多目录合成报告
+	 * android测试多目录合成报告
 	 */
 	@Test(groups = { "unittest" })
 	public void generatorAndroidReportByMuiltDirTest() {
@@ -90,7 +90,7 @@ public class ReportGeneratorProxyTest {
 	}
 
 	/**
-	 * 测试单目录报告
+	 * android测试单目录报告
 	 */
 	@Test(groups = { "unittest" })
 	public void generatorAndroidReportByDirTest() {
@@ -103,5 +103,7 @@ public class ReportGeneratorProxyTest {
 		File file = new File(DirStructureUtil.getReportAndroid(),"testResult.xml");
 		LOG.info(file.getAbsolutePath());
 	}
+	
+	
 
 }

@@ -17,12 +17,16 @@ import com.wuba.utils.TimeUtil;
  */
 public class TestResultTest {
 	private TestResult testResult = null;
+	private TestResult iosTestresult = null;
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		testResult = new TestResult(new File(
 				DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923"));
+		iosTestresult = new TestResult(new File(
+				DirStructureUtil.getResultIOS(),
+				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215"));
 	}
 
 	@Test(groups = { "unittest" })
@@ -78,10 +82,37 @@ public class TestResultTest {
 
 	@Test(groups = { "unittest" })
 	public void generateIOSXmlTestResult() {
-		//native
-		TestCaseLoop nativeLoop =  testResult.getTestCaseLoop("test_native_zhengzu_list");
-		
-		TestCaseLoop webViewLoop =  testResult.getTestCaseLoop("test_web_xinfang_list");
+		// native
+		TestCaseLoop nativeLoop = iosTestresult
+				.getTestCaseLoop("test_native_zhengzu_list");
+		nativeLoop.setStartTime(TimeUtil.formatTimeStamp(System
+				.currentTimeMillis()));
+		nativeLoop.setPath("/native");
+		nativeLoop.setLoop(1);
+		TestCase nativeCase0 = nativeLoop.getTestCase(0);
+		nativeCase0.setPass(true);
+		nativeCase0.setLogFile("repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_native_zhengzu_list/0/time.log");
+		nativeLoop.setEndTime(TimeUtil.formatTimeStamp(System
+				.currentTimeMillis()));
+
+		TestCaseLoop webViewLoop = iosTestresult
+				.getTestCaseLoop("test_web_xinfang_list");
+		webViewLoop.setStartTime(TimeUtil.formatTimeStamp(System
+				.currentTimeMillis()));
+
+		webViewLoop.setPath("/webView");
+		webViewLoop.setLoop(2);
+
+		TestCase webViewCase0 = webViewLoop.getTestCase(0);
+		webViewCase0.setPass(true);
+		webViewCase0.setLogFile("repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/0/time.log");
+		TestCase webViewCase1 = webViewLoop.getTestCase(1);
+		webViewCase1.setPass(true);
+		webViewCase1.setLogFile("repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/1/time.log");
+
+		webViewLoop.setEndTime(TimeUtil.formatTimeStamp(System
+				.currentTimeMillis()));
+		iosTestresult.serializeResultToXml();
 	}
 
 }
