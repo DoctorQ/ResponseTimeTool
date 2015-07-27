@@ -45,6 +45,9 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButtonMenuItem;
 
 //import com.android.screen.monitor.ADB;
 //import com.android.screen.monitor.AboutDialog;
@@ -64,6 +67,7 @@ public class HomePage extends JFrame {
 
 	public static JButton connectButton = null;
 	public static JRadioButton connectAndroid = null;
+	public static JRadioButton connectIos = null;
 	public static JButton openFileButton = null;
 	public static JButton recordButton = null;
 	public static JButton stopButton = null;
@@ -88,7 +92,7 @@ public class HomePage extends JFrame {
 //	private ADB mADB = null;
 
 	public JButton replayButton;
-	private JButton btnSelectNetwork;
+	private JComboBox netSelectBox;
 
 	/**
 	 * Launch the application.
@@ -170,7 +174,7 @@ public class HomePage extends JFrame {
 			toolBarPanel.add(getJconnectButton());
 			toolBarPanel.add(getJconnectAndroid());
 			toolBarPanel.add(getJconnectIos());
-			toolBarPanel.add(getBtnSelectNetwork());
+			toolBarPanel.add(getNetSelectBox());
 			toolBarPanel.add(getJrecordButton());
 			toolBarPanel.add(getJstopButton());
 			toolBarPanel.add(getJreplayButton());
@@ -192,9 +196,20 @@ public class HomePage extends JFrame {
 			openFileButton.setEnabled(true);			
 			openFileButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					clearLogArea();
+					connectButton.setEnabled(false);
+					recordButton.setEnabled(false);
+					stopButton.setEnabled(false);
+					replayButton.setEnabled(false);
+					clearLogButton.setEnabled(false);
+					aboutButton.setEnabled(false);
 					loadExcelFile();
+					connectButton.setEnabled(true);
+					recordButton.setEnabled(true);
+					stopButton.setEnabled(true);
+					clearLogButton.setEnabled(true);
+					aboutButton.setEnabled(true);
 					if (caseRows.size()!=0){
+						netSelectBox.setEnabled(true);
 						replayButton.setEnabled(true);
 					}
 				}
@@ -276,10 +291,13 @@ public class HomePage extends JFrame {
 						openFileButton.setEnabled(true);
 						if (caseRows.size() != 0 && !allUnMarked()
 								&& !replayButton.isEnabled()) {
+							netSelectBox.setEnabled(true);
 							replayButton.setEnabled(true);
 						}
 					}
-
+					else if(connectIos.isSelected()){
+						
+					}
 				}
 			});
 		}
@@ -287,39 +305,50 @@ public class HomePage extends JFrame {
 	}
 
 	private JRadioButton getJconnectAndroid() {
-		connectAndroid = new JRadioButton("Android");
-		connectAndroid.setSelected(true);
-		connectAndroid.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				asm = new AndroidScreenMonitor();
-//				asm.launch(mArgs, mADB);
-				connectButton.setEnabled(false);
-				recordButton.setEnabled(true);
-				openFileButton.setEnabled(true);
-				if (caseRows.size() != 0 && !allUnMarked()
-						&& !replayButton.isEnabled()) {
-					replayButton.setEnabled(true);
+		if (connectAndroid == null) {
+			connectAndroid = new JRadioButton("Android");
+			connectAndroid.setSelected(true);
+			connectAndroid.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(connectAndroid.isSelected()){
+						connectIos.setSelected(false);
+					}
+					else if(!connectAndroid.isSelected()){
+						connectIos.setSelected(true);
+					}
+					recordButton.setEnabled(true);
+					openFileButton.setEnabled(true);
+					if (caseRows.size() != 0 && !allUnMarked()
+							&& !replayButton.isEnabled()) {
+						replayButton.setEnabled(true);
+					}
 				}
-			}
-		});
+			});
+		}
 		return connectAndroid;
 	}
 
 	private JRadioButton getJconnectIos() {
-		JRadioButton connectIos = new JRadioButton("IOS");
-		connectIos.addActionListener(new ActionListener() {
+		if (connectIos == null) {
+			connectIos = new JRadioButton("IOS");
+			connectIos.setSelected(false);
+			connectIos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				asm = new AndroidScreenMonitor();
-//				asm.launch(mArgs, mADB);
-				connectButton.setEnabled(false);
+				if(connectIos.isSelected()){
+					connectAndroid.setSelected(false);
+				}
+				else if(!connectIos.isSelected()){
+					connectAndroid.setSelected(true);
+				}
 				recordButton.setEnabled(true);
 				openFileButton.setEnabled(true);
 				if (caseRows.size() != 0 && !allUnMarked()
 						&& !replayButton.isEnabled()) {
 					replayButton.setEnabled(true);
+					}
 				}
-			}
-		});
+			});
+		}
 		return connectIos;
 	}
 
@@ -366,6 +395,7 @@ public class HomePage extends JFrame {
 	private JButton getJreplayButton() {
 		if (replayButton == null) {
 			replayButton = new JButton();
+			replayButton.setEnabled(false);
 			replayButton.setToolTipText("stop record");
 			replayButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/replay.png")));
 			replayButton.addActionListener(new ActionListener() {
@@ -734,16 +764,14 @@ public class HomePage extends JFrame {
 			return this;
 		}
 	}
-
-	private JButton getBtnSelectNetwork() {
-		if (btnSelectNetwork == null) {
-			btnSelectNetwork = new JButton("");
-			btnSelectNetwork.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			btnSelectNetwork.setIcon(new ImageIcon(HomePage.class.getResource("/image/android_1024.png")));
+	
+	private JComboBox getNetSelectBox() {
+		if (netSelectBox == null) {
+			netSelectBox = new JComboBox();
+			netSelectBox.setEnabled(false);
+			netSelectBox.setToolTipText("Select type of network");
+			netSelectBox.setModel(new DefaultComboBoxModel(new String[] {"2G", "3G", "4G", "WIFI"}));
 		}
-		return btnSelectNetwork;
+		return netSelectBox;
 	}
 }
