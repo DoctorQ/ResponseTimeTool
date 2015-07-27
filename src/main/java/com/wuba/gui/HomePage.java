@@ -286,8 +286,7 @@ public class HomePage extends JFrame {
 			connectButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(connectAndroid.isSelected()){
-//						asm = new AndroidScreenMonitor();
-//						asm.launch(mArgs, mADB);
+						SelectDeviceDialog.main(null);
 						connectButton.setEnabled(false);
 						recordButton.setEnabled(true);
 						openFileButton.setEnabled(true);
