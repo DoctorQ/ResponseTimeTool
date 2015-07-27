@@ -42,10 +42,10 @@ public class ReportGeneratorProxy implements ReportGenerator {
 	 * util.List)
 	 */
 	@Override
-	public void generateReporter(List<File> list) {
+	public void generateReporter(List<File> list, String platform) {
 		// TODO Auto-generated method stub
 		for (ReportGenerator reportGenerator : reportGenerators) {
-			reportGenerator.generateReporter(list);
+			reportGenerator.generateReporter(list, platform);
 		}
 
 	}

@@ -26,7 +26,7 @@ public class CsvReportGenerator implements ReportGenerator{
 	 * @see com.wuba.result.ReportGenerator#generateReporter(com.sun.tools.javac.util.List)
 	 */
 	@Override
-	public void generateReporter(List<File> list) {
+	public void generateReporter(List<File> list, String platform) {
 		// TODO Auto-generated method stub
 		
 	}

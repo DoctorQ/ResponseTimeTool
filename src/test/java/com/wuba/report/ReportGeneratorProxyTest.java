@@ -4,6 +4,8 @@
 package com.wuba.report;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -67,6 +69,23 @@ public class ReportGeneratorProxyTest {
 	 */
 	@Test(groups = { "unittest" })
 	public void generatorAndroidReportByMuiltDirTest() {
+		File file1 = new File(DirStructureUtil.getResultAndroid(),
+				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
+		File file2 = new File(DirStructureUtil.getResultAndroid(),
+				"MI_3G_dksldfdffdf_4.4.2_20150721082392");
+		File file3 = new File(DirStructureUtil.getResultAndroid(),
+				"MI_4G_dksldfdffdf_4.4.2_20150721082392");
+		
+		
+		File file4 = new File(DirStructureUtil.getResultAndroid(),
+				"HW_4G_12323242_4.4.2_20150721082392");
+		
+		List<File> list = new ArrayList<File>();
+		list.add(file1);
+		list.add(file2);
+		list.add(file3);
+		list.add(file4);
+		proxy.generateReporter(list, Constant.ANDROID_PLATFORM);
 
 	}
 

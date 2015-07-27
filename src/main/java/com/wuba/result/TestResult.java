@@ -25,6 +25,12 @@ import com.wuba.utils.Constant;
  * @date 2015年7月23日 下午2:37:28
  */
 public class TestResult extends AbstractXmlPullParser implements XMLParser {
+	@Override
+	public String toString() {
+		return "TestResult [device=" + device + ", network=" + network
+				+ ", sn=" + sn + ", platform=" + platform + "]";
+	}
+
 	public Map<String, TestCaseLoop> getLoops() {
 		return loops;
 	}
@@ -44,6 +50,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 
 	public TestResult(File rootDir) {
 		this.rootDir = rootDir;
+		
 	}
 
 	public void parserXml() {
@@ -66,6 +73,8 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		network = array[1];
 		sn = array[2];
 		platform = array[3];
+		
+		LOG.info(toString());
 	}
 
 	public String getDevice() {
@@ -106,8 +115,8 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
-
 		init();
+		
 
 		serializer.startTag(Constant.NAMESPACE, TESTRESULT_TAG);
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
@@ -205,5 +214,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		}
 
 	}
+	
+	
 
 }

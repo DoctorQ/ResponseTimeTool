@@ -21,7 +21,8 @@ public interface ReportGenerator {
 	/**
 	 * 根据多任务生成组合报告
 	 * @param list
+	 * @param platform TODO
 	 */
-	public void generateReporter(List<File> list);
+	public void generateReporter(List<File> list, String platform);
 
 }

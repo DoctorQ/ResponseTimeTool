@@ -29,63 +29,88 @@ public class XmlReportGenerator implements ReportGenerator {
 	private TestReport mTestReport = null;
 	private LogParser mLogParser = null;
 	private static final String TESTREPORT_XML = "testReport_%s.xml";
-	
 
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
-	
+
 	@Override
 	public void generateReporter(File rootDir, String platform) {
 		if (rootDir == null || !rootDir.exists()) {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-		if(Constant.ANDROID_PLATFORM.equals(platform)){
-			mLogParser = new AndroidLogParser();
-			mTestReport = new TestReport(new File(DirStructureUtil.getReportAndroid(),getFileNameFromTimeStamp()));
-			
-		}else if(Constant.IOS_PLATFORM.equals(platform)){
-			mLogParser = new IOSLogParser();
-			mTestReport = new TestReport(new File(DirStructureUtil.getReportIOS(),getFileNameFromTimeStamp()));
-		}
-		
-		TestResult testResult = new TestResult(rootDir);
-		//解析testResult.xml文件
-		testResult.parserXml();
-		
-		LOG.info(String.format("Read %s finished", "testResult.xml"));
-		
-		//配置testReport.xml对象
-		TestDevice testDevice = mTestReport.getTestDevice(testResult.getSn());
-		testDevice.setDevice(testResult.getDevice());
-		testDevice.setPlatform(testResult.getPlatform());
-		
-		TestNetWork netWork = testDevice.getTestNetWork(testResult.getNetwork());
-		
-		
-		netWork.setTestViewLoops(testResult.getLoops(), mLogParser);
-		
-		
-		mTestReport.serializeResultToXml();
-		
-	}
+		getPlatform(platform);
 
-	private String getFileNameFromTimeStamp() {
-		return String.format(TESTREPORT_XML, TimeUtil.formatTimeForFile(System.currentTimeMillis()));
+		parserTestReportByTestResult(rootDir);
+
+		mTestReport.serializeResultToXml();
+
 	}
 
 	/*
-	 * (non-Javadoc)
 	 * 
 	 * @see
 	 * com.wuba.result.ReportGenerator#generateReporter(com.sun.tools.javac.
 	 * util.List)
 	 */
 	@Override
-	public void generateReporter(List<File> list) {
-		// TODO Auto-generated method stub
+	public void generateReporter(List<File> list, String platform) {
+		if (list == null || list.size() == 0) {
+			return;
+		}
 
+		getPlatform(platform);
+
+		for (File file : list) {
+			parserTestReportByTestResult(file);
+		}
+
+		mTestReport.serializeResultToXml();
+
+	}
+
+	private void parserTestReportByTestResult(File rootDir) {
+		TestResult testResult = new TestResult(rootDir);
+		// 解析testResult.xml文件
+		testResult.parserXml();
+
+		LOG.info(String.format("Read %s finished", "testResult.xml"));
+		LOG.info(testResult.toString());
+		// 配置testReport.xml对象
+		TestDevice testDevice = mTestReport.getTestDevice(testResult.getSn());
+		testDevice.setDevice(testResult.getDevice());
+		testDevice.setPlatform(testResult.getPlatform());
+
+		TestNetWork netWork = testDevice
+				.getTestNetWork(testResult.getNetwork());
+
+		netWork.setTestViewLoops(testResult.getLoops(), mLogParser);
+	}
+
+	/**
+	 * 根据平台名得到相应的log解析器，以及设置报告的存放位置
+	 * 
+	 * @param platform
+	 */
+	private void getPlatform(String platform) {
+		if (Constant.ANDROID_PLATFORM.equals(platform)) {
+			mLogParser = new AndroidLogParser();
+			mTestReport = new TestReport(new File(
+					DirStructureUtil.getReportAndroid(),
+					getFileNameFromTimeStamp()));
+
+		} else if (Constant.IOS_PLATFORM.equals(platform)) {
+			mLogParser = new IOSLogParser();
+			mTestReport = new TestReport(
+					new File(DirStructureUtil.getReportIOS(),
+							getFileNameFromTimeStamp()));
+		}
+	}
+
+	private String getFileNameFromTimeStamp() {
+		return String.format(TESTREPORT_XML,
+				TimeUtil.formatTimeForFile(System.currentTimeMillis()));
 	}
 
 }

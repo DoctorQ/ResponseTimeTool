@@ -200,7 +200,7 @@ public class AndroidLogParser extends AbstractLogParser {
 				line);
 		if (webViewEndMatcher.find()) {
 			mWebViewEnd = webViewEndMatcher.group(1);
-			LOG.info("WebView end time : " + mWebViewEnd);
+			LOG.debug("WebView end time : " + mWebViewEnd);
 		}
 
 	}
