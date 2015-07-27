@@ -45,6 +45,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButtonMenuItem;
@@ -92,6 +93,7 @@ public class HomePage extends JFrame {
 //	private ADB mADB = null;
 
 	public JButton replayButton;
+	@SuppressWarnings("rawtypes")
 	private JComboBox netSelectBox;
 
 	/**
@@ -360,8 +362,9 @@ public class HomePage extends JFrame {
 			recordButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					openFileButton.setEnabled(false);
-					recordButton.setEnabled(true);
-					openFileButton.setEnabled(true);
+					connectButton.setEnabled(false);
+					recordButton.setEnabled(false);
+					replayButton.setEnabled(false);
 					if (caseRows.size() != 0 && !allUnMarked()
 							&& !replayButton.isEnabled()) {
 						replayButton.setEnabled(true);
@@ -765,12 +768,17 @@ public class HomePage extends JFrame {
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private JComboBox getNetSelectBox() {
 		if (netSelectBox == null) {
 			netSelectBox = new JComboBox();
 			netSelectBox.setEnabled(false);
 			netSelectBox.setToolTipText("Select type of network");
 			netSelectBox.setModel(new DefaultComboBoxModel(new String[] {"2G", "3G", "4G", "WIFI"}));
+			if (caseRows.size() != 0 && !allUnMarked()
+					&& replayButton.isEnabled()) {
+				netSelectBox.setEnabled(true);
+			}
 		}
 		return netSelectBox;
 	}
