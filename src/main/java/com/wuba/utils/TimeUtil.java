@@ -36,7 +36,7 @@ public class TimeUtil {
     /**
      * Return a prettified version of the given elapsed time in milliseconds.
      */
-    public static String formatElapsedTime(long elapsedTimeMs) {
+    public static synchronized String formatElapsedTime(long elapsedTimeMs) {
         if (elapsedTimeMs < 1000) {
             return String.format("%d ms", elapsedTimeMs);
         }
@@ -64,7 +64,7 @@ public class TimeUtil {
      * @param epochTime the epoch time in milliseconds
      * @return a user readable string
      */
-    public static String formatTimeStamp(long epochTime) {
+    public static synchronized String formatTimeStamp(long epochTime) {
         return TIME_FORMAT.format(new Date(epochTime));
     }
     
@@ -72,7 +72,7 @@ public class TimeUtil {
         return formatTimeStamp(System.currentTimeMillis());
     }
     
-    public static String formatTimeStampMsec(long epochTime) {
+    public static synchronized String formatTimeStampMsec(long epochTime) {
         return TIME_FORMAT_MSEC.format(new Date(epochTime));
     }
     
@@ -80,7 +80,7 @@ public class TimeUtil {
         return formatTimeStampMsec(System.currentTimeMillis());
     }
     
-    public static String formatTimeForFile(long epochTime) {
+    public static synchronized String formatTimeForFile(long epochTime) {
         return FILE_TIME_FORMAT.format(new Date(epochTime));
     }
     

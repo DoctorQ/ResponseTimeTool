@@ -29,7 +29,7 @@ public class TestResultTest {
 				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215"));
 	}
 
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest","androidtestresult" })
 	public void generateAndroidXmlTestResult() {
 		// webview
 		TestCaseLoop webview = testResult.getTestCaseLoop("case3");
@@ -80,7 +80,7 @@ public class TestResultTest {
 		testResult.serializeResultToXml();
 	}
 
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest","iostestresult" })
 	public void generateIOSXmlTestResult() {
 		// native
 		TestCaseLoop nativeLoop = iosTestresult

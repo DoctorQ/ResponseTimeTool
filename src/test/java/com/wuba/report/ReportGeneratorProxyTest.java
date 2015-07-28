@@ -65,7 +65,7 @@ public class ReportGeneratorProxyTest {
 	/**
 	 * android测试多目录合成报告
 	 */
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest" },dependsOnGroups={"androidtestresult"})
 	public void generatorAndroidReportByMuiltDirTest() {
 		File file1 = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
@@ -90,7 +90,7 @@ public class ReportGeneratorProxyTest {
 	/**
 	 * android测试单目录报告
 	 */
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest" },dependsOnGroups={"androidtestresult"})
 	public void generatorAndroidReportByDirTest() {
 		File file = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
@@ -127,7 +127,7 @@ public class ReportGeneratorProxyTest {
 	/**
 	 * android测试单目录报告
 	 */
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest" },dependsOnGroups={"iostestresult"})
 	public void generatorIOSReportByDirTest() {
 		File file = new File(DirStructureUtil.getResultIOS(),
 				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
