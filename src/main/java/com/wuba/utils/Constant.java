@@ -42,7 +42,18 @@ public class Constant {
 	public static final String iOS_RESP_FILE = iOS_TEMP_DIR + File.separator + "resp.txt";
 	public static final String iOS_START_SERVER_CMD = "start record server;";
 	public static final String iOS_CLOSE_SERVER_CMD = "close record server;";
-	
+	@SuppressWarnings("serial")
+	public static Map<String, int[]> IPHONE_DPI_MAP = new HashMap<String, int[]>() {{    
+	    put("iPhone5,1", new int[]{320, 568});
+	    put("iPhone5,2", new int[]{320, 568});
+	    put("iPhone5,3", new int[]{320, 568});
+	    put("iPhone5,4", new int[]{320, 568});
+	    put("iPhone6,1", new int[]{320, 568});
+	    put("iPhone6,2", new int[]{320, 568});
+	    put("iPhone7,1", new int[]{414, 736});
+	    put("iPhone7,2", new int[]{375, 667});
+	    
+	}};
 	@SuppressWarnings("serial")
 	public static Map<String, String> IPHONE_MAP = new HashMap<String,String>() {{    
 	    put("iPhone1,1", "iPhone");
@@ -108,7 +119,5 @@ public class Constant {
 	public static final String NAMESPACE = null;
 	public static final String TESTRESULT_XML = "testResult.xml";
 	public static final String TESTREPORT_XML = "testReport.xml";
-	
-	
 	
 }
