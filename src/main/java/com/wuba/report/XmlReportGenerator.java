@@ -29,7 +29,6 @@ public class XmlReportGenerator implements ReportGenerator {
 
 	private TestReport mTestReport = null;
 	private LogParser mLogParser = null;
-	private static final String TESTREPORT_XML = "testReport_%s.xml";
 
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
