@@ -42,6 +42,7 @@ public class TestViewLoop implements XMLParser {
 	private static final String APARSER_ATTR = "aparsertime";
 	private static final String VIEWTYPE_ATTR = "viewtype";
 	private static final String DATATYPE_ATTR = "datatype";
+	private static final String TOTAL_ATTR = "total";
 
 	private String name = "";
 	// private String startTime = "";
@@ -118,6 +119,9 @@ public class TestViewLoop implements XMLParser {
 			}
 		}
 		serializer.attribute(Constant.NAMESPACE, APARSER_ATTR, totalParserCost
+				/ size + "");
+		serializer.attribute(Constant.NAMESPACE, TOTAL_ATTR, (totalParserCost
+				+ totalConnectCost + totalReadCost)
 				/ size + "");
 
 	}
