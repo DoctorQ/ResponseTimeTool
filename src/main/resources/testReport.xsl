@@ -19,7 +19,7 @@
 		<html>
 			<head>
 				<title>
-					Test Report for
+					Test Report
 					<xsl:value-of select="TestResult/@title" />
 				</title>
 
@@ -111,16 +111,10 @@
 					background-color:
 					#8DC9F8;
 					padding: 0.5em;
-					text-align: left;
+					text-align: center;
 					border: 1px solid #49A1FF;
 					}
-					.devicesummary th {
-					background-color: #51B1FC;
-					padding: 0.5em;
-					border-bottom: 1px solid #D1D1D1;
-					color: #fff;
-					text-align: left;
-					}
+					
 					.reportsummary th.title {
 					text-align: left;
 					color: #fff;
@@ -138,88 +132,17 @@
 					table.testsummary th, .testdesc th {
 					background-color: #F8B165;
 					}
-					.exceptionsummary th{
-					background-color:
-					#F8B165;
-					}
-					.reportsummary td, .devicesummary td {
+				
+					.reportsummary
+					td, .devicesummary td {
 					padding: 0.5em;
 					vertical-align: middle;
 					border: 1px solid #91D2E0;
 					font-size: 12px;
 					}
-					.exceptionsummary td{
-					padding: 0.5em;
-					vertical-align: middle;
-					border:
-					1px solid #91D2E0;
-					font-size: 13px;
-					}
-					table.testsummary, .testdesc,
-					.exceptionsummary {
-					background-color: #FFFFFF;
-					border-collapse:
-					collapse;
-					width: 100%;
-					position: relative;
-					padding-bottom: 16px;
-					font-size: 13px;
-					}
-					table.testsummary th, .testdesc th {
-					background-color: #FFF3D8;
-					padding: 0.5em;
-					text-align: left;
-					border:
-					1px solid #FAD0A3;
-					}
-					.exceptionsummary td.pass{
-					text-align: left;
-					margin-left:auto;
-					margin-right:auto;
-					height: 45px;
-					color: #58C265;
-					vertical-align: middle;
-					font-weight: bold;
-					}
+				
 
-					.exceptionsummary
-					td.fail{
-					color: #FA5858;
-					font-weight:bold;
-					vertical-align: middle;
-					text-align: left;
-					width: 45px;
-					}
-					.exceptionsummary th{
-					background-color: #FFF3D8;
-					padding: 0.5em;
-					text-align: left;
-					border:
-					1px solid #FAD0A3;
-					font-size: 13px;
-					}
-					table.testsummary td,
-					.testdesc
-					td {
-					padding: 0.5em;
-					text-align: left;
-					border: 1px solid
-					#fad59e;
-					}
-					.exceptionsummary td{
-					padding: 0.5em;
-					text-align: left;
-					border: 1px
-					solid #fad59e;
-					}
-					table.testsummary td a{
-					font-weight:bold;
-					color:#000;
-					}
-					table.testsummary td a:hover{
-					color:
-					#CA0808;
-					}
+					
 					table.testdetails {
 					background-color: #F5F5F5;
 					border-collapse: collapse;
@@ -356,473 +279,70 @@
 				<TABLE class="sitename">
 					<TR>
 						<TH colspan="2">
-							<h1>Jenkins CI Report</h1>
+							<h1>Response Time Test Report</h1>
 						</TH>
 						<TD colspan="1" class="description">
-							<img class="logo" src="cid:logo" />
+							<img class="logo" src="logo.gif" />
 						</TD>
 					</TR>
 				</TABLE>
 				<br />
-				<TABLE class="testdesc">
-					<TR>
-						<TD width="5%" class="rowtitle">Platform</TD>
-						<TD>
-							<xsl:value-of select="TestResult/@platform" />
-						</TD>
-
-						<TD width="10%" class="rowtitle">Start time</TD>
-						<TD>
-							<xsl:value-of select="TestResult/@starttime" />
-						</TD>
-						<TD width="10%" class="rowtitle">End time</TD>
-						<TD>
-							<xsl:value-of select="TestResult/@endtime" />
-						</TD>
-
-					</TR>
-				</TABLE>
-
-				<h2 class="bigtitle" align="center">
-					Build status
-				</h2>
-
-				<TABLE class="exceptionsummary">
-					<TR>
-						<TH class="title">Job</TH>
-						<TH class="title">Status</TH>
-						<TH class="title">BuildNo</TH>
-						<TH class="title">Date</TH>
-
-					</TR>
-					<xsl:for-each select="TestResult/jobs/job">
-
-						<TR>
-							<TD width="40%">
-								<xsl:value-of select="@name" />
-							</TD>
-							<xsl:if test="@status='SUCCESS'">
-								<TD class="pass">
-									<div>
-										<xsl:value-of select="@status" />
-									</div>
-								</TD>
-
-							</xsl:if>
-							<xsl:if test="@status!='SUCCESS'">
-								<TD class="fail">
-									<div>
-										<xsl:value-of select="@status" />
-									</div>
-								</TD>
-
-							</xsl:if>
-							<TD>
-								<xsl:variable name="href">
-									<xsl:value-of select="@url" />
-								</xsl:variable>
-								<a href="{$href}">
-									<xsl:value-of select="@buildNumber" />
-								</a>
-
-							</TD>
-							<TD>
-								<xsl:value-of select="@date" />
-							</TD>
 
 
-						</TR>
-					</xsl:for-each> <!-- end package -->
-				</TABLE>
-				<h2 class="bigtitle" align="center">
-					ChangeLogs for 58 App SourceCode
-				</h2>
 
-				<TABLE class="exceptionsummary">
-					<TR>
-						<TH class="title">Author</TH>
-						<TH class="title">File</TH>
-						<TH class="title">Comment</TH>
-						<TH class="title">Opertion</TH>
-						<TH class="title">Time</TH>
-					</TR>
-					<xsl:for-each select="TestResult/changeSet/item">
+				<xsl:for-each select="TestReport/TestDevice">
+					<h2 class="bigtitle" align="center">
+						<xsl:value-of select="@sn" />
+						-
+						<xsl:value-of select="@device" />
+						-
+						<xsl:value-of select="@version" />
+					</h2>
+					<xsl:for-each select="TestNetWork">
 
-						<TR>
-							<TD width="5%">
-								<xsl:variable name="href">
-									<xsl:value-of select="author/absoluteUrl" />
-								</xsl:variable>
-								<a href="{$href}">
-									<xsl:value-of select="author/fullName" />
-								</a>
-							</TD>
-							<TD>
-								<xsl:value-of select="affectedPath" />
-							</TD>
-							<TD>
-								<xsl:value-of select="comment" />
-							</TD>
-							<TD>
-								<xsl:value-of select="path/editType" />
-							</TD>
-
-							<TD>
-								<xsl:value-of select="timestamp" />
-							</TD>
-						</TR>
-					</xsl:for-each> <!-- end package -->
-				</TABLE>
-				<h2 class="bigtitle" align="center">
-					Sonar
-				</h2>
-				<TABLE class="exceptionsummary" align="center">
-
-					<TR>
-
-						<TD width="40%">
-
-							<xsl:variable name="href">
-								<xsl:value-of select="TestResult/@sonar" />
-							</xsl:variable>
-							<a href="{$href}">
-								FORWARD
-							</a>
-						</TD>
-					</TR>
-
-				</TABLE>
-
-				<h2 class="bigtitle" align="center">
-					Device Info
-				</h2>
-
-				<TABLE class="exceptionsummary">
-					<TR>
-						<TH class="title">Name</TH>
-						<TH class="title">SN</TH>
-						<TH class="title">Version</TH>
-					</TR>
-					<xsl:for-each select="TestResult/DeviceInfo/device">
-
-						<TR>
-							<TD width="40%">
-								<xsl:value-of select="@name" />
-							</TD>
-							<TD>
-								<xsl:value-of select="@sn" />
-							</TD>
-							<TD>
-								<xsl:value-of select="@platform" />
-							</TD>
-
-						</TR>
-					</xsl:for-each> <!-- end package -->
-				</TABLE>
-
-
-				<h2 class="bigtitle" align="center">
-					Test Info
-				</h2>
-				<TABLE class="reportsummary">
-
-					<xsl:for-each select="TestResult/TestInfo/Test">
-						<TR>
-							<TH colspan="2" class="title">
-								Test Summary For
-								<xsl:value-of select="@device" />
-							</TH>
-							<TH class="title">
-								Total :
-								<xsl:value-of select="@caseSum" />
-
-							</TH>
-							<TH class="title">
-								Pass :
-								<xsl:value-of select="@passSum" />
-
-							</TH>
-							<TH class="url">
-								<xsl:variable name="href">
-									<xsl:value-of select="@reportPath" />
-								</xsl:variable>
-								<a href="{$href}">More</a>
-							</TH>
-
-						</TR>
-						<TR>
-							<TH>Name</TH>
-							<TH>Total</TH>
-							<TH>Pass</TH>
-							<TH>Fail</TH>
-							<TH>Radio</TH>
-
-						</TR>
-						<xsl:for-each select="case">
+						<TABLE class="reportsummary">
 							<TR>
-								<TD>
-									<xsl:value-of select="@name" />
-								</TD>
-								<TD>
-									<xsl:value-of select="@total" />
-								</TD>
-								<TD>
-									<xsl:value-of select="@pass" />
-								</TD>
-								<TD>
-									<xsl:value-of select="@fail" />
-								</TD>
-								<TD>
-									<xsl:value-of select="@radio" />
-								</TD>
-
+								<TH colspan="7" class="title">
+									Test Summary For
+									<xsl:value-of select="@type" />
+								</TH>
 							</TR>
-						</xsl:for-each> <!-- end package -->
-					</xsl:for-each>
-				</TABLE>
-				<h2 class="bigtitle" align="center">
-					MonkeyTest
-				</h2>
-				<TABLE class="reportsummary">
-
-					<xsl:for-each select="TestResult/MonkeyTest/MonkeyItem">
-						<TR>
-							<TH colspan="3" class="title">
-								Monkey For
-								<xsl:value-of select="@device" />
-							</TH>
-							<TH class="url">
-								<xsl:variable name="href">
-									<xsl:value-of select="@url" />
-								</xsl:variable>
-								<a href="{$href}">More</a>
-							</TH>
-
-						</TR>
-						<TR>
-							<TH>Hardware</TH>
-							<TH>Application</TH>
-							<TH>Span</TH>
-							<TH>Results</TH>
-
-						</TR>
-						<TR>
-							<TD>
-								<xsl:value-of select="@hardware" />
-							</TD>
-							<TD>
-								<xsl:value-of select="@application" />
-							</TD>
-							<TD>
-								<xsl:value-of select="@span" />
-							</TD>
-							<TD>
-								<xsl:value-of select="@results" />
-							</TD>
-
-						</TR>
-					</xsl:for-each>
-				</TABLE>
-
-				<xsl:call-template name="filteredResultTestReport">
-					<xsl:with-param name="header" select="'Test Failures'" />
-					<xsl:with-param name="resultFilter" select="'fail'" />
-				</xsl:call-template>
-
-				<xsl:call-template name="filteredResultTestReport">
-					<xsl:with-param name="header" select="'Test Timeouts'" />
-					<xsl:with-param name="resultFilter" select="'timeout'" />
-				</xsl:call-template>
-				<xsl:call-template name="detailedTestReport" />
+							<TR>
+								<TH >Case</TH>
+								<TH >ViewType</TH>
+								<TH >DataType</TH>
+								<TH >Connect(ms)</TH>
+								<TH >Read(ms)</TH>
+								<TH >Paser(ms)</TH>
+								<TH >Total(ms)</TH>
+							</TR>
+							<xsl:for-each select="TestViewLoop">
+								<TR>
+									<TH colspan="1">
+										<xsl:value-of select="@name" />
+									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@viewtype" />
+									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@datatype" />
+									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@aconnecttime" />
+									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@areadtime" />
+									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@aparsertime" />
+									</TH>
+								</TR>
+							</xsl:for-each>
+						</TABLE>
+					</xsl:for-each> <!-- end package -->
+				</xsl:for-each> <!-- end package -->
 			</body>
 		</html>
-	</xsl:template>
-
-
-
-	<xsl:template name="filteredResultTestReport">
-		<xsl:param name="header" />
-		<xsl:param name="resultFilter" />
-		<xsl:variable name="numMatching"
-			select="count(TestResult/TestPackage/TestSuite//TestCase/Test[@result=$resultFilter])" />
-		<xsl:if test="$numMatching &gt; 0">
-			<div id="fail-title">
-				<h2 class="bigtitle" align="center">
-					<xsl:value-of select="$header" />
-					(
-					<xsl:value-of select="$numMatching" />
-					)
-				</h2>
-			</div>
-			<xsl:call-template name="detailedTestReport">
-				<xsl:with-param name="resultFilter" select="$resultFilter" />
-			</xsl:call-template>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template name="detailedTestReport">
-		<xsl:param name="resultFilter" />
-		<DIV class="block">
-			<xsl:attribute name="id">
-                <xsl:if test="$resultFilter=''">
-                    <xsl:value-of select="'detail'" />
-                </xsl:if>
-                <xsl:if test="$resultFilter!=''">
-                    <xsl:value-of select="$resultFilter" />
-                </xsl:if>
-            </xsl:attribute>
-			<xsl:for-each select="TestResult/TestPackage">
-				<xsl:if
-					test="$resultFilter=''
-                        or count(TestSuite//TestCase/Test[@result=$resultFilter]) &gt; 0">
-
-					<TABLE class="testdetails">
-						<TR>
-							<TD class="package" colspan="3">
-								<xsl:variable name="href">
-									<xsl:value-of select="@appPackageName" />
-								</xsl:variable>
-								<a name="{$href}">
-									Compatibility Test Package:
-									<xsl:value-of select="@appPackageName" />
-								</a>
-							</TD>
-						</TR>
-
-						<TR>
-							<TH width="30%">Test</TH>
-							<TH width="5%">Result</TH>
-							<TH width="65%">Details</TH>
-						</TR>
-
-						<!-- test case -->
-						<xsl:for-each select="TestSuite//TestCase">
-
-							<xsl:if
-								test="$resultFilter='' or count(Test[@result=$resultFilter]) &gt; 0">
-								<!-- emit a blank row before every test suite name -->
-								<xsl:if test="position()!=1">
-									<TR>
-										<TD class="testcasespacer" colspan="3"></TD>
-									</TR>
-								</xsl:if>
-
-								<TR>
-									<TD class="testcase" colspan="3">
-										<xsl:for-each select="ancestor::TestSuite">
-											<xsl:if test="position()!=1">
-												.
-											</xsl:if>
-											<xsl:value-of select="@name" />
-										</xsl:for-each>
-										<xsl:text>.</xsl:text>
-										<xsl:value-of select="@name" />
-									</TD>
-								</TR>
-							</xsl:if>
-
-							<!-- test -->
-							<xsl:for-each select="Test">
-								<xsl:if test="$resultFilter='' or $resultFilter=@result">
-									<TR>
-										<TD class="testname">
-											--
-											<xsl:value-of select="@name" />
-										</TD>
-
-										<!-- test results -->
-										<xsl:choose>
-											<xsl:when test="string(@KnownFailure)">
-												<!-- "pass" indicates the that test actually passed (results 
-													have been inverted already) -->
-												<xsl:if test="@result='pass'">
-													<TD class="pass">
-														<div>
-															known problem
-														</div>
-													</TD>
-													<TD class="failuredetails"></TD>
-												</xsl:if>
-
-												<!-- "fail" indicates that a known failure actually passed (results 
-													have been inverted already) -->
-												<xsl:if test="@result='fail'">
-													<TD class="failed">
-														<div>
-															<xsl:value-of select="@result" />
-														</div>
-													</TD>
-													<TD class="failuredetails">
-														<div class="details">
-															A test that was a known failure actually
-															passed. Please
-															check.
-														</div>
-													</TD>
-												</xsl:if>
-											</xsl:when>
-
-											<xsl:otherwise>
-												<xsl:if test="@result='pass'">
-													<TD class="pass">
-														<div>
-															<xsl:value-of select="@result" />
-														</div>
-													</TD>
-													<TD class="failuredetails">
-														<div class="details">
-															<ul>
-																<xsl:for-each select="Details/ValueArray/Value">
-																	<li>
-																		<xsl:value-of select="." />
-																	</li>
-																</xsl:for-each>
-															</ul>
-														</div>
-													</TD>
-												</xsl:if>
-
-												<xsl:if test="@result='fail'">
-													<TD class="failed">
-														<div>
-															<xsl:value-of select="@result" />
-														</div>
-													</TD>
-													<TD class="failuredetails">
-														<div class="details">
-															<xsl:value-of select="FailedScene/@message" />
-														</div>
-													</TD>
-												</xsl:if>
-
-												<xsl:if test="@result='timeout'">
-													<TD class="timeout">
-														<div>
-															<xsl:value-of select="@result" />
-														</div>
-														<TD class="failuredetails"></TD>
-													</TD>
-												</xsl:if>
-
-												<xsl:if test="@result='notExecuted'">
-													<TD class="notExecuted">
-														<div>
-															<xsl:value-of select="@result" />
-														</div>
-													</TD>
-													<TD class="failuredetails"></TD>
-												</xsl:if>
-											</xsl:otherwise>
-										</xsl:choose>
-									</TR> <!-- finished with a row -->
-								</xsl:if>
-							</xsl:for-each> <!-- end test -->
-						</xsl:for-each> <!-- end test case -->
-					</TABLE>
-					<BR />
-				</xsl:if>
-			</xsl:for-each> <!-- end test package -->
-		</DIV>
 	</xsl:template>
 
 
