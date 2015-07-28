@@ -1,5 +1,8 @@
 package com.wuba.device;
 
+import com.android.chimpchat.adb.AdbChimpDevice;
+import com.android.ddmlib.IDevice;
+
 
 /**
  * Android设备信息，控制
@@ -10,12 +13,13 @@ package com.wuba.device;
 
 public class AndroidDevice implements Device {
 
-	/**
-	 * 初始化android本地存放目录
-	 */
-	public AndroidDevice() {
+	private AdbChimpDevice mChimpDevice;		
+	private IDevice mDevice;
+	private ADB mAdb;
+	
+	public AndroidDevice(IDevice iDevice) {
 		// TODO Auto-generated constructor stub
-
+		mAdb = new ADB();
 	}
 
 	@Override
@@ -89,5 +93,5 @@ public class AndroidDevice implements Device {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 }
