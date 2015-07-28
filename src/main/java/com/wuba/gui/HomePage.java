@@ -48,7 +48,6 @@ import org.apache.log4j.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButtonMenuItem;
 
 //import com.android.screen.monitor.ADB;
 //import com.android.screen.monitor.AboutDialog;
@@ -89,7 +88,8 @@ public class HomePage extends JFrame {
 	private int totalCase = 0;
 	public static boolean replayFlag = false;
 	private static String[] mArgs;
-//	private static AndroidScreenMonitor asm = null;
+	
+//	private static AndroidScreenMonitor asm=null;
 //	private ADB mADB = null;
 
 	public JButton replayButton;
@@ -284,20 +284,47 @@ public class HomePage extends JFrame {
 			connectButton.setToolTipText("connect button");
 			connectButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/connect.png")));
 			connectButton.addActionListener(new ActionListener() {
+				@SuppressWarnings("static-access")
 				public void actionPerformed(ActionEvent e) {
 					if(connectAndroid.isSelected()){
-						SelectDeviceDialog.main(null);
+						try {
+							new SelectDeviceDialog(1).lanch(1); //flag 1:Android 2:iOS
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						openFileButton.setEnabled(false);
 						connectButton.setEnabled(false);
-						recordButton.setEnabled(true);
-						openFileButton.setEnabled(true);
+						recordButton.setEnabled(false);
+						stopButton.setEnabled(false);
+						clearLogButton.setEnabled(false);
+						aboutButton.setEnabled(false);
 						if (caseRows.size() != 0 && !allUnMarked()
 								&& !replayButton.isEnabled()) {
 							netSelectBox.setEnabled(true);
 							replayButton.setEnabled(true);
 						}
 					}
+					
 					else if(connectIos.isSelected()){
-						
+						try {
+							new SelectDeviceDialog(2).lanch(2);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						openFileButton.setEnabled(false);
+						connectButton.setEnabled(false);
+						recordButton.setEnabled(false);
+						stopButton.setEnabled(false);
+						clearLogButton.setEnabled(false);
+						aboutButton.setEnabled(false);
+						if (caseRows.size() != 0 && !allUnMarked()
+								&& !replayButton.isEnabled()) {
+							netSelectBox.setEnabled(true);
+							replayButton.setEnabled(true);
+						}
 					}
 				}
 			});
