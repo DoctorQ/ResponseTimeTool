@@ -25,7 +25,7 @@ public class AndroidDevice implements Device {
 	private boolean adbConnected = false;
 	
 	//FOR ADB 
-	private ADBEnv mADB;
+	private ADB mADB;
 	public static AdbChimpDevice mChimpDevice = null;
 	private IDevice[] mDevices;
 	private IDevice mDevice;
