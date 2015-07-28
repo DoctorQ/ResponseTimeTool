@@ -60,5 +60,6 @@ public class ReportGeneratorProxy implements ReportGenerator {
 			reportGenerators.remove(reportGenerator);
 		}
 	}
-
+	
+	
 }
