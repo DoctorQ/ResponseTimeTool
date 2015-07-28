@@ -104,23 +104,19 @@ public class ReportGeneratorProxyTest {
 	/**
 	 * android测试多目录合成报告
 	 */
-	@Test(groups = { "unittest" })
+	@Test(groups = { "unittest" },dependsOnGroups={"iostestresult"})
 	public void generatorIOSReportByMuiltDirTest() {
-//		File file1 = new File(DirStructureUtil.getResultAndroid(),
-//				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
-//		File file2 = new File(DirStructureUtil.getResultAndroid(),
-//				"MI_3G_dksldfdffdf_4.4.2_20150721082392");
-//		File file3 = new File(DirStructureUtil.getResultAndroid(),
-//				"MI_4G_dksldfdffdf_4.4.2_20150721082392");
-//		File file4 = new File(DirStructureUtil.getResultAndroid(),
-//				"HW_4G_12323242_4.4.2_20150721082392");
-//		
-//		List<File> list = new ArrayList<File>();
-//		list.add(file1);
-//		list.add(file2);
-//		list.add(file3);
-//		list.add(file4);
-//		proxy.generateReporter(list, Constant.ANDROID_PLATFORM);
+		File file1 = new File(DirStructureUtil.getResultIOS(),
+				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
+		File file2 = new File(DirStructureUtil.getResultIOS(),
+				"iPhone5_3G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
+		
+		
+		List<File> list = new ArrayList<File>();
+		list.add(file1);
+		list.add(file2);
+		
+		proxy.generateReporter(list, Constant.IOS_PLATFORM);
 
 	}
 
