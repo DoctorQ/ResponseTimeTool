@@ -84,7 +84,7 @@ public class TestReport implements XMLParser {
 					true);
 			serializer
 					.processingInstruction("xml-stylesheet type=\"text/xsl\"  "
-							+ "href=\"result.xsl\"");
+							+ "href=\"testReport.xsl\"");
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
