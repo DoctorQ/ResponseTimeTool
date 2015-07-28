@@ -23,6 +23,13 @@ public class IOSRecordTest {
 
 	@Test(groups = { "iostest" })
 	public void testIosDevice() {
+		// 获取设备信息
+		for (String item : IOSDevice.listUdids()){
+			System.out.println(item);
+		}
+		for (String item : IOSDevice.listIDeviceInfos()){
+			System.out.println(item);
+		}
 		// test ios record step
 		boolean connectedFlag = iosDevice.connectRecordServer();
 		if (connectedFlag) {
