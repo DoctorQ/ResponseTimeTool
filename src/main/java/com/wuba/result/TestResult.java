@@ -4,11 +4,13 @@
 package com.wuba.result;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,22 +27,25 @@ import com.wuba.utils.Constant;
  * @date 2015年7月23日 下午2:37:28
  */
 public class TestResult extends AbstractXmlPullParser implements XMLParser {
+
+	
 	@Override
 	public String toString() {
-		return "TestResult [device=" + device + ", network=" + network
-				+ ", sn=" + sn + ", platform=" + platform + "]";
+		return "TestResult [rootDir=" + rootDir + ", loops=" + loops
+				+ ", device=" + device + ", network=" + network + ", sn=" + sn
+				+ ", version=" + version + "]";
 	}
 
 	public Map<String, TestCaseLoop> getLoops() {
 		return loops;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public String getVersion() {
+		return version;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	private static final Logger LOG = Logger.getLogger(TestResult.class);
@@ -56,8 +61,11 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	public void parserXml() {
 		try {
 			File file = new File(rootDir, Constant.TESTRESULT_XML);
-			parse(new FileReader(file));
+			InputStreamReader  reader = new InputStreamReader(new FileInputStream(file),"UTF-8");
+			parse(reader);
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -72,7 +80,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		device = array[0];
 		network = array[1];
 		sn = array[2];
-		platform = array[3];
+		version= array[3];
 		
 		LOG.info(toString());
 	}
@@ -105,13 +113,13 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	private static final String DEVICE_ATTR = "device";
 	private static final String NETWORK_ATTR = "network";
 	private static final String SN_ATTR = "sn";
-	private static final String PLATFORM_ATTR = "platform";
+	private static final String VERSION_ATTR = "version";
 
 	private Map<String, TestCaseLoop> loops = new LinkedHashMap<String, TestCaseLoop>();
 	private String device = "";
 	private String network = "";
 	private String sn = "";
-	private String platform = "";
+	private String version = "";
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
@@ -122,7 +130,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, DEVICE_ATTR, getDevice());
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
-		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
+		serializer.attribute(Constant.NAMESPACE, VERSION_ATTR, getVersion());
 		Collection<TestCaseLoop> collection = loops.values();
 		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
@@ -205,7 +213,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				setDevice(getAttribute(parser, DEVICE_ATTR));
 				setNetwork(getAttribute(parser, NETWORK_ATTR));
 				setSn(getAttribute(parser, SN_ATTR));
-				setPlatform(getAttribute(parser, PLATFORM_ATTR));
+				setVersion(getAttribute(parser, VERSION_ATTR));
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

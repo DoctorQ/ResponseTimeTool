@@ -23,12 +23,27 @@ import com.wuba.utils.Constant;
  */
 public class TestReport implements XMLParser {
 
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
+
+
+
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
+	private static final String PLATFORM_ATTR = "platform";
 
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
 	private File xmlFile;
+	private String platform;
+	
+	
 
 	public TestReport(File xmlFile) {
 		// TODO Auto-generated constructor stub
@@ -42,6 +57,7 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
+		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
 		Collection<TestDevice> collection = testDevices.values();
 		for (TestDevice mTestDevice : collection) {
 			mTestDevice.serialize(serializer);

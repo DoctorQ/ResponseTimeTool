@@ -37,8 +37,7 @@ public class IOSDevice implements Device {
 		this.deviceId = deviceId;
 		this.appId = appId;
 		// 清空temp目录
-		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
-		Helper.createDir(Constant.iOS_TEMP_DIR);
+		cleanTempDir();
 		// 初始化iDict
 		initIdict();
 	}
@@ -98,6 +97,24 @@ public class IOSDevice implements Device {
 	public String getAppId() {
 		// TODO Auto-generated method stub
 		return appId;
+	}
+	
+	@Override
+	public void insertLogStartFlag() {
+		// TODO Auto-generated method stub
+		sendActionCommand("UIALogger.logDebug('BEGIN CAPTURE TIME-LOG');");
+	}
+
+	@Override
+	public void insertLogStopFlag() {
+		// TODO Auto-generated method stub
+		sendActionCommand("UIALogger.logDebug('END CAPTURE TIME-LOG');");
+	}
+	
+	@Override
+	public void instertImgCheckPoint(String image) {
+		// TODO Auto-generated method stub
+		sendActionCommand("verifyImage('" + image + "');");
 	}
 
 	@Override
@@ -160,15 +177,15 @@ public class IOSDevice implements Device {
 	 * @return 响应结果
 	 */
 	public String sendActionCommand(String command) {
-		System.out.println("SEND_CMD:" + command);
+		System.out.println("SEND_CMD: " + command);
 		Helper.createFileAndWrite(command, Constant.iOS_CMD_FILE);
-		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE);
-		System.out.println("RESPONSE:" + resp);
+		String resp = Helper.readFileTimeOut(Constant.iOS_RESP_FILE).trim();
+		System.out.println("RESPONSE: " + resp);
 		Helper.deleteFile(Constant.iOS_RESP_FILE);
 		if (resp == null) {
 			System.exit(0);
 		}
-		return resp.trim();
+		return resp;
 	}
 
 	/**
@@ -177,10 +194,12 @@ public class IOSDevice implements Device {
 	 * @return
 	 */
 	public boolean connectRecordServer() {
+		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Helper.executeCommand("sh " + Constant.iOS_RECORD_SHELL + " " + deviceId + " " + appId + " " + Constant.iOS_LOCAL_DIR);
+				String cmd = "sh " + Constant.iOS_RECORD_SHELL + " " + deviceId + " " + appId + " " + Constant.iOS_LOCAL_DIR;
+				Helper.executeCommand(cmd);
 			}
 		});
 		thread.start();
@@ -199,6 +218,7 @@ public class IOSDevice implements Device {
 	 * @return
 	 */
 	public boolean disConnectRecordServer() {
+		Helper.executeCommand(Constant.iOS_KILL_INST_CMD);
 		if (serverConnected) {
 			String resp = sendActionCommand(Constant.iOS_CLOSE_SERVER_CMD);
 			if (resp.equals("1|")) {
@@ -206,7 +226,60 @@ public class IOSDevice implements Device {
 				return true;
 			}
 		}
+		
 		return false;
 	}
+
+	private void cleanTempDir() {
+		// 清空temp目录
+		Helper.deleteDirectory(Constant.iOS_TEMP_DIR);
+		Helper.createDir(Constant.iOS_TEMP_DIR);
+	}
 	
+	/**
+	 * 存储iOS UDID的数组
+	 * @return ["udid",...]
+	 */
+	public static String[] listUdids(){
+		return IDevice.listUdids();
+	}
+	
+	
+	/**
+	 * 获取设备信息列表
+	 * @return ["udid devicename",...]
+	 */
+	public static String[] listIDeviceInfos(){
+		String[] udids = IDevice.listUdids();
+		int count = udids.length;
+        String[] iDeviceInfos = new String[count];
+		for (int i = 0; i < count; i++){
+			IDevice iDevice = null;
+			LockdowndClient iClient = null;
+			NSObject iNode = null;
+			NSDictionary iDict = null;
+			try {
+				iDevice = new IDevice(udids[i]);
+				iClient = new LockdowndClient(iDevice, null, true);
+				iNode = iClient.getValue(null, null);
+				iDict = (NSDictionary) iNode;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally{
+				if (iClient != null) {
+					iClient.dispose();
+					iClient = null;
+		        }
+		        if (iDevice != null) {
+		        	iDevice.dispose();
+		        	iDevice = null;
+		        }
+			}
+			String key = iDict.objectForKey("ProductType").toString();
+			String res = udids[i] + " " + Constant.IPHONE_MAP.get(key);
+			iDeviceInfos[i] = res;
+		}
+		return iDeviceInfos;
+	}
 }

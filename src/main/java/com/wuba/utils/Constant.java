@@ -20,7 +20,10 @@ public class Constant {
 			"temp";
 	
 	//iOS only
+	public static final String iOS_DEVICELOG_REGEX = "\\|\\d+\\|begin\\|\\d+|\\|\\d+\\|connect\\|\\d+|\\|\\d+\\|read\\|\\d+|\\|\\d+\\|parser\\|\\d+|\\|\\d+\\|webview begin\\|\\d+|\\|\\d+\\|webview end\\|\\d+|\\|\\d+\\|webview fail\\|\\d+";
 	public static final String iOS_INST_TRACE = "instrumentscli0.trace";
+	public static final String iOS_KILL_INST_CMD = "/usr/bin/killall -9 instruments";
+	public static final String iOS_KILL_DEVICECONSOLE_CMD = "/usr/bin/killall -9 deviceconsole";
 	public static final String iOS_LOCAL_DIR = System.getProperty("user.dir") + File.separator + 
 			"ios_local";
 	public static final String iOS_DEVICECONSOLE = iOS_LOCAL_DIR + File.separator + 

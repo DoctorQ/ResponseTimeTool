@@ -42,7 +42,7 @@ while (runLoop){
 	//update screenshot
 	var now = new Date().getTime();
 	target.captureScreenWithName("screen" + now.toString())
-	var instruction = host.performTaskWithPathArgumentsTimeout("/bin/cat", [instructionFile], 5); // read js command
+	var instruction = host.performTaskWithPathArgumentsTimeout("/bin/cat", [instructionFile], 10); // read js command
 	var respResult = -1 // respResult code -1:失败 0:成功 1:结束
 	var evalOutput = ""
 	if (instruction.exitCode == 0){
@@ -64,7 +64,7 @@ while (runLoop){
 		if (evalOutput == null) evalOutput = "";
 		var command = "echo \"" + respResult + "|" + evalOutput + "\" > " + responseFile
 		removeCommandFile() // delete cmd.txt
-		host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", command], 5); // write response
+		host.performTaskWithPathArgumentsTimeout("/bin/bash", ["-c", command], 10); // write response
 
 		if (respResult != 0){
 			break;

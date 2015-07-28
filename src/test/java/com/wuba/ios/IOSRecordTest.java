@@ -1,5 +1,6 @@
 package com.wuba.ios;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
@@ -12,7 +13,7 @@ public class IOSRecordTest {
 	
 	@BeforeGroups(groups = "iostest")
 	public void setUp() {
-		iosDevice = new IOSDevice("1d61a79a1bdc428a90b675fcdf6da9fab17e3f56", "com.wuba.TestApp");
+		iosDevice = new IOSDevice("2f2fb64220ed34f645d33cd222280efcaa37dadf", "com.taofang.iphone");
 	}
 	
 	@AfterGroups(groups = "iostest")
@@ -22,22 +23,31 @@ public class IOSRecordTest {
 
 	@Test(groups = { "iostest" })
 	public void testIosDevice() {
+		// 获取设备信息
+		for (String item : IOSDevice.listUdids()){
+			System.out.println(item);
+		}
+		for (String item : IOSDevice.listIDeviceInfos()){
+			System.out.println(item);
+		}
 		// test ios record step
-		if (iosDevice.connectRecordServer()) {
-			//点击
+		boolean connectedFlag = iosDevice.connectRecordServer();
+		if (connectedFlag) {
+			// 点击
 			iosDevice.clickOnScreen(33, 268);
-			//获取model
+			// 获取model
 			String model = iosDevice.sendActionCommand("target.model();");
-			//验图
-			iosDevice.sendActionCommand("verifyImage('sub.png');");
-			//点击
+			Assert.assertEquals(model.split("\\|")[1], "iPhone");
+			// 验图
+			iosDevice.instertImgCheckPoint("sub.png");
+			// 插入timelog开始记录flag
+			iosDevice.insertLogStartFlag();
+			// 点击
 			iosDevice.clickOnScreen(33, 268);
-			//滑动
+			// 滑动
 			iosDevice.dragFromToScreen(196, 394, 260, 394);
-//			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
-//			iosDevice.sendActionCommand("target.model();");
-//			iosDevice.sendActionCommand("verifyImage('sub.png');");
-//			iosDevice.sendActionCommand("target.tapWithOptions({ x: 33, y: 268 }, {tapCount: 1, touchCount: 1, duration: 0.5});");
+			// 插入timelog结束记录flag
+			iosDevice.insertLogStopFlag();
 		}
 		
 	}

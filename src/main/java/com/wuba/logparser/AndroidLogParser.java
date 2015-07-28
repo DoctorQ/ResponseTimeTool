@@ -7,9 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.log4j.Logger;
 
 import com.wuba.model.RTResult;
 import com.wuba.utils.Constant;
@@ -30,37 +27,15 @@ import com.wuba.utils.Constant;
  *       其中[建立连接时间+读取数据时间]反应了服务器的性能,而[解析数据时间]反应了客户端的性能
  */
 public class AndroidLogParser extends AbstractLogParser {
-	private final static Logger LOG = Logger.getLogger(AndroidLogParser.class);
+	private static final String NATIVE_BEGIN_REGEX = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
 
-	private static final String NATIVE_BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|begin\\*{6}\\|([0-9]+)$";
+	private static final String CONNECTED_REGEX = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String READ_REGEX = "\\|%s\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_JSON_REGEX = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
+	private static final String PARSER_XML_REGEX = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
 
-	private static final String WEBVIEW_BEGIN_PATTERN = "(http:.*)\\|([0-9]+)\\|webview begin\\|([0-9]+)$";
-	private static final String WEBVIEW_END_PATTERN = "\\|%s\\|webview[\\s]+end\\|([0-9]+)$";
-
-	private static final String CONNECTED_PATTERN = "\\|%s\\|connect[\\s]+host[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String READ_PATTERN = "\\|%s\\|read[\\s]+inputstream[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String PARSER_JSON_PATTERN = "\\|%s\\|parser[\\s]+json[\\s]+is[\\s]+over\\|([0-9]+)$";
-	private static final String PARSER_XML_PATTERN = "\\|%s\\|parser[\\s]+xml[\\s]+is[\\s]+over\\|([0-9]+)$";
-
-	// 建立连接时间
-	String mBegin = null;
-	// 连接成功时间
-	String mConnect = null;
-	// 读取Json数据时间
-	String mRead = null;
-	// 解析Json数据时间
-	String mParserJson = null;
-	// 解析XML数据时间
-	String mParserXML = null;
-	// id
-	String mId = null;
-	// url
-	String mUrl = null;
-	// 页面类型
-	String viewType = null;
-
-	// webview解析时间
-	String mWebViewEnd = null;
+	
+	
 
 //	Matcher connectMatcher = null;
 //	Matcher readMatcher = null;
@@ -74,7 +49,6 @@ public class AndroidLogParser extends AbstractLogParser {
 
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public RTResult parserLog(File logDir) {
 		if (!logDir.exists()) {
@@ -109,8 +83,8 @@ public class AndroidLogParser extends AbstractLogParser {
 						continue;
 					return setRTResult();
 				} else {
-					Matcher nativeBeginMatcher = getMatcher(NATIVE_BEGIN_PATTERN, line);
-					Matcher webViewBeginMatcher = getMatcher(WEBVIEW_BEGIN_PATTERN,
+					Matcher nativeBeginMatcher = getMatcher(NATIVE_BEGIN_REGEX, line);
+					Matcher webViewBeginMatcher = getMatcher(WEBVIEW_BEGIN_REGEX,
 							line);
 					if (nativeBeginMatcher.find()) {
 
@@ -151,70 +125,14 @@ public class AndroidLogParser extends AbstractLogParser {
 		return null;
 	}
 
-	private RTResult setRTResult() {
-		RTResult result = new RTResult();
-		result.setId(mId);
-		result.setUrl(mUrl);
-		result.setViewType(viewType);
-		result.setBeginTime(parserStringToLongForTime(mBegin));
-		result.setConnectTime(parserStringToLongForTime(mConnect));
-		if (mParserJson != null) {
-			result.setDataType(Constant.JSON);
-			result.setReadTime(parserStringToLongForTime(mRead));
-			result.setParserTime(parserStringToLongForTime(mParserJson));
-			// 设置响应时间的准确值
-			result.setConnectCost(result.getConnectTime()
-					- result.getBeginTime());
-			result.setReadCost(result.getReadTime() - result.getConnectTime());
-			result.setParserCost(result.getParserTime() - result.getReadTime());
-		} else if (mParserXML != null) {
-			result.setDataType(Constant.XML);
-			result.setParserTime(parserStringToLongForTime(mParserXML));
-			result.setConnectCost(result.getConnectTime()
-					- result.getBeginTime());
-			// xml因为没有读取时间，所以解析耗时应该是解析完成时间戳-连接完成时间戳
-			result.setParserCost(result.getParserTime()
-					- result.getConnectTime());
-
-		} else if (mWebViewEnd != null) {
-
-			result.setParserTime(parserStringToLongForTime(mWebViewEnd));
-			result.setParserCost(result.getParserTime() - result.getBeginTime());
-		}
-		LOG.debug("结束解析");
-		return result;
-	}
-
-	private void parserBeginMatcher(Matcher beginMatcher) {
-		mUrl = beginMatcher.group(1);
-		mId = beginMatcher.group(2);
-		mBegin = beginMatcher.group(3);
-	}
-
-	/**
-	 * 
-	 */
-	private void parserWebView(String line) {
-		// TODO Auto-generated method stub
-		Matcher webViewEndMatcher = getMatcher(String.format(WEBVIEW_END_PATTERN, mId),
-				line);
-		if (webViewEndMatcher.find()) {
-			mWebViewEnd = webViewEndMatcher.group(1);
-			LOG.debug("WebView end time : " + mWebViewEnd);
-		}
-
-	}
-
-	/**
-	 * 
-	 */
+	
 	private void parserNative(String line) {
 
-		Matcher connectMatcher = getMatcher(String.format(CONNECTED_PATTERN, mId), line);
-		Matcher readMatcher = getMatcher(String.format(READ_PATTERN, mId), line);
-		Matcher parserJsonMatcher = getMatcher(String.format(PARSER_JSON_PATTERN, mId),
+		Matcher connectMatcher = getMatcher(String.format(CONNECTED_REGEX, mId), line);
+		Matcher readMatcher = getMatcher(String.format(READ_REGEX, mId), line);
+		Matcher parserJsonMatcher = getMatcher(String.format(PARSER_JSON_REGEX, mId),
 				line);
-		Matcher parserXMLMatcher = getMatcher(String.format(PARSER_XML_PATTERN, mId),
+		Matcher parserXMLMatcher = getMatcher(String.format(PARSER_XML_REGEX, mId),
 				line);
 		if (connectMatcher.find()) {
 			mConnect = connectMatcher.group(1);
@@ -231,88 +149,6 @@ public class AndroidLogParser extends AbstractLogParser {
 			LOG.debug("parser time : " + mParserXML);
 		}
 
-	}
-
-	private void close(InputStreamReader is, BufferedReader br) {
-		if (is != null) {
-			try {
-				is.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				LOG.error(e.toString());
-			}
-		}
-
-		if (br != null) {
-			try {
-				br.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				LOG.error(e.toString());
-			}
-		}
-	}
-
-	private void tearDown() {
-		// 建立连接时间
-		mBegin = null;
-		// 连接成功时间
-		mConnect = null;
-		// 读取Json数据时间
-		mRead = null;
-		// 解析Json数据时间
-		mParserJson = null;
-		// 解析XML数据时间
-		mParserXML = null;
-		// id
-		mId = null;
-		// url
-		mUrl = null;
-		// 页面类型
-		viewType = null;
-		mWebViewEnd = null;
-	}
-
-	/**
-	 * 判断url是否为黑名单中url
-	 * 
-	 * @param url
-	 * @return boolean
-	 */
-	private boolean isBlack(String url) {
-		int size = URL_BLACK.length;
-		for (int i = 0; i < size; i++) {
-			if (url.contains(URL_BLACK[i])) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * 根据正则表达式和需要进行匹配的字符串生成一个匹配器Matcher
-	 * 
-	 * @param patternStr
-	 * @param parserStr
-	 * @return Matcher
-	 */
-	private Matcher getMatcher(String patternStr, String parserStr) {
-		return Pattern.compile(patternStr).matcher(parserStr);
-	}
-
-	/**
-	 * 将字符串格式的时间转换为Long类型的
-	 */
-	@Override
-	public long parserStringToLongForTime(String time) {
-		if (time == null)
-			return 0;
-		return Long.parseLong(time);
-	}
-
-	@Override
-	public String paserLongToStringForTime(long time) {
-		return null;
 	}
 
 }
