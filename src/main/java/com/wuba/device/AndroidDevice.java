@@ -71,6 +71,24 @@ public class AndroidDevice implements Device {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void insertLogStartFlag() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertLogStopFlag() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void instertImgCheckPoint(String image) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public int[] getScreenSize() {
@@ -95,7 +113,6 @@ public class AndroidDevice implements Device {
 	public void takeScreenShot() {
 		// TODO Auto-generated method stub
 
-	}
-	
+	}	
 	
 }
