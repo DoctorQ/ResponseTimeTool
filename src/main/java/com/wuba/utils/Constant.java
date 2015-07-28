@@ -42,6 +42,7 @@ public class Constant {
 	public static final String iOS_RESP_FILE = iOS_TEMP_DIR + File.separator + "resp.txt";
 	public static final String iOS_START_SERVER_CMD = "start record server;";
 	public static final String iOS_CLOSE_SERVER_CMD = "close record server;";
+	
 	@SuppressWarnings("serial")
 	public static Map<String, String> IPHONE_MAP = new HashMap<String,String>() {{    
 	    put("iPhone1,1", "iPhone");

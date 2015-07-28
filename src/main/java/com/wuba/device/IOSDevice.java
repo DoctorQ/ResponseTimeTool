@@ -120,7 +120,9 @@ public class IOSDevice implements Device {
 	@Override
 	public int[] getScreenSize() {
 		// TODO Auto-generated method stub
-		return screenSize;
+		String key = iDict.objectForKey("ProductType").toString();
+		int[] xy = Constant.IPHONE_DPI_MAP.get(key);
+		return xy;
 	}
 
 	public void clickOnScreen(int x, int y) {
@@ -137,7 +139,6 @@ public class IOSDevice implements Device {
 	@Override
 	public void takeScreenShot() {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
