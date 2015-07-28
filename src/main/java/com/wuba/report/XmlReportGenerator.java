@@ -4,6 +4,7 @@
 package com.wuba.report;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -96,23 +97,30 @@ public class XmlReportGenerator implements ReportGenerator {
 	private void getPlatform(String platform) {
 		if (Constant.ANDROID_PLATFORM.equals(platform)) {
 			mLogParser = new AndroidLogParser();
-			mTestReport = new TestReport(new File(
-					DirStructureUtil.getReportAndroid(),
-					getFileNameFromTimeStamp()));
+			File reportFile = new File(DirStructureUtil.getReportAndroid(),
+					getFileNameFromTimeStamp());
+			createNewFile(reportFile);
+			mTestReport = new TestReport(reportFile);
 			mTestReport.setPlatform(Constant.ANDROID_PLATFORM);
 
 		} else if (Constant.IOS_PLATFORM.equals(platform)) {
 			mLogParser = new IOSLogParser();
-			mTestReport = new TestReport(
-					new File(DirStructureUtil.getReportIOS(),
-							getFileNameFromTimeStamp()));
+			File reportFile = new File(DirStructureUtil.getReportIOS(),
+					getFileNameFromTimeStamp());
+			createNewFile(reportFile);
+			mTestReport = new TestReport(reportFile);
 			mTestReport.setPlatform(Constant.IOS_PLATFORM);
 		}
 	}
 
+	private void createNewFile(File reportFile) {
+		if (!reportFile.exists())
+			reportFile.mkdir();
+
+	}
+
 	private String getFileNameFromTimeStamp() {
-		return String.format(TESTREPORT_XML,
-				TimeUtil.formatTimeForFile(System.currentTimeMillis()));
+		return TimeUtil.formatTimeForFile(System.currentTimeMillis());
 	}
 
 }

@@ -31,23 +31,18 @@ public class TestReport implements XMLParser {
 		this.platform = platform;
 	}
 
-
-
-
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 	private static final String PLATFORM_ATTR = "platform";
 
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
-	private File xmlFile;
+	private File reportDir;
 	private String platform;
-	
-	
 
-	public TestReport(File xmlFile) {
+	public TestReport(File reportDir) {
 		// TODO Auto-generated constructor stub
-		this.xmlFile = xmlFile;
+		this.reportDir = reportDir;
 	}
 
 	/*
@@ -79,7 +74,8 @@ public class TestReport implements XMLParser {
 		OutputStream stream = null;
 
 		try {
-			stream = createOutputResultStream(xmlFile);
+			stream = createOutputResultStream(new File(reportDir,
+					Constant.TESTREPORT_XML));
 			KXmlSerializer serializer = new KXmlSerializer();
 			serializer.setOutput(stream, "UTF-8");
 			serializer.startDocument("UTF-8", false);
@@ -88,7 +84,7 @@ public class TestReport implements XMLParser {
 					true);
 			serializer
 					.processingInstruction("xml-stylesheet type=\"text/xsl\"  "
-							+ "href=\"result.xsl\"");
+							+ "href=\"testReport.xsl\"");
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
@@ -104,11 +100,7 @@ public class TestReport implements XMLParser {
 				}
 			}
 		}
-
 	}
-
-	
-	
 
 	/**
 	 * 根据sn号得到TestDevice对象
