@@ -4,11 +4,13 @@
 package com.wuba.result;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -59,8 +61,12 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	public void parserXml() {
 		try {
 			File file = new File(rootDir, Constant.TESTRESULT_XML);
-			parse(new FileReader(file));
+			InputStreamReader  reader = new InputStreamReader(new FileInputStream(file),"UTF-8");
+			parse(reader);
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
