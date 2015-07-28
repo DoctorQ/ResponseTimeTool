@@ -336,6 +336,9 @@
 									<TH colspan="1">
 										<xsl:value-of select="@aparsertime" />
 									</TH>
+									<TH colspan="1">
+										<xsl:value-of select="@total" />
+									</TH>
 								</TR>
 							</xsl:for-each>
 						</TABLE>
