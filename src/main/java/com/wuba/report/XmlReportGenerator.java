@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.sun.net.httpserver.Authenticator.Success;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.IOSLogParser;
 import com.wuba.logparser.LogParser;
@@ -81,7 +82,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		TestResult testResult = new TestResult(rootDir);
 		// 解析testResult.xml文件
 		testResult.parserXml();
-		
+
 		getPlatform(testResult.getPlatform());
 
 		LOG.info(String.format("Read %s finished", "testResult.xml"));
@@ -115,9 +116,13 @@ public class XmlReportGenerator implements ReportGenerator {
 	}
 
 	private void createNewFile(File reportFile) {
-		if (!reportFile.exists())
-			reportFile.mkdir();
-
+		if (reportFile.exists())
+			return;
+		boolean success = reportFile.mkdir();
+		if (!success) {
+			LOG.error(String.format("%s create failed",
+					reportFile.getAbsolutePath()));
+		}
 	}
 
 	private String getFileNameFromTimeStamp() {

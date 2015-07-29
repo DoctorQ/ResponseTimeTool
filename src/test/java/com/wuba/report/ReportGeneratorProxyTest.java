@@ -139,6 +139,10 @@ public class ReportGeneratorProxyTest {
 		
 		File file1 = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
-		//proxy.generateReporter(file,Constant.IOS_PLATFORM);
+		
+		List<File> list = new ArrayList<File>();
+		list.add(file);
+		list.add(file1);
+		proxy.generateReporter(list);
 	}
 }
