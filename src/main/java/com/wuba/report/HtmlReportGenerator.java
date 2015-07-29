@@ -93,6 +93,8 @@ public class HtmlReportGenerator{
 			Transformer transformer = tFactory.newTransformer(new StreamSource(
 					xsl));
 			transformer.transform(new StreamSource(xml), new StreamResult(out));
+			LOG.info(String.format("Created report html file at file://%s",
+					html));
 		} catch (FileNotFoundException e) {
 		} catch (TransformerConfigurationException e) {
 		} catch (TransformerException e) {

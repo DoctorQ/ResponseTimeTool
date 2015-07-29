@@ -52,7 +52,7 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
+		//serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
 		Collection<TestDevice> collection = testDevices.values();
 		for (TestDevice mTestDevice : collection) {
 			mTestDevice.serialize(serializer);

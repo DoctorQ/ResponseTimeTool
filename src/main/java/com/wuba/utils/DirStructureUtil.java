@@ -53,5 +53,13 @@ public class DirStructureUtil {
 		return new File(ROOT, "repo/report/");
 
 	}
+	
+	public static File getTestCaseAndroid(){
+		return new File(ROOT, "repo/testcase/android");
+	}
+	
+	public static File getTestCaseIOS(){
+		return new File(ROOT, "repo/testcase/ios");
+	}
 
 }
