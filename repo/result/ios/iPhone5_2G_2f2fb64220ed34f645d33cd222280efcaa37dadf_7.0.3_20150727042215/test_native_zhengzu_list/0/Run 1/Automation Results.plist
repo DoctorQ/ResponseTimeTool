@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>All Samples</key>
+	<array>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectWithName("{origin:{x:0.00,y:0.00}, size:{height:568.00,width:320.00}}", "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:20Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>7C0AD016-4AFD-405D-ACB6-977FB3C303AE</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:21Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image OK - fangchan.png</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:24Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"124", y:"214"}, {touchCount:"1", duration:"0.5", tapCount:"1"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:24Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectWithName("{origin:{x:0.00,y:0.00}, size:{height:568.00,width:320.00}}", "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:25Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>D002018D-4B0C-4B93-A9BC-CB670E1431DD</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:25Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image OK - zhengzufang.png</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:28Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>BEGIN CAPTURE TIME-LOG</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:28Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.tapWithOptions({x:"53", y:"278"}, {touchCount:"1", duration:"0.5", tapCount:"1"})</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:28Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectWithName("{origin:{x:0.00,y:0.00}, size:{height:568.00,width:320.00}}", "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:29Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>4271DB75-D2FA-4EA7-B5FA-1D1F17C30661</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:29Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image Time-consuming:0</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:33Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>target.captureRectWithName("{origin:{x:0.00,y:0.00}, size:{height:568.00,width:320.00}}", "screen_verify")</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:34Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Screenshot</string>
+			<key>Message</key>
+			<string>screen_verify</string>
+			<key>Screenshot</key>
+			<string>63002A6D-5950-451C-ADA4-988E4C2AED98</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:34Z</date>
+			<key>Type</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>Verify Image OK - yuan.png</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:37Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Debug</string>
+			<key>Message</key>
+			<string>END CAPTURE TIME-LOG</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:37Z</date>
+			<key>Type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>LogType</key>
+			<string>Pass</string>
+			<key>Message</key>
+			<string>Replay Test Success</string>
+			<key>Timestamp</key>
+			<date>2015-07-27T08:22:37Z</date>
+			<key>Type</key>
+			<integer>5</integer>
+		</dict>
+	</array>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

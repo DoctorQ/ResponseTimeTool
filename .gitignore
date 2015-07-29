@@ -4,4 +4,6 @@
 .git/
 build/
 .gradle/
-bin/
+/bin/
+test-output/
+.alog

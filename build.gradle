@@ -1,11 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+apply plugin: 'sonar-runner'
 
 sourceCompatibility = 1.6
 version = '1.0'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
+        attributes 'Implementation-Title': '58autotest',
                    'Implementation-Version': version
     }
 }
@@ -15,13 +17,84 @@ repositories {
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+	compile 'org.testng:testng:6.8.13'
+	compile 'log4j:log4j:1.2.17'
+	compile 'kxml2:kxml2:2.3.0'
+	compile 'com.android.tools.ddms:ddmlib:24.2.3'
+	compile 'com.google.guava:guava:19.0-rc1'
+    compile 'org.apache.commons:commons-io:1.3.2'
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile 'org.apache.commons:commons-io:1.3.2'
+	compile 'org.robovm:robovm-libimobiledevice:1.5.0'
+
+
+}
+jacoco{
+	toolVersion = "0.7.4.201502262128"  
+    reportsDir = file("$buildDir/jacocoReport")
+    
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        //html.destination "${buildDir}/jacocoHtml"
+    }
 }
 
 test {
     systemProperties 'property': 'value'
+    
+    useTestNG{
+    	includeGroups 'unittest'
+    	//includeGroups 'iostest'
+    }
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
+    
+    testLogging.showStandardStreams = true
+    beforeTest { descriptor ->
+     logger.lifecycle("Running test: " + descriptor)
+  	}
+    /*
+    onOutput { descriptor, event ->
+     logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+  	}
+  	*/
+  	ignoreFailures = true
+  	
 }
+
+sonarRunner {  
+    sonarProperties {  
+        property "sonar.host.url", "http://10.58.37.253:9000/"  
+        property "sonar.jdbc.url", "jdbc:mysql://10.58.37.253:3306/sonar?useUnicode=true&characterEncoding=utf8"  
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"  
+        property "sonar.jdbc.username", "sonar"  
+        property "sonar.jdbc.password", "sonar"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.profile", "FindBugs"
+    }  
+}
+
+//隐藏编译过程中出现的警告信息 
+tasks.withType(JavaCompile){
+    options.warnings = false
+    options.encoding = "UTF-8" 
+}
+
+//生成javadoc文档
+javadoc {
+	//解决中文乱码问题
+    options.charSet = 'UTF-8'
+    failOnError = false
+} 
+
 
 uploadArchives {
     repositories {
