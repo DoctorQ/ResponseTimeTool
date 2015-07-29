@@ -32,7 +32,6 @@ public class ReportGeneratorProxyTest {
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		proxy = new ReportGeneratorProxy();
-		proxy.addReportGenerator(new HtmlReportGenerator());
 		csv = new CsvReportGenerator();
 		proxy.addReportGenerator(csv);
 		proxy.addReportGenerator(new XmlReportGenerator());

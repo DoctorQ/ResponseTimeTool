@@ -72,7 +72,7 @@ public class TestReport implements XMLParser {
 	public void serializeResultToXml() {
 
 		OutputStream stream = null;
-
+		File xmlFile = new File(reportDir, Constant.TESTREPORT_XML);
 		try {
 			stream = createOutputResultStream(new File(reportDir,
 					Constant.TESTREPORT_XML));
@@ -87,6 +87,9 @@ public class TestReport implements XMLParser {
 							+ "href=\"testReport.xsl\"");
 			serialize(serializer);
 			serializer.endDocument();
+
+			// 生成HTML文件
+			new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
 		} catch (Exception e) {
 			LOG.error(e);
 			e.printStackTrace();

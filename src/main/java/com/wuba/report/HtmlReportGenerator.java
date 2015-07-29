@@ -16,57 +16,62 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import com.wuba.utils.TimeUtil;
-
+import org.apache.log4j.Logger;
 
 /**
- * @author hui.qian qianhui@58.com  
+ * @author hui.qian qianhui@58.com
  * @date 2015年7月22日 下午5:22:44
  */
-public class HtmlReportGenerator implements ReportGenerator {
+public class HtmlReportGenerator{
+	private static final Logger LOG = Logger
+			.getLogger(HtmlReportGenerator.class);
 	/*
 	 * 报告格式文件xsl文件名
 	 */
-	private static final String RESULT_XSL = "ci_result.xsl";
+	private static final String TESTREPORT_XSL = "testReport.xsl";
 	/*
 	 * html报告的后缀名，因为会存放历史数据，所以以时间戳来区分报告，所以最终的报告会以时间戳+html后缀名
 	 */
-	private static final String RESULT_HTML = "ci_result.html";
+	private static final String TESTREPORT_HTML = "testReport.html";
 
-	private static final String ROOT_DIR = System.getProperty("user.dir")
-			+ File.separator;
 	/*
 	 * 资源文件存放目录，里面存放有报告的xsl文件(配置报告的格式)，email配置文件
 	 */
-	private static final String PATH_SOURCE = ROOT_DIR + "build/resources/main"
-			+ File.separator;
+
+	private String xslPath;
+
 	/*
 	 * 报告结果存放目录，里面存放生成的ci_result.xml文件和ci_result.xml文件
 	 */
-	private static final String PATH_RESULT = ROOT_DIR + "result"
-			+ File.separator;
 
-	
+	public HtmlReportGenerator() {
+		xslPath = this.getClass().getResource("/testReport.xsl").getPath();
+	}
 
 	/**
-	 * 指定xml文件来生成html文件
+	 * 用指定xml文件来生成html文件
 	 * 
 	 * @param resultXMLPath
 	 * @return
 	 */
-	public static String transferToHtml(String resultXMLPath) {
-		String xmlPath = resultXMLPath;
-		String xlsPath = PATH_SOURCE + RESULT_XSL;
-		String htmlPath = PATH_RESULT + TimeUtil.getTimestampForFile() + "_"
-				+ RESULT_HTML;
-		if (!isExist(xlsPath) || !isExist(xmlPath)) {
-			return null;
+	public void transferToHtml(String xmlPath) {
+		if (!isExist(xslPath)) {
+			LOG.error(String.format("%s no exists", xslPath));
+			return;
 		}
-		transferToHtml(xlsPath, xmlPath, htmlPath);
-		return htmlPath;
+
+		if (!isExist(xmlPath)) {
+			LOG.error(String.format("%s no exists", xmlPath));
+			return;
+		}
+		String htmlPath = new File(xmlPath).getParent() + File.separator
+				+ TESTREPORT_HTML;
+
+		transferToHtml(xslPath, xmlPath, htmlPath);
+
 	}
 
-	private static boolean isExist(String path) {
+	private boolean isExist(String path) {
 		return new File(path).exists();
 	}
 
@@ -80,7 +85,7 @@ public class HtmlReportGenerator implements ReportGenerator {
 	 * @param html
 	 *            生成的html文件
 	 */
-	public static void transferToHtml(String xsl, String xml, String html) {
+	private void transferToHtml(String xsl, String xml, String html) {
 		FileOutputStream out = null;
 		try {
 			out = new FileOutputStream(html);
@@ -102,22 +107,5 @@ public class HtmlReportGenerator implements ReportGenerator {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
-	 */
-	@Override
-	public void generateReporter(File rootDir,String platform) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.wuba.result.ReportGenerator#generateReporter(com.sun.tools.javac.util.List)
-	 */
-	@Override
-	public void generateReporter(List<File> list, String platform) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
