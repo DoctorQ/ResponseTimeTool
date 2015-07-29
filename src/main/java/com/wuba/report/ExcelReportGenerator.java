@@ -11,7 +11,7 @@ import java.util.List;
  * @author hui.qian qianhui@58.com  
  * @date 2015年7月22日 下午5:19:51
  */
-public class CsvReportGenerator implements ReportGenerator{
+public class ExcelReportGenerator implements ReportGenerator{
 
 	/* (non-Javadoc)
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
