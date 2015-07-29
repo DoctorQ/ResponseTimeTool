@@ -45,5 +45,13 @@ public class DirStructureUtil {
 		return new File(ROOT, "repo/report/ios/");
 
 	}
+	/**
+	 * 获取报告根目录
+	 * @return File
+	 */
+	public static File getReport() {
+		return new File(ROOT, "repo/report/");
+
+	}
 
 }

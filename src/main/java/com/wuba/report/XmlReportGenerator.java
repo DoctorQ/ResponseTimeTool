@@ -35,13 +35,13 @@ public class XmlReportGenerator implements ReportGenerator {
 	 */
 
 	@Override
-	public void generateReporter(File rootDir, String platform) {
+	public void generateReporter(File rootDir) {
 		if (rootDir == null || !rootDir.exists()) {
 			LOG.error("Null param rootDir  or file no exists");
 			return;
 		}
-		getPlatform(platform);
-
+		// getPlatform(platform);
+		generateReportFile();
 		parserTestReportByTestResult(rootDir);
 
 		mTestReport.serializeResultToXml();
@@ -55,12 +55,12 @@ public class XmlReportGenerator implements ReportGenerator {
 	 * util.List)
 	 */
 	@Override
-	public void generateReporter(List<File> list, String platform) {
+	public void generateReporter(List<File> list) {
 		if (list == null || list.size() == 0) {
 			return;
 		}
-
-		getPlatform(platform);
+		generateReportFile();
+		// getPlatform(platform);
 
 		for (File file : list) {
 			parserTestReportByTestResult(file);
@@ -70,10 +70,19 @@ public class XmlReportGenerator implements ReportGenerator {
 
 	}
 
+	private void generateReportFile() {
+		File reportFile = new File(DirStructureUtil.getReport(),
+				getFileNameFromTimeStamp());
+		createNewFile(reportFile);
+		mTestReport = new TestReport(reportFile);
+	}
+
 	private void parserTestReportByTestResult(File rootDir) {
 		TestResult testResult = new TestResult(rootDir);
 		// 解析testResult.xml文件
 		testResult.parserXml();
+		
+		getPlatform(testResult.getPlatform());
 
 		LOG.info(String.format("Read %s finished", "testResult.xml"));
 		LOG.info(testResult.toString());
@@ -94,21 +103,14 @@ public class XmlReportGenerator implements ReportGenerator {
 	 * @param platform
 	 */
 	private void getPlatform(String platform) {
+		mTestReport.setPlatform(platform);
 		if (Constant.ANDROID_PLATFORM.equals(platform)) {
 			mLogParser = new AndroidLogParser();
-			File reportFile = new File(DirStructureUtil.getReportAndroid(),
-					getFileNameFromTimeStamp());
-			createNewFile(reportFile);
-			mTestReport = new TestReport(reportFile);
-			mTestReport.setPlatform(Constant.ANDROID_PLATFORM);
+			// mTestReport.setPlatform(Constant.ANDROID_PLATFORM);
 
 		} else if (Constant.IOS_PLATFORM.equals(platform)) {
 			mLogParser = new IOSLogParser();
-			File reportFile = new File(DirStructureUtil.getReportIOS(),
-					getFileNameFromTimeStamp());
-			createNewFile(reportFile);
-			mTestReport = new TestReport(reportFile);
-			mTestReport.setPlatform(Constant.IOS_PLATFORM);
+			// mTestReport.setPlatform(Constant.IOS_PLATFORM);
 		}
 	}
 

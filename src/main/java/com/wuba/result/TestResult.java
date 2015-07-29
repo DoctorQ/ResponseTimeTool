@@ -29,6 +29,14 @@ import com.wuba.utils.Constant;
 public class TestResult extends AbstractXmlPullParser implements XMLParser {
 
 	
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
 	@Override
 	public String toString() {
 		return "TestResult [rootDir=" + rootDir + ", loops=" + loops
@@ -114,12 +122,14 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 	private static final String NETWORK_ATTR = "network";
 	private static final String SN_ATTR = "sn";
 	private static final String VERSION_ATTR = "version";
+	private static final String PLATFORM_ATTR = "platform";
 
 	private Map<String, TestCaseLoop> loops = new LinkedHashMap<String, TestCaseLoop>();
 	private String device = "";
 	private String network = "";
 	private String sn = "";
 	private String version = "";
+	private String platform = "";
 
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
@@ -131,6 +141,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 		serializer.attribute(Constant.NAMESPACE, NETWORK_ATTR, getNetwork());
 		serializer.attribute(Constant.NAMESPACE, SN_ATTR, getSn());
 		serializer.attribute(Constant.NAMESPACE, VERSION_ATTR, getVersion());
+		serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
 		Collection<TestCaseLoop> collection = loops.values();
 		for (TestCaseLoop loop : collection) {
 			loop.serialize(serializer);
@@ -159,7 +170,6 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 			serializer.setFeature(
 					"http://xmlpull.org/v1/doc/features.html#indent-output",
 					true);
-
 			serialize(serializer);
 			serializer.endDocument();
 		} catch (Exception e) {
@@ -214,6 +224,7 @@ public class TestResult extends AbstractXmlPullParser implements XMLParser {
 				setNetwork(getAttribute(parser, NETWORK_ATTR));
 				setSn(getAttribute(parser, SN_ATTR));
 				setVersion(getAttribute(parser, VERSION_ATTR));
+				setPlatform(getAttribute(parser, PLATFORM_ATTR));
 			} else if (eventType == XmlPullParser.END_TAG
 					&& parser.getName().equals(TESTRESULT_TAG)) {
 				return;

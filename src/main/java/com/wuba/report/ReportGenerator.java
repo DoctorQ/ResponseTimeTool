@@ -15,14 +15,12 @@ public interface ReportGenerator {
 	/**
 	 * 根据单一任务生成报告
 	 * @param rootDir
-	 * @param platform TODO
 	 */
-	public void generateReporter(File rootDir,String platform);
+	public void generateReporter(File rootDir);
 	/**
 	 * 根据多任务生成组合报告
 	 * @param list
-	 * @param platform TODO
 	 */
-	public void generateReporter(List<File> list, String platform);
+	public void generateReporter(List<File> list);
 
 }

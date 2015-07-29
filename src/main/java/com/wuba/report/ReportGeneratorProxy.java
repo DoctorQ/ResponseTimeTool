@@ -25,11 +25,11 @@ public class ReportGeneratorProxy implements ReportGenerator {
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
 	@Override
-	public void generateReporter(File rootDir,String platform) {
+	public void generateReporter(File rootDir) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		for (ReportGenerator reportGenerator : reportGenerators) {
-			reportGenerator.generateReporter(rootDir,platform);
+			reportGenerator.generateReporter(rootDir);
 		}
 
 	}
@@ -42,10 +42,10 @@ public class ReportGeneratorProxy implements ReportGenerator {
 	 * util.List)
 	 */
 	@Override
-	public void generateReporter(List<File> list, String platform) {
+	public void generateReporter(List<File> list) {
 		// TODO Auto-generated method stub
 		for (ReportGenerator reportGenerator : reportGenerators) {
-			reportGenerator.generateReporter(list, platform);
+			reportGenerator.generateReporter(list);
 		}
 
 	}

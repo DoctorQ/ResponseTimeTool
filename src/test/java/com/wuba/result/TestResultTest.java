@@ -8,6 +8,7 @@ import java.io.File;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
+import com.wuba.utils.Constant;
 import com.wuba.utils.DirStructureUtil;
 import com.wuba.utils.TimeUtil;
 
@@ -31,6 +32,7 @@ public class TestResultTest {
 
 	@Test(groups = { "unittest","androidtestresult" })
 	public void generateAndroidXmlTestResult() {
+		testResult.setPlatform(Constant.ANDROID_PLATFORM);
 		// webview
 		TestCaseLoop webview = testResult.getTestCaseLoop("case3");
 		webview.setStartTime(TimeUtil.formatTimeStamp(System
@@ -82,6 +84,9 @@ public class TestResultTest {
 
 	@Test(groups = { "unittest","iostestresult" })
 	public void generateIOSXmlTestResult() {
+		iosTestresult.setPlatform(Constant.IOS_PLATFORM);
+		
+		
 		// native
 		TestCaseLoop nativeLoop = iosTestresult
 				.getTestCaseLoop("test_native_zhengzu_list");
@@ -112,6 +117,8 @@ public class TestResultTest {
 
 		webViewLoop.setEndTime(TimeUtil.formatTimeStamp(System
 				.currentTimeMillis()));
+		
+		
 		iosTestresult.serializeResultToXml();
 	}
 

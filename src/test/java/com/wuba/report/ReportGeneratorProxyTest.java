@@ -17,7 +17,6 @@ import com.wuba.report.HtmlReportGenerator;
 import com.wuba.report.ReportGenerator;
 import com.wuba.report.ReportGeneratorProxy;
 import com.wuba.report.XmlReportGenerator;
-import com.wuba.utils.Constant;
 import com.wuba.utils.DirStructureUtil;
 
 /**
@@ -82,7 +81,7 @@ public class ReportGeneratorProxyTest {
 		list.add(file2);
 		list.add(file3);
 		list.add(file4);
-		proxy.generateReporter(list, Constant.ANDROID_PLATFORM);
+		proxy.generateReporter(list);
 
 	}
 
@@ -93,7 +92,7 @@ public class ReportGeneratorProxyTest {
 	public void generatorAndroidReportByDirTest() {
 		File file = new File(DirStructureUtil.getResultAndroid(),
 				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
-		proxy.generateReporter(file,Constant.ANDROID_PLATFORM);
+		proxy.generateReporter(file);
 	}
 	@Test
 	public void filePathTest(){
@@ -115,7 +114,7 @@ public class ReportGeneratorProxyTest {
 		list.add(file1);
 		list.add(file2);
 		
-		proxy.generateReporter(list, Constant.IOS_PLATFORM);
+		proxy.generateReporter(list);
 
 	}
 
@@ -126,6 +125,20 @@ public class ReportGeneratorProxyTest {
 	public void generatorIOSReportByDirTest() {
 		File file = new File(DirStructureUtil.getResultIOS(),
 				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
-		proxy.generateReporter(file,Constant.IOS_PLATFORM);
+		proxy.generateReporter(file);
+	}
+	
+	
+	/**
+	 * android测试单目录报告
+	 */
+	@Test(groups = { "unittest" },dependsOnGroups={"iostestresult","androidtestresult"})
+	public void generatorCrossPlatformReportTest() {
+		File file = new File(DirStructureUtil.getResultIOS(),
+				"iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215");
+		
+		File file1 = new File(DirStructureUtil.getResultAndroid(),
+				"MI_2G_dksldfdffdf_4.4.2_201507210823923");
+		//proxy.generateReporter(file,Constant.IOS_PLATFORM);
 	}
 }
