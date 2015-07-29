@@ -23,6 +23,10 @@ import com.wuba.utils.Constant;
  */
 public class TestReport implements XMLParser {
 
+	public File getReportDir() {
+		return reportDir;
+	}
+
 	public String getPlatform() {
 		return platform;
 	}
@@ -64,7 +68,7 @@ public class TestReport implements XMLParser {
 	 * Creates the output stream to use for test results. Exposed for mocking.
 	 */
 	OutputStream createOutputResultStream(File reportFile) throws IOException {
-		LOG.info(String.format("Created testReport.xml  file at file://%s",
+		LOG.info(String.format("Created file at file://%s",
 				reportFile.getAbsolutePath()));
 		return new FileOutputStream(reportFile);
 	}

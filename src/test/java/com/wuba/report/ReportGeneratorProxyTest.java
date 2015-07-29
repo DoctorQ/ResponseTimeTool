@@ -25,15 +25,12 @@ import com.wuba.utils.DirStructureUtil;
  */
 public class ReportGeneratorProxyTest {
 	private ReportGeneratorProxy proxy;
-	private ReportGenerator csv;
 	private static final Logger LOG = Logger
 			.getLogger(ReportGeneratorProxyTest.class);
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		proxy = new ReportGeneratorProxy();
-		csv = new ExcelReportGenerator();
-		proxy.addReportGenerator(csv);
 		proxy.addReportGenerator(new XmlReportGenerator());
 
 	}
@@ -55,7 +52,6 @@ public class ReportGeneratorProxyTest {
 	@Test(groups = { "unittest" })
 	public void removeReportGeneratorTest() {
 		int before = proxy.getReportGenerators().size();
-		proxy.removeReportGenerator(csv);
 		int after = proxy.getReportGenerators().size();
 		Assert.assertEquals(1, before - after);
 
