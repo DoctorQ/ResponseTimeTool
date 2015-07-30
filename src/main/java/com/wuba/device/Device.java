@@ -1,5 +1,7 @@
 package com.wuba.device;
 
+import java.awt.image.BufferedImage;
+
 /**
  * 测试设备的接口，抽象公共部分
  * @author vigoss
@@ -29,6 +31,6 @@ public interface Device {
 
 //	void dragFromToScreen(int startX, int startY, int endX, int endY);
 
-	void takeScreenShot();
+	BufferedImage takeScreenShot();
 
 }

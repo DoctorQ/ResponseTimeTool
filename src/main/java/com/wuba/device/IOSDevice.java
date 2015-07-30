@@ -1,5 +1,6 @@
 package com.wuba.device;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -137,8 +138,9 @@ public class IOSDevice implements Device {
 	}
 
 	@Override
-	public void takeScreenShot() {
+	public BufferedImage takeScreenShot() {
 		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**

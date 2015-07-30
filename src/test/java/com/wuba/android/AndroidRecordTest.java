@@ -14,9 +14,6 @@ public class AndroidRecordTest {
 	public void testAndroidRecord() throws InterruptedException {
 		AndroidDevice[] ads = DeviceManager.getAndroidDevices();
 		AndroidDevice device = ads[0];
-		device.getScreenShot();
-		System.out.println(device.getPid("com.android.commands.monkey"));
-		System.out.println(device.getOrientation());
 		
 		// touch action
 		device.touchDown(556, 1672);

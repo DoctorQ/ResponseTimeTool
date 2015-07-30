@@ -130,28 +130,7 @@ public class AndroidDevice implements Device {
 	}
 
 	@Override
-	public void takeScreenShot() {
-		// TODO Auto-generated method stub
-//		mDevice.getScreenshot()
-	}
-	
-	public void execShell(String shellCommand){
-		mChimpDevice.shell(shellCommand);
-	}
-	
-	public int getPid(String processName){
-		String pLine = mChimpDevice.shell("ps | grep " + processName);
-		String[] items = pLine.trim().split("[\\s]+");
-		return Integer.parseInt(items[1]);
-	}
-	
-	public int getOrientation(){
-		String line = mChimpDevice.shell("dumpsys input | grep SurfaceOrientation");
-		String[] items = line.trim().split(":");
-		return Integer.parseInt(items[1].trim());
-	}
-	
-	public BufferedImage getScreenShot() {
+	public BufferedImage takeScreenShot() {
 		RawImage rawScreen = null;
 		BufferedImage image = null;
 		int width;
@@ -180,4 +159,21 @@ public class AndroidDevice implements Device {
 		
 		return image;
 	}
+	
+	public void execShell(String shellCommand){
+		mChimpDevice.shell(shellCommand);
+	}
+	
+	public int getPid(String processName){
+		String pLine = mChimpDevice.shell("ps | grep " + processName);
+		String[] items = pLine.trim().split("[\\s]+");
+		return Integer.parseInt(items[1]);
+	}
+	
+	public int getOrientation(){
+		String line = mChimpDevice.shell("dumpsys input | grep SurfaceOrientation");
+		String[] items = line.trim().split(":");
+		return Integer.parseInt(items[1].trim());
+	}
+
 }
