@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -45,6 +46,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
+import org.omg.CORBA.TIMEOUT;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -129,7 +131,7 @@ public class HomePage extends JFrame {
 	private void initialize() throws Exception {
 		frmReactingTime = new JFrame();
 		frmReactingTime.setFont(new Font("Dialog", Font.BOLD, 13));
-		frmReactingTime.setSize(900, 426);
+//		frmReactingTime.setSize(900, 426);
 		frmReactingTime.setTitle("Reacting Time");
 		frmReactingTime.setBounds(100, 100, 700, 426);
 		frmReactingTime.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -449,13 +451,7 @@ public class HomePage extends JFrame {
 			clearLogButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/clear.png")));
 			clearLogButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					replayButton.setEnabled(false);
-					recordButton.setEnabled(true);
-					openFileButton.setEnabled(true);
-					if (caseRows.size() != 0 && !allUnMarked()
-							&& !replayButton.isEnabled()) {
-						replayButton.setEnabled(true);
-					}
+					clearLogArea();
 				}
 			});
 		}
@@ -808,4 +804,12 @@ public class HomePage extends JFrame {
 		}
 		return netSelectBox;
 	}
+	
+	/*
+	 * 清除‘脚本运行日志’中textPane的内容
+	 */
+	public void clearLogArea(){
+		logPane.setText("");
+	}
+
 }

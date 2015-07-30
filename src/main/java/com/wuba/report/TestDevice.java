@@ -20,6 +20,10 @@ import com.wuba.utils.Constant;
  * @date 2015年7月20日 下午2:48:41
  */
 public class TestDevice implements XMLParser {
+	public Map<String, TestNetWork> getNetTypes() {
+		return netTypes;
+	}
+
 	public String getDevice() {
 		return device;
 	}

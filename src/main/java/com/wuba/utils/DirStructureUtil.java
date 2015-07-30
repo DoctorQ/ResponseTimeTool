@@ -11,6 +11,16 @@ import java.io.File;
  */
 public class DirStructureUtil {
 	private static final String ROOT = System.getProperty("user.dir");
+	
+	static{
+		
+		FileUtil.mkdirsRWX(getReport());
+		FileUtil.mkdirsRWX(getResultAndroid());
+		FileUtil.mkdirsRWX(getResultIOS());
+		FileUtil.mkdirsRWX(getTestCaseAndroid());
+		FileUtil.mkdirsRWX(getTestCaseIOS());
+		
+	}
 
 	/**
 	 * 获取android的结果目录根目录

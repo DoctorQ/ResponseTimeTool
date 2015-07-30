@@ -2,7 +2,7 @@ package com.wuba.logparser;
 
 import java.io.File;
 
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 /**
  * 
  * @author hui.qian qianhui@58.com  

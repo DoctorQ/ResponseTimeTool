@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.utils.DirStructureUtil;
 
 /**

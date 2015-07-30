@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.utils.Constant;
 
 

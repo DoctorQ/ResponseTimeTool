@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
-import com.wuba.report.CsvReportGenerator;
+import com.wuba.report.ExcelReportGenerator;
 import com.wuba.report.HtmlReportGenerator;
 import com.wuba.report.ReportGenerator;
 import com.wuba.report.ReportGeneratorProxy;
@@ -25,15 +25,12 @@ import com.wuba.utils.DirStructureUtil;
  */
 public class ReportGeneratorProxyTest {
 	private ReportGeneratorProxy proxy;
-	private ReportGenerator csv;
 	private static final Logger LOG = Logger
 			.getLogger(ReportGeneratorProxyTest.class);
 
 	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		proxy = new ReportGeneratorProxy();
-		csv = new CsvReportGenerator();
-		proxy.addReportGenerator(csv);
 		proxy.addReportGenerator(new XmlReportGenerator());
 
 	}
@@ -49,17 +46,6 @@ public class ReportGeneratorProxyTest {
 		Assert.assertEquals(1, after - before);
 	}
 
-	/**
-	 * 测试剔除报告器的方法
-	 */
-	@Test(groups = { "unittest" })
-	public void removeReportGeneratorTest() {
-		int before = proxy.getReportGenerators().size();
-		proxy.removeReportGenerator(csv);
-		int after = proxy.getReportGenerators().size();
-		Assert.assertEquals(1, before - after);
-
-	}
 
 	/**
 	 * android测试多目录合成报告

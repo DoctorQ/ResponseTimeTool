@@ -23,6 +23,11 @@ import com.wuba.utils.Constant;
  */
 public class TestNetWork implements XMLParser {
 
+	public Map<String, TestViewLoop> getTestViewLoops() {
+		return testViewLoops;
+	}
+
+
 	public String getType() {
 		return type;
 	}

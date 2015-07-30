@@ -23,6 +23,16 @@ import com.wuba.utils.Constant;
  */
 public class TestReport implements XMLParser {
 
+	
+
+	public Map<String, TestDevice> getTestDevices() {
+		return testDevices;
+	}
+
+	public File getReportDir() {
+		return reportDir;
+	}
+
 	public String getPlatform() {
 		return platform;
 	}
@@ -34,6 +44,7 @@ public class TestReport implements XMLParser {
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 	private static final String PLATFORM_ATTR = "platform";
+	
 
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
@@ -64,7 +75,7 @@ public class TestReport implements XMLParser {
 	 * Creates the output stream to use for test results. Exposed for mocking.
 	 */
 	OutputStream createOutputResultStream(File reportFile) throws IOException {
-		LOG.info(String.format("Created testReport.xml  file at file://%s",
+		LOG.info(String.format("Created file at file://%s",
 				reportFile.getAbsolutePath()));
 		return new FileOutputStream(reportFile);
 	}
@@ -88,8 +99,10 @@ public class TestReport implements XMLParser {
 			serialize(serializer);
 			serializer.endDocument();
 
-			// 生成HTML文件
+			// 生成HTML报告
 			new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
+			// 生成Excel报告
+			new ExcelReportGenerator(this).generaterExcelReport();
 		} catch (Exception e) {
 			LOG.error(e);
 			e.printStackTrace();

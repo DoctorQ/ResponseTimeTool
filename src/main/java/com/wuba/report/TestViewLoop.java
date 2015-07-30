@@ -4,7 +4,6 @@
 package com.wuba.report;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Map.Entry;
 import org.kxml2.io.KXmlSerializer;
 
 import com.wuba.logparser.LogParser;
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.result.TestCase;
 import com.wuba.result.TestCaseLoop;
 import com.wuba.result.XMLParser;
@@ -24,7 +23,6 @@ import com.wuba.utils.Constant;
  * @date 2015年7月20日 下午2:49:05
  */
 public class TestViewLoop implements XMLParser {
-
 	public String getName() {
 		return name;
 	}
@@ -50,6 +48,10 @@ public class TestViewLoop implements XMLParser {
 
 	private String dataType;
 	private String viewType;
+	private String aConnect;
+	private String aRead;
+	private String aParser;
+	private String aTotal;
 
 	private List<TestView> testViews = new LinkedList<TestView>();
 
@@ -110,19 +112,18 @@ public class TestViewLoop implements XMLParser {
 			totalParserCost += indexItem.getRtResult().getParserCost();
 		}
 		if (Constant.NATIVE.equals(viewType)) {
-
-			serializer.attribute(Constant.NAMESPACE, ACONNECT_ATTR,
-					totalConnectCost / size + "");
+			aConnect = totalConnectCost / size + "";
+			serializer.attribute(Constant.NAMESPACE, ACONNECT_ATTR, aConnect);
 			if (Constant.JSON.equals(dataType)) {
-				serializer.attribute(Constant.NAMESPACE, AREAD_ATTR,
-						totalReadCost / size + "");
+				aRead = totalReadCost / size + "";
+				serializer.attribute(Constant.NAMESPACE, AREAD_ATTR, aRead);
 			}
 		}
-		serializer.attribute(Constant.NAMESPACE, APARSER_ATTR, totalParserCost
-				/ size + "");
-		serializer.attribute(Constant.NAMESPACE, TOTAL_ATTR, (totalParserCost
-				+ totalConnectCost + totalReadCost)
-				/ size + "");
+		aParser = totalParserCost / size + "";
+		aTotal = (totalParserCost + totalConnectCost + totalReadCost) / size
+				+ "";
+		serializer.attribute(Constant.NAMESPACE, APARSER_ATTR, aParser);
+		serializer.attribute(Constant.NAMESPACE, TOTAL_ATTR, aTotal);
 
 	}
 
@@ -155,6 +156,11 @@ public class TestViewLoop implements XMLParser {
 			testView.parserTestViewFromTestCase(testCase, logParser);
 			testViews.add(testView);
 		}
+	}
+
+	public String[] getAtts() {
+		return new String[] { name, viewType, dataType, aConnect, aRead,
+				aParser, aTotal };
 	}
 
 }
