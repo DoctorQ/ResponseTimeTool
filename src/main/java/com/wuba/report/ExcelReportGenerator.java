@@ -33,7 +33,7 @@ public class ExcelReportGenerator {
 	private TestReport testReport;
 
 	private String[] tableTitle = { "Case", "ViewType", "DataType",
-			"Connect(ms)", "Connect(ms)", "Paser(ms)", "Total(ms)" };
+			"Connect(ms)", "Read(ms)", "Paser(ms)", "Total(ms)" };
 
 	// 行号
 	private int row = 0;
