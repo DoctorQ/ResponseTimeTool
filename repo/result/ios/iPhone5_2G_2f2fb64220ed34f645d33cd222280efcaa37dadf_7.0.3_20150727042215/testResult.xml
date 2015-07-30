@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no' ?>
 <TestResult device="iPhone5" network="2G" sn="2f2fb64220ed34f645d33cd222280efcaa37dadf" version="7.0.3" platform="ios">
-  <TestCaseLoop name="test_native_zhengzu_list" total="1" pass="1" fail="0" path="/native" loop="1" starttime="2015-07-29 17:56:41" endtime="2015-07-29 17:56:41">
+  <TestCaseLoop name="test_native_zhengzu_list" total="1" pass="1" fail="0" path="/native" loop="1" starttime="2015-07-30 10:35:18" endtime="2015-07-30 10:35:18">
     <TestCase index="0" status="pass" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_native_zhengzu_list/0/time.log" />
   </TestCaseLoop>
-  <TestCaseLoop name="test_web_xinfang_list" total="2" pass="2" fail="0" path="/webView" loop="2" starttime="2015-07-29 17:56:41" endtime="2015-07-29 17:56:41">
+  <TestCaseLoop name="test_web_xinfang_list" total="2" pass="2" fail="0" path="/webView" loop="2" starttime="2015-07-30 10:35:18" endtime="2015-07-30 10:35:18">
     <TestCase index="0" status="pass" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/0/time.log" />
     <TestCase index="1" status="pass" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/1/time.log" />
   </TestCaseLoop>
