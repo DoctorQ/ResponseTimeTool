@@ -1,7 +1,0 @@
-verifyImage("fangchan.png", 10000);
-target.tapWithOptions({ x: 124, y: 214 }, {tapCount: 1, touchCount: 1, duration: 0.5});
-verifyImage("zhengzufang.png", 10000);
-UIALogger.logDebug("BEGIN CAPTURE TIME-LOG");
-target.tapWithOptions({ x: 46, y: 329 }, {tapCount: 1, touchCount: 1, duration: 0.5});
-verifyImage("yuan.png", 10000);
-UIALogger.logDebug("END CAPTURE TIME-LOG");

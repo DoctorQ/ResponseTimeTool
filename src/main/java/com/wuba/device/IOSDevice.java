@@ -3,8 +3,11 @@ package com.wuba.device;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.robovm.libimobiledevice.IDevice;
 import org.robovm.libimobiledevice.LockdowndClient;
@@ -139,7 +142,16 @@ public class IOSDevice implements Device {
 
 	@Override
 	public BufferedImage takeScreenShot() {
-		// TODO Auto-generated method stub
+		try {
+			String imgPath = Constant.iOS_TEMP_DIR + File.separator + "screen.png";
+			String cmd = Constant.iOS_IDEVICE_SCREENSHOT + " -u " + deviceId + " " + imgPath;
+			Helper.executeCommand(cmd);
+			File imgFile = new File(imgPath);
+			return ImageIO.read(imgFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
