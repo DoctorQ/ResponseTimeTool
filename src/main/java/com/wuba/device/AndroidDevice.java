@@ -1,17 +1,13 @@
 package com.wuba.device;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import com.android.chimpchat.adb.AdbChimpDevice;
 import com.android.ddmlib.AdbCommandRejectedException;
+import com.android.ddmlib.DdmPreferences;
 import com.android.ddmlib.IDevice;
 import com.android.ddmlib.RawImage;
-import com.android.ddmlib.TimeoutException;
 import com.wuba.utils.Constant;
 
 
@@ -25,12 +21,15 @@ import com.wuba.utils.Constant;
 public class AndroidDevice implements Device {
 
 	private String platform = Constant.ANDROID_PLATFORM;
+	private static final int adbTimeOut = 8000;
+	private static final String monkeyProcess = "com.android.commands.monkey";
 	private String appId;
 	private AdbChimpDevice mChimpDevice;		
 	private IDevice mDevice;
 	
 	public AndroidDevice(IDevice iDevice) {
 		// TODO Auto-generated constructor stub
+		DdmPreferences.setTimeOut(adbTimeOut);
 		mDevice = iDevice;
 		mChimpDevice = new AdbChimpDevice(iDevice);
 	}
@@ -57,6 +56,10 @@ public class AndroidDevice implements Device {
 	public String getOsVersion() {
 		// TODO Auto-generated method stub
 		return mChimpDevice.getSystemProperty("ro.build.version.release");
+	}
+	
+	public void setAppId(String appId){
+		this.appId = appId;
 	}
 
 	@Override
@@ -120,6 +123,7 @@ public class AndroidDevice implements Device {
 	}
 	
 	public void dispose(){
+		execShell("kill " + getPid(monkeyProcess));
 		if (mChimpDevice != null){
 			mChimpDevice.dispose();
 		}
@@ -131,9 +135,28 @@ public class AndroidDevice implements Device {
 //		mDevice.getScreenshot()
 	}
 	
-	public boolean getScreenShot(String filepath) {
+	public void execShell(String shellCommand){
+		mChimpDevice.shell(shellCommand);
+	}
+	
+	public int getPid(String processName){
+		String pLine = mChimpDevice.shell("ps | grep " + processName);
+		String[] items = pLine.trim().split("[\\s]+");
+		return Integer.parseInt(items[1]);
+	}
+	
+	public int getOrientation(){
+		String line = mChimpDevice.shell("dumpsys input | grep SurfaceOrientation");
+		String[] items = line.trim().split(":");
+		return Integer.parseInt(items[1].trim());
+	}
+	
+	public BufferedImage getScreenShot() {
 		RawImage rawScreen = null;
 		BufferedImage image = null;
+		int width;
+		int height;
+		int orientation = getOrientation();
 		try {
 			rawScreen = mDevice.getScreenshot();
 		} catch (AdbCommandRejectedException e) {
@@ -143,38 +166,18 @@ public class AndroidDevice implements Device {
 		} catch (com.android.ddmlib.TimeoutException e) {
 			e.printStackTrace();
 		}
-		if (rawScreen != null) {
-			Boolean landscape = false;
-			int width2 = landscape ? rawScreen.height : rawScreen.width;
-			int height2 = landscape ? rawScreen.width : rawScreen.height;
-			if (image == null) {
-				image = new BufferedImage(width2, height2,
-						BufferedImage.TYPE_INT_RGB);
-			} else {
-				if (image.getHeight() != height2 || image.getWidth() != width2) {
-					image = new BufferedImage(width2, height2,
-							BufferedImage.TYPE_INT_RGB);
-				}
-			}
-			int index = 0;
-			int indexInc = rawScreen.bpp >> 3;
-			for (int y = 0; y < rawScreen.height; y++) {
-				for (int x = 0; x < rawScreen.width; x++, index += indexInc) {
-					int value = rawScreen.getARGB(index);
-					if (landscape)
-						image.setRGB(y, rawScreen.width - x - 1, value);
-					else
-						image.setRGB(x, y, value);
-				}
-			}
-			try {
-
-				ImageIO.write((RenderedImage) image, "PNG", new File(filepath));
-				return true;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		if (orientation == 0 || orientation == 2){
+			width = rawScreen.width;
+			height = rawScreen.height;
+			image = new BufferedImage(width, height,
+					BufferedImage.TYPE_INT_RGB);
+		} else if(orientation == 1 || orientation == 3){
+			width = rawScreen.height;
+			height = rawScreen.width;
+			image = new BufferedImage(width, height,
+					BufferedImage.TYPE_INT_RGB);
 		}
-		return false;
+		
+		return image;
 	}
 }
