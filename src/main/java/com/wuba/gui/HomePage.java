@@ -451,13 +451,6 @@ public class HomePage extends JFrame {
 			clearLogButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/clear.png")));
 			clearLogButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					wrtitLogArea();
-					try {
-						TimeUnit.SECONDS.sleep(5);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 					clearLogArea();
 				}
 			});
@@ -818,8 +811,5 @@ public class HomePage extends JFrame {
 	public void clearLogArea(){
 		logPane.setText("");
 	}
-	
-	public void wrtitLogArea(){
-		logPane.setText("aaaaaaaa");
-	}
+
 }
