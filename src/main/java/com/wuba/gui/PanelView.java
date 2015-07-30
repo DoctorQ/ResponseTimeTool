@@ -53,28 +53,19 @@ public class PanelView extends JPanel implements Runnable {
 		AndroidDevice device = ads[0];
 		while (true) {
 			System.out.println("123");
-			device.getScreenShot("/Users/58/Desktop/img.png");
-			File file = new File("/Users/58/Desktop/img.png");
-			BufferedImage image = null;
-			try {
-				image = ImageIO.read(file);
-				this.setImage(image);
-				this.repaint();
-//				PanelView.this.repaint();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			BufferedImage image = device.takeScreenShot();
+			this.setImage(image);
+			this.repaint();
 		}
 	}
 
 	public static void main(String[] args) throws IOException {
 		JFrame f = new JFrame("Window");
 		final PanelView p = new PanelView();
-		File file = new File("/Users/58/Desktop/img.png");
-		BufferedImage image = ImageIO.read(file);
-		p.setImage(image);
-		f.setSize(image.getWidth(),image.getHeight());
+//		File file = new File("/Users/58/Desktop/img.png");
+//		BufferedImage image = ImageIO.read(file);
+//		p.setImage(image);
+//		f.setSize(image.getWidth(),image.getHeight());
 		f.add(p);
 		f.setVisible(true);
 		
