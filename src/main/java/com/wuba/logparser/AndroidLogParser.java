@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.utils.Constant;
 
 /**

@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 
 public class AndroidLogParserTest {
 	private final static Logger LOGGER = Logger

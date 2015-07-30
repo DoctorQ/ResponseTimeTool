@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.kxml2.io.KXmlSerializer;
 
 import com.wuba.logparser.LogParser;
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.result.TestCase;
 import com.wuba.result.XMLParser;
 import com.wuba.utils.Constant;

@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import org.kxml2.io.KXmlSerializer;
 
 import com.wuba.logparser.LogParser;
-import com.wuba.model.RTResult;
+import com.wuba.result.RTResult;
 import com.wuba.result.TestCase;
 import com.wuba.result.TestCaseLoop;
 import com.wuba.result.XMLParser;
