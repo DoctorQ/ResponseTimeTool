@@ -88,7 +88,7 @@ public class ExcelReportGenerator {
 		WritableWorkbook workbook = Workbook.createWorkbook(os);
 		// 创建新的一页
 		WritableSheet sheet = workbook.createSheet("Performance data", 0);
-
+		
 		// 添加合并单元格，第一个参数是起始列，第二个参数是起始行，第三个参数是终止列，第四个参数是终止行
 		sheet.mergeCells(0, row, COLLIMIT, row);
 
@@ -102,7 +102,7 @@ public class ExcelReportGenerator {
 		for (TestDevice testDevice : collection) {
 			sheet.mergeCells(0, ++row, COLLIMIT, row);
 			sheet.setRowView(row, 500, false);
-			Label deviceTitle = new Label(0, row, testDevice.getDevice(),
+			Label deviceTitle = new Label(0, row, testDevice.getSn()+"-"+testDevice.getDevice()+"-"+testDevice.getVersion(),
 					deviceTitleFormate);
 			sheet.addCell(deviceTitle);
 
@@ -178,7 +178,7 @@ public class ExcelReportGenerator {
 		titleFormate.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
 
 		deviceTitleFormate = new WritableCellFormat(bold);
-		deviceTitleFormate.setAlignment(jxl.format.Alignment.LEFT);
+		deviceTitleFormate.setAlignment(jxl.format.Alignment.CENTRE);
 		deviceTitleFormate
 				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
 
@@ -191,11 +191,15 @@ public class ExcelReportGenerator {
 		tableTitleFormate.setAlignment(jxl.format.Alignment.LEFT);
 		tableTitleFormate
 				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
+		tableTitleFormate.setWrap(true);
+		
 		
 		dataFormate = new WritableCellFormat(bold);
 		dataFormate.setAlignment(jxl.format.Alignment.LEFT);
 		dataFormate
 				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
+		dataFormate.setWrap(true);
+		
 	}
 
 }
