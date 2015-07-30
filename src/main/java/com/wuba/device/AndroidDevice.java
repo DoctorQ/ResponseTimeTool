@@ -1,7 +1,10 @@
 package com.wuba.device;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import com.android.chimpchat.adb.AdbChimpDevice;
 import com.android.ddmlib.AdbCommandRejectedException;
@@ -145,16 +148,36 @@ public class AndroidDevice implements Device {
 		} catch (com.android.ddmlib.TimeoutException e) {
 			e.printStackTrace();
 		}
+		boolean landscape = false;
 		if (orientation == 0 || orientation == 2){
 			width = rawScreen.width;
 			height = rawScreen.height;
 			image = new BufferedImage(width, height,
 					BufferedImage.TYPE_INT_RGB);
+			
 		} else if(orientation == 1 || orientation == 3){
 			width = rawScreen.height;
 			height = rawScreen.width;
 			image = new BufferedImage(width, height,
 					BufferedImage.TYPE_INT_RGB);
+			landscape = true;
+		}
+		 int index = 0;   
+         int indexInc = rawScreen.bpp >> 3;   
+         for (int y = 0; y < rawScreen.height; y++) {   
+             for (int x = 0; x < rawScreen.width; x++, index += indexInc) {   
+                 int value = rawScreen.getARGB(index);   
+                 if (landscape)   
+                     image.setRGB(y, rawScreen.width - x - 1, value);   
+                 else  
+                     image.setRGB(x, y, value);   
+             }   
+         }
+		try {
+			ImageIO.write(image, "png", new File(System.getProperty("user.dir")+File.separator+"console.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return image;
 	}
