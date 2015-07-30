@@ -46,6 +46,9 @@ public class XmlReportGenerator implements ReportGenerator {
 		parserTestReportByTestResult(rootDir);
 
 		mTestReport.serializeResultToXml();
+		
+		
+		
 
 	}
 

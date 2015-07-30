@@ -23,6 +23,12 @@ import com.wuba.utils.Constant;
  */
 public class TestReport implements XMLParser {
 
+	
+
+	public Map<String, TestDevice> getTestDevices() {
+		return testDevices;
+	}
+
 	public File getReportDir() {
 		return reportDir;
 	}
@@ -38,6 +44,7 @@ public class TestReport implements XMLParser {
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 	private static final String PLATFORM_ATTR = "platform";
+	
 
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
@@ -92,8 +99,10 @@ public class TestReport implements XMLParser {
 			serialize(serializer);
 			serializer.endDocument();
 
-			// 生成HTML文件
+			// 生成HTML报告
 			new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
+			// 生成Excel报告
+			new ExcelReportGenerator(this).generaterExcelReport();
 		} catch (Exception e) {
 			LOG.error(e);
 			e.printStackTrace();

@@ -46,16 +46,6 @@ public class ReportGeneratorProxyTest {
 		Assert.assertEquals(1, after - before);
 	}
 
-	/**
-	 * 测试剔除报告器的方法
-	 */
-	@Test(groups = { "unittest" })
-	public void removeReportGeneratorTest() {
-		int before = proxy.getReportGenerators().size();
-		int after = proxy.getReportGenerators().size();
-		Assert.assertEquals(1, before - after);
-
-	}
 
 	/**
 	 * android测试多目录合成报告
