@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'jacoco'
 apply plugin: 'sonar-runner'
 apply plugin: 'application'
-
+//运行时的主类
 mainClassName = "com.wuba.gui.HomePage"
 
 sourceCompatibility = 1.6
