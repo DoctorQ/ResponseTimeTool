@@ -64,7 +64,9 @@ public class ExcelReportGenerator {
 		File xlsFile = new File(testReport.getReportDir(), XLSFILE);
 		if (!xlsFile.exists())
 			try {
-				xlsFile.createNewFile();
+				boolean success = xlsFile.createNewFile();
+				if (!success)
+					return;
 				generaterExcelReport(createOutputResultStream(xlsFile));
 
 			} catch (IOException e) {
@@ -81,14 +83,13 @@ public class ExcelReportGenerator {
 
 	private void generaterExcelReport(OutputStream os) throws IOException,
 			RowsExceededException, WriteException {
-		
-		
+
 		initWritableCellFormat();
 		// 创建工作薄
 		WritableWorkbook workbook = Workbook.createWorkbook(os);
 		// 创建新的一页
 		WritableSheet sheet = workbook.createSheet("Performance data", 0);
-		
+
 		// 添加合并单元格，第一个参数是起始列，第二个参数是起始行，第三个参数是终止列，第四个参数是终止行
 		sheet.mergeCells(0, row, COLLIMIT, row);
 
@@ -102,7 +103,8 @@ public class ExcelReportGenerator {
 		for (TestDevice testDevice : collection) {
 			sheet.mergeCells(0, ++row, COLLIMIT, row);
 			sheet.setRowView(row, 500, false);
-			Label deviceTitle = new Label(0, row, testDevice.getSn()+"-"+testDevice.getDevice()+"-"+testDevice.getVersion(),
+			Label deviceTitle = new Label(0, row, testDevice.getSn() + "-"
+					+ testDevice.getDevice() + "-" + testDevice.getVersion(),
 					deviceTitleFormate);
 			sheet.addCell(deviceTitle);
 
@@ -112,14 +114,13 @@ public class ExcelReportGenerator {
 			for (TestNetWork netWork : netWorks) {
 				sheet.mergeCells(0, ++row, COLLIMIT, row);
 				sheet.setRowView(row, 500, false);
-				Label netWorkTitle = new Label(0, row,
-						"Test Summary For " + netWork.getType(), netWorkTitleFormate);
+				Label netWorkTitle = new Label(0, row, "Test Summary For "
+						+ netWork.getType(), netWorkTitleFormate);
 				sheet.addCell(netWorkTitle);
 
 				Collection<TestViewLoop> testViewLoops = netWork
 						.getTestViewLoops().values();
 
-				
 				// 设置table的标题
 				getRowAndAdd();
 				for (int i = 0; i < tableTitle.length; i++) {
@@ -128,7 +129,6 @@ public class ExcelReportGenerator {
 					sheet.addCell(colTitle);
 				}
 
-				
 				for (TestViewLoop loop : testViewLoops) {
 					String[] atts = loop.getAtts();
 					getRowAndAdd();
@@ -186,20 +186,17 @@ public class ExcelReportGenerator {
 		netWorkTitleFormate.setAlignment(jxl.format.Alignment.LEFT);
 		netWorkTitleFormate
 				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
-		tableTitleFormate = new WritableCellFormat(
-				bold);
+		tableTitleFormate = new WritableCellFormat(bold);
 		tableTitleFormate.setAlignment(jxl.format.Alignment.LEFT);
 		tableTitleFormate
 				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
 		tableTitleFormate.setWrap(true);
-		
-		
+
 		dataFormate = new WritableCellFormat(bold);
 		dataFormate.setAlignment(jxl.format.Alignment.LEFT);
-		dataFormate
-				.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
+		dataFormate.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);// 单元格的内容垂直方向居中
 		dataFormate.setWrap(true);
-		
+
 	}
 
 }
