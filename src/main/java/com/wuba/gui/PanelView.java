@@ -1,20 +1,16 @@
 package com.wuba.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import com.wuba.device.AndroidDevice;
 import com.wuba.device.DeviceManager;
+import com.wuba.device.IOSDevice;
 
 @SuppressWarnings("serial")
 public class PanelView extends JPanel implements Runnable {
@@ -49,11 +45,25 @@ public class PanelView extends JPanel implements Runnable {
 //					PanelView.this.repaint();
 //				}
 //			});
-		AndroidDevice[] ads = DeviceManager.getAndroidDevices();
-		AndroidDevice device = ads[0];
+		IOSDevice[] ads = DeviceManager.getIOSDevices("com.wuba.TestApp");
+		IOSDevice device = ads[0];
 		while (true) {
-			System.out.println("123");
+//			System.out.println("123");
 			BufferedImage image = device.takeScreenShot();
+			System.out.println(image.getHeight());
+			System.out.println(image.getWidth());
+			System.out.println(image.getType());
+//			System.out.println(image.get);
+//			System.out.println(image.getWidth());
+//			File file1=new File("/Users/58/Desktop/img.jpg");             //用file1取得图片名字
+//	        String name=file1.getName();
+//	        try {
+//				ImageIO.write(image, "png", new File("/Users/58/Desktop/img.png"));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} 
+//			BufferedImage image2 = new File("/Users/58/Desktop/img.png");
 			this.setImage(image);
 			this.repaint();
 		}
@@ -65,7 +75,7 @@ public class PanelView extends JPanel implements Runnable {
 //		File file = new File("/Users/58/Desktop/img.png");
 //		BufferedImage image = ImageIO.read(file);
 //		p.setImage(image);
-//		f.setSize(image.getWidth(),image.getHeight());
+		f.setSize(1000,3000);
 		f.add(p);
 		f.setVisible(true);
 		

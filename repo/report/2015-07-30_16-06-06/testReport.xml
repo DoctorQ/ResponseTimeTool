@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?><?xml-stylesheet type="text/xsl"  href="testReport.xsl"?>
+<TestReport>
+  <TestDevice sn="2f2fb64220ed34f645d33cd222280efcaa37dadf" device="iPhone5" version="7.0.3">
+    <TestNetWork type="2G">
+      <TestViewLoop name="test_native_zhengzu_list" viewtype="native" datatype="json" aconnecttime="520" areadtime="12" aparsertime="50" total="582">
+        <TestView index="0" connect="520" read="12" parser="50" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_native_zhengzu_list/0/time.log" />
+      </TestViewLoop>
+      <TestViewLoop name="test_web_xinfang_list" viewtype="webview" aparsertime="882" total="882">
+        <TestView index="0" parser="1029" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/0/time.log" />
+        <TestView index="1" parser="735" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/1/time.log" />
+      </TestViewLoop>
+    </TestNetWork>
+  </TestDevice>
+</TestReport>

@@ -156,7 +156,6 @@ public class AndroidDevice implements Device {
 			image = new BufferedImage(width, height,
 					BufferedImage.TYPE_INT_RGB);
 		}
-		
 		return image;
 	}
 	
