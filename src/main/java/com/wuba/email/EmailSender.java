@@ -37,12 +37,13 @@ public class EmailSender {
 	private String content;
 	// 记录所有附件文件的集合
 	private List<String> attachments = new ArrayList<String>();
-	private String resourcePath = "build/resources/main/";
+	private String resourcePath;
 	private EmailConfig config;
 
 	// 无参数的构造器
 	public EmailSender(String htmlPath) {
 		setContent(readHTML(htmlPath));
+		resourcePath = this.getClass().getResource("/email.xml").getPath();
 	}
 
 	// content属性的setter方法
