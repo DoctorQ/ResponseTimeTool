@@ -2,6 +2,9 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'jacoco'
 apply plugin: 'sonar-runner'
+apply plugin: 'application'
+
+mainClassName = "com.wuba.gui.HomePage"
 
 sourceCompatibility = 1.6
 version = '1.0'
