@@ -129,7 +129,7 @@ public class HomePage extends JFrame {
 	private void initialize() throws Exception {
 		frmReactingTime = new JFrame();
 		frmReactingTime.setFont(new Font("Dialog", Font.BOLD, 13));
-		frmReactingTime.setSize(900, 426);
+//		frmReactingTime.setSize(900, 426);
 		frmReactingTime.setTitle("Reacting Time");
 		frmReactingTime.setBounds(100, 100, 700, 426);
 		frmReactingTime.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
