@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?><?xml-stylesheet type="text/xsl"  href="testReport.xsl"?>
+<TestReport>
+  <TestDevice sn="2f2fb64220ed34f645d33cd222280efcaa37dadf" device="iPhone5" version="7.0.3">
+    <TestNetWork type="2G">
+      <TestViewLoop name="test_native_zhengzu_list" viewtype="native" datatype="json" aconnecttime="520" areadtime="12" aparsertime="50" total="582">
+        <TestView index="0" connect="520" read="12" parser="50" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_native_zhengzu_list/0/time.log" />
+      </TestViewLoop>
+      <TestViewLoop name="test_web_xinfang_list" viewtype="webview" aparsertime="882" total="882">
+        <TestView index="0" parser="1029" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/0/time.log" />
+        <TestView index="1" parser="735" logfile="repo/result/ios/iPhone5_2G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/1/time.log" />
+      </TestViewLoop>
+    </TestNetWork>
+    <TestNetWork type="3G">
+      <TestViewLoop name="test_native_zhengzu_list" viewtype="native" datatype="json" aconnecttime="520" areadtime="12" aparsertime="50" total="582">
+        <TestView index="0" connect="520" read="12" parser="50" logfile="repo/result/ios/iPhone5_3G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_native_zhengzu_list/0/time.log" />
+      </TestViewLoop>
+      <TestViewLoop name="test_web_xinfang_list" viewtype="webview" aparsertime="882" total="882">
+        <TestView index="0" parser="1029" logfile="repo/result/ios/iPhone5_3G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/0/time.log" />
+        <TestView index="1" parser="735" logfile="repo/result/ios/iPhone5_3G_2f2fb64220ed34f645d33cd222280efcaa37dadf_7.0.3_20150727042215/test_web_xinfang_list/1/time.log" />
+      </TestViewLoop>
+    </TestNetWork>
+  </TestDevice>
+  <TestDevice sn="dksldfdffdf" device="MI" version="4.4.2">
+    <TestNetWork type="2G">
+      <TestViewLoop name="case3" viewtype="webview" aparsertime="674" total="674">
+        <TestView index="0" parser="674" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case3/0/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case1" viewtype="native" datatype="json" aconnecttime="674" areadtime="277" aparsertime="408" total="1359">
+        <TestView index="0" connect="674" read="272" parser="407" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/0/result.txt" />
+        <TestView index="1" connect="674" read="282" parser="410" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/1/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case2" viewtype="native" datatype="xml" aconnecttime="2980" aparsertime="303" total="3283">
+        <TestView index="0" connect="2980" parser="303" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case2/0/result.txt" />
+      </TestViewLoop>
+    </TestNetWork>
+    <TestNetWork type="4G">
+      <TestViewLoop name="case7" viewtype="webview" aparsertime="674" total="674">
+        <TestView index="0" parser="674" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case3/0/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case8" viewtype="native" datatype="json" aconnecttime="674" areadtime="277" aparsertime="408" total="1359">
+        <TestView index="0" connect="674" read="272" parser="407" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/0/result.txt" />
+        <TestView index="1" connect="674" read="282" parser="410" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/1/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case9" viewtype="native" datatype="xml" aconnecttime="2980" aparsertime="303" total="3283">
+        <TestView index="0" connect="2980" parser="303" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case2/0/result.txt" />
+      </TestViewLoop>
+    </TestNetWork>
+  </TestDevice>
+  <TestDevice sn="1232324343" device="HW" version="4.4.2">
+    <TestNetWork type="4G">
+      <TestViewLoop name="case7" viewtype="webview" aparsertime="674" total="674">
+        <TestView index="0" parser="674" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case3/0/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case8" viewtype="native" datatype="json" aconnecttime="674" areadtime="277" aparsertime="408" total="1359">
+        <TestView index="0" connect="674" read="272" parser="407" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/0/result.txt" />
+        <TestView index="1" connect="674" read="282" parser="410" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case1/1/result.txt" />
+      </TestViewLoop>
+      <TestViewLoop name="case9" viewtype="native" datatype="xml" aconnecttime="2980" aparsertime="303" total="3283">
+        <TestView index="0" connect="2980" parser="303" logfile="repo/result/android/MI_2G_dksldfdffdf_4.4.2_201507210823923/case2/0/result.txt" />
+      </TestViewLoop>
+    </TestNetWork>
+  </TestDevice>
+</TestReport>
