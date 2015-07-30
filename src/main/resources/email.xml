@@ -1,17 +1,11 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no' ?><?xml-stylesheet type="text/xsl"  href="cts_result.xsl"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <email>
 	<smptserver>smtp.exmail.qq.com</smptserver>
 	<username>wuxianautotest@58.com</username>
 	<password>58autotest</password>
 	<from>wuxianautotest@58.com</from>
 	<to>
-		<item>wuxian-auto@58.com</item>
-		<item>wuxian-androidrd@58.com</item>
-		<item>wuxian-qa@58.com</item>
-		<item>wuxian-iosrd@58.com</item>
+		<item>qianhui@58.com</item>
 	</to>
-
-	<title>Jenkins CI Report</title>
-
-
+	<title>Response Time Test Report</title>
 </email>
