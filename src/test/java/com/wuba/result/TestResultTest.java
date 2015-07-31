@@ -121,5 +121,7 @@ public class TestResultTest {
 		
 		iosTestresult.serializeResultToXml();
 	}
+	
+	
 
 }

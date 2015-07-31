@@ -15,11 +15,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,10 +47,9 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
-import org.omg.CORBA.TIMEOUT;
 
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import com.wuba.device.DeviceManager;
+import com.wuba.replayer.IOSPlayer;
 
 //import com.android.screen.monitor.ADB;
 //import com.android.screen.monitor.AboutDialog;
@@ -58,6 +58,7 @@ import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
+	private static final Logger LOG = Logger.getLogger(HomePage.class);
 
 	public static Logger logger = Logger.getLogger(HomePage.class);
 	private JFrame frmReactingTime = null;
@@ -290,7 +291,7 @@ public class HomePage extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(connectAndroid.isSelected()){
 						try {
-							new SelectDeviceDialog(1).lanch(1); //flag 1:Android 2:iOS
+							SelectDeviceDialog.lanch(2); //flag 1:Android 2:iOS
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -310,11 +311,25 @@ public class HomePage extends JFrame {
 					}
 					
 					else if(connectIos.isSelected()){
+						int iosCount = DeviceManager.getIOSDevices("com.taofang.iphone").length;
 						try {
-							new SelectDeviceDialog(2).lanch(2);
+							if(iosCount ==0){
+								JOptionPane.showMessageDialog(null, "There is no ios devices, please plugin one!","Alert",JOptionPane.ERROR_MESSAGE);
+								openFileButton.setEnabled(true);
+								connectButton.setEnabled(true);
+								recordButton.setEnabled(true);
+								stopButton.setEnabled(true);
+								clearLogButton.setEnabled(true);
+								aboutButton.setEnabled(true);
+							}
+							else{
+								SelectDeviceDialog.lanch(2);
+							}
 						} catch (Exception e1) {
+							
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							
 						}
 						openFileButton.setEnabled(false);
 						connectButton.setEnabled(false);
@@ -430,13 +445,22 @@ public class HomePage extends JFrame {
 			replayButton.setToolTipText("stop record");
 			replayButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/replay.png")));
 			replayButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {	
 					replayButton.setEnabled(false);
-					recordButton.setEnabled(true);
+					recordButton.setEnabled(false);
 					openFileButton.setEnabled(true);
 					if (caseRows.size() != 0 && !allUnMarked()
 							&& !replayButton.isEnabled()) {
 						replayButton.setEnabled(true);
+						//handle diff platfrom
+						if(connectIos.isSelected()){
+							System.out.println("ios run");
+							IOSPlayer iosPlayer = new IOSPlayer(null, null);
+							iosPlayer.play(null);
+						}else if (connectAndroid.isSelected()){
+							//Android replayer
+							System.out.println("Android run");
+						}
 					}
 				}
 			});

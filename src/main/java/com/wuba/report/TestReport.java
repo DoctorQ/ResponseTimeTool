@@ -23,15 +23,15 @@ import com.wuba.utils.Constant;
  */
 public class TestReport implements XMLParser {
 
-	
+	public File getXmlFile() {
+		return xmlFile;
+	}
+
 
 	public Map<String, TestDevice> getTestDevices() {
 		return testDevices;
 	}
 
-	public File getReportDir() {
-		return reportDir;
-	}
 
 	public String getPlatform() {
 		return platform;
@@ -44,16 +44,15 @@ public class TestReport implements XMLParser {
 	private static final Logger LOG = Logger.getLogger(TestReport.class);
 	private static final String XML_TAG = "TestReport";
 	private static final String PLATFORM_ATTR = "platform";
-	
 
 	private Map<String, TestDevice> testDevices = new LinkedHashMap<String, TestDevice>();
 
-	private File reportDir;
+	private File xmlFile;
 	private String platform;
 
-	public TestReport(File reportDir) {
+	public TestReport(File xmlFile) {
 		// TODO Auto-generated constructor stub
-		this.reportDir = reportDir;
+		this.xmlFile = xmlFile;
 	}
 
 	/*
@@ -63,7 +62,8 @@ public class TestReport implements XMLParser {
 	@Override
 	public void serialize(KXmlSerializer serializer) throws IOException {
 		serializer.startTag(Constant.NAMESPACE, XML_TAG);
-		//serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR, getPlatform());
+		// serializer.attribute(Constant.NAMESPACE, PLATFORM_ATTR,
+		// getPlatform());
 		Collection<TestDevice> collection = testDevices.values();
 		for (TestDevice mTestDevice : collection) {
 			mTestDevice.serialize(serializer);
@@ -83,10 +83,8 @@ public class TestReport implements XMLParser {
 	public void serializeResultToXml() {
 
 		OutputStream stream = null;
-		File xmlFile = new File(reportDir, Constant.TESTREPORT_XML);
 		try {
-			stream = createOutputResultStream(new File(reportDir,
-					Constant.TESTREPORT_XML));
+			stream = createOutputResultStream(xmlFile);
 			KXmlSerializer serializer = new KXmlSerializer();
 			serializer.setOutput(stream, "UTF-8");
 			serializer.startDocument("UTF-8", false);
@@ -99,10 +97,6 @@ public class TestReport implements XMLParser {
 			serialize(serializer);
 			serializer.endDocument();
 
-			// 生成HTML报告
-			new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
-			// 生成Excel报告
-			new ExcelReportGenerator(this).generaterExcelReport();
 		} catch (Exception e) {
 			LOG.error(e);
 			e.printStackTrace();

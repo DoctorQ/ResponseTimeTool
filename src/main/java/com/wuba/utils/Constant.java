@@ -120,5 +120,9 @@ public class Constant {
 	public static final String NAMESPACE = null;
 	public static final String TESTRESULT_XML = "testResult.xml";
 	public static final String TESTREPORT_XML = "testReport.xml";
+	/*
+	 * html报告的后缀名，因为会存放历史数据，所以以时间戳来区分报告，所以最终的报告会以时间戳+html后缀名
+	 */
+	public static final String TESTREPORT_HTML = "testReport.html";
 	
 }

@@ -1,0 +1,13 @@
+<suite name="Suite" verbose="1">
+	<parameter name="max" value="2"></parameter>
+	<test name="report">
+		<classes>
+			<class name="com.wuba.report.Testr"></class>
+		</classes>
+	</test>
+	<test name="result">
+		<classes>
+			<class name="com.wuba.result"></class>
+		</classes>
+	</test>
+</suite> 

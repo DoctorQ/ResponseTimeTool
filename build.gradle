@@ -31,6 +31,7 @@ dependencies {
 	compile 'org.robovm:robovm-libimobiledevice:1.5.0'
 	compile 'net.sf.jali:chimpchat:24.3'
 	compile 'jexcelapi:jxl:2.6'
+	compile 'javax.mail:mail:1.5.0-b01'
 
 
 }
@@ -51,8 +52,9 @@ test {
     systemProperties 'property': 'value'
     
     useTestNG{
-    	includeGroups 'unittest'
+    	//includeGroups 'unittest'
     	//includeGroups 'iostest'
+    	suites 'src/main/resources/testng.xml'
     }
     jacoco {
         append = false

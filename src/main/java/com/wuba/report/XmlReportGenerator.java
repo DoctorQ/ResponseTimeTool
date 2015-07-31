@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.sun.net.httpserver.Authenticator.Success;
+import com.wuba.email.EmailSender;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.IOSLogParser;
 import com.wuba.logparser.LogParser;
@@ -31,6 +32,8 @@ public class XmlReportGenerator implements ReportGenerator {
 	private TestReport mTestReport = null;
 	private LogParser mLogParser = null;
 
+	private File xmlFile;
+
 	/*
 	 * @see com.wuba.result.ReportGenerator#generateReporter(java.io.File)
 	 */
@@ -44,11 +47,23 @@ public class XmlReportGenerator implements ReportGenerator {
 		// getPlatform(platform);
 		generateReportFile();
 		parserTestReportByTestResult(rootDir);
-
 		mTestReport.serializeResultToXml();
-		
-		
-		
+
+		generaterHtmlAndExeclReport();
+	}
+
+	/**
+	 * 根据testReport生成html和execl报告
+	 */
+	private void generaterHtmlAndExeclReport() {
+		// 生成HTML报告
+		new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
+		// 生成Excel报告
+		new ExcelReportGenerator(mTestReport).generaterExcelReport();
+		// 发送邮件
+		File htmlFile = new File(xmlFile.getParentFile(),
+				Constant.TESTREPORT_HTML);
+		new EmailSender().send(htmlFile);
 
 	}
 
@@ -71,6 +86,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		}
 
 		mTestReport.serializeResultToXml();
+		generaterHtmlAndExeclReport();
 
 	}
 
@@ -78,7 +94,8 @@ public class XmlReportGenerator implements ReportGenerator {
 		File reportFile = new File(DirStructureUtil.getReport(),
 				getFileNameFromTimeStamp());
 		createNewFile(reportFile);
-		mTestReport = new TestReport(reportFile);
+		xmlFile = new File(reportFile, Constant.TESTREPORT_XML);
+		mTestReport = new TestReport(xmlFile);
 	}
 
 	private void parserTestReportByTestResult(File rootDir) {
