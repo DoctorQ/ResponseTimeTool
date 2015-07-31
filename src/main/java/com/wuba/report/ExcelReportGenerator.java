@@ -61,7 +61,8 @@ public class ExcelReportGenerator {
 		if (testReport == null)
 			return;
 
-		File xlsFile = new File(testReport.getReportDir(), XLSFILE);
+		File xlsFile = new File(testReport.getXmlFile().getParentFile(),
+				XLSFILE);
 		if (!xlsFile.exists())
 			try {
 				boolean success = xlsFile.createNewFile();
