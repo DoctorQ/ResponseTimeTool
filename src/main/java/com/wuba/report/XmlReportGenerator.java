@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.sun.net.httpserver.Authenticator.Success;
+import com.wuba.email.EmailSender;
 import com.wuba.logparser.AndroidLogParser;
 import com.wuba.logparser.IOSLogParser;
 import com.wuba.logparser.LogParser;
@@ -31,7 +32,6 @@ public class XmlReportGenerator implements ReportGenerator {
 	private TestReport mTestReport = null;
 	private LogParser mLogParser = null;
 
-
 	private File xmlFile;
 
 	/*
@@ -48,11 +48,10 @@ public class XmlReportGenerator implements ReportGenerator {
 		generateReportFile();
 		parserTestReportByTestResult(rootDir);
 		mTestReport.serializeResultToXml();
-		
-		
 
 		generaterHtmlAndExeclReport();
 	}
+
 	/**
 	 * 根据testReport生成html和execl报告
 	 */
@@ -61,6 +60,11 @@ public class XmlReportGenerator implements ReportGenerator {
 		new HtmlReportGenerator().transferToHtml(xmlFile.getAbsolutePath());
 		// 生成Excel报告
 		new ExcelReportGenerator(mTestReport).generaterExcelReport();
+		// 发送邮件
+		File htmlFile = new File(xmlFile.getAbsoluteFile(),
+				Constant.TESTREPORT_HTML);
+		new EmailSender().send(htmlFile);
+
 	}
 
 	/*

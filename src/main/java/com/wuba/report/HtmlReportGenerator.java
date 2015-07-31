@@ -18,6 +18,8 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.apache.log4j.Logger;
 
+import com.wuba.utils.Constant;
+
 /**
  * @author hui.qian qianhui@58.com
  * @date 2015年7月22日 下午5:22:44
@@ -29,10 +31,7 @@ public class HtmlReportGenerator{
 	 * 报告格式文件xsl文件名
 	 */
 	private static final String TESTREPORT_XSL = "testReport.xsl";
-	/*
-	 * html报告的后缀名，因为会存放历史数据，所以以时间戳来区分报告，所以最终的报告会以时间戳+html后缀名
-	 */
-	private static final String TESTREPORT_HTML = "testReport.html";
+	
 
 	/*
 	 * 资源文件存放目录，里面存放有报告的xsl文件(配置报告的格式)，email配置文件
@@ -65,7 +64,7 @@ public class HtmlReportGenerator{
 			return;
 		}
 		String htmlPath = new File(xmlPath).getParent() + File.separator
-				+ TESTREPORT_HTML;
+				+ Constant.TESTREPORT_HTML;
 
 		transferToHtml(xslPath, xmlPath, htmlPath);
 
