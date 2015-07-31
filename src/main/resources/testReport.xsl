@@ -282,7 +282,7 @@
 							<h1>Response Time Test Report</h1>
 						</TH>
 						<TD colspan="1" class="description">
-							<img class="logo" src="logo.gif" />
+							<img class="logo" src="cid:logo" />
 						</TD>
 					</TR>
 				</TABLE>

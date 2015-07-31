@@ -37,13 +37,22 @@ public class EmailSender {
 	private String content;
 	// 记录所有附件文件的集合
 	private List<String> attachments = new ArrayList<String>();
-	private String resourcePath;
+
 	private EmailConfig config;
+	private String emailPath;
+	private String logoPath;
 
 	// 无参数的构造器
-	public EmailSender(String htmlPath) {
-		setContent(readHTML(htmlPath));
-		resourcePath = this.getClass().getResource("/email.xml").getPath();
+	public EmailSender() {
+
+		init();
+
+	}
+
+	private void init() {
+		emailPath = this.getClass().getResource("/email.xml").getPath();
+		logoPath = this.getClass().getResource("/logo.gif").getPath();
+		config = new EmailConfig();
 	}
 
 	// content属性的setter方法
@@ -73,7 +82,7 @@ public class EmailSender {
 		return false;
 	}
 
-	public String readHTML(String spath) {
+	public String readHTML(File file) {
 
 		InputStreamReader isReader = null;
 
@@ -82,8 +91,6 @@ public class EmailSender {
 		StringBuffer buf = new StringBuffer();
 
 		try {
-
-			File file = new File(spath);
 
 			isReader = new InputStreamReader(new FileInputStream(file), "utf-8");
 
@@ -125,7 +132,10 @@ public class EmailSender {
 
 	// 发送邮件
 
-	public boolean send(String title) {
+	public boolean send(File htmlFile) {
+
+		setContent(readHTML(htmlFile));
+		config.parserEmailXml(new File(emailPath));
 		// 创建邮件Session所需的Properties对象
 		Properties props = new Properties();
 		props.put("mail.smtp.host", config.getSmtp());
@@ -152,7 +162,7 @@ public class EmailSender {
 			}
 			msg.setRecipients(Message.RecipientType.TO, addresses);
 			// 设置邮件主题
-			msg.setSubject(transferChinese(config.getTitle() + "--" + title));
+			msg.setSubject(transferChinese(config.getTitle()));
 			// 构造Multipart
 			MimeMultipart mp = new MimeMultipart();
 			// 向Multipart添加正文
@@ -168,13 +178,22 @@ public class EmailSender {
 			MimeBodyPart mbpFile = new MimeBodyPart();
 			mbpFile.setContentID("logo");
 			// 以文件名创建FileDataSource对象
-			FileDataSource fds = new FileDataSource(resourcePath + "logo.gif");
+			FileDataSource fds = new FileDataSource(logoPath);
 			// 处理附件
 			mbpFile.setDataHandler(new DataHandler(fds));
 			mbpFile.setFileName(fds.getName());
 
+//			MimeBodyPart xlsFile = new MimeBodyPart();
+//			// 以文件名创建FileDataSource对象
+//			FileDataSource xlsFds = new FileDataSource(htmlFile.getParent()
+//					+ File.separator + "testReport.xls");
+//			// 处理附件
+//			mbpFile.setDataHandler(new DataHandler(xlsFds));
+//			mbpFile.setFileName(xlsFds.getName());
+
 			// 将BodyPart添加到MultiPart中
 			mp.addBodyPart(mbpFile);
+			//mp.addBodyPart(xlsFile);
 			// 清空附件列表
 			// 向Multipart添加MimeMessage
 			msg.setContent(mp);
