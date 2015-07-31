@@ -28,7 +28,7 @@ public class EmailSenderTest {
 		sender = new EmailSender();
 	}
 
-	@Test(groups = { "unittest" })
+	@Test
 	public void sendEmailTest() {
 
 		File rootFile = DirStructureUtil.getReport();
