@@ -48,6 +48,8 @@ import javax.swing.text.html.HTMLEditorKit;
 import org.apache.log4j.Logger;
 import org.omg.CORBA.TIMEOUT;
 
+import com.wuba.device.DeviceManager;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -311,8 +313,20 @@ public class HomePage extends JFrame {
 					}
 					
 					else if(connectIos.isSelected()){
+						int iosCount = DeviceManager.getIOSDevices("com.taofang.iphone").length;
 						try {
-							SelectDeviceDialog.lanch(2);
+							if(iosCount ==0){
+								JOptionPane.showMessageDialog(null, "There is no ios devices, please plugin one!","Alert",JOptionPane.ERROR_MESSAGE);
+								openFileButton.setEnabled(true);
+								connectButton.setEnabled(true);
+								recordButton.setEnabled(true);
+								stopButton.setEnabled(true);
+								clearLogButton.setEnabled(true);
+								aboutButton.setEnabled(true);
+							}
+							else{
+								SelectDeviceDialog.lanch(2);
+							}
 						} catch (Exception e1) {
 							
 							// TODO Auto-generated catch block
