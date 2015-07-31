@@ -4,10 +4,16 @@
 package com.wuba.email;
 
 import java.io.File;
+import java.io.FileFilter;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
+import org.w3c.dom.html.HTMLScriptElement;
 
+import com.android.io.FolderWrapper;
+import com.android.io.IAbstractFolder;
+import com.android.io.IAbstractFolder.FilenameFilter;
 import com.wuba.utils.DirStructureUtil;
 
 /**
@@ -17,16 +23,35 @@ import com.wuba.utils.DirStructureUtil;
 public class EmailSenderTest {
 	EmailSender sender;
 
-	@BeforeClass
+	@BeforeGroups(groups = { "unittest" })
 	public void setUp() {
 		sender = new EmailSender();
 	}
 
-	@Test()
+	@Test(groups = { "unittest" })
 	public void sendEmailTest() {
-		File file = new File(DirStructureUtil.getReport(),
-				"/2015-07-31_10-45-44/testReport.html");
-		sender.send(file);
+
+		File rootFile = DirStructureUtil.getReport();
+
+		FileFilter filter = new FileFilter() {
+
+			@Override
+			public boolean accept(File pathname) {
+				// TODO Auto-generated method stub
+				if (pathname.getName().equals("testReport.html"))
+					return true;
+				return false;
+			}
+		};
+		File[] files = rootFile.listFiles();
+		for (File file : files) {
+			File[] reports = file.listFiles(filter);
+			if (files.length > 0) {
+				sender.send(reports[0]);
+				return;
+			}
+		}
+
 	}
 
 }
