@@ -61,7 +61,7 @@ public class XmlReportGenerator implements ReportGenerator {
 		// 生成Excel报告
 		new ExcelReportGenerator(mTestReport).generaterExcelReport();
 		// 发送邮件
-		File htmlFile = new File(xmlFile.getAbsoluteFile(),
+		File htmlFile = new File(xmlFile.getParentFile(),
 				Constant.TESTREPORT_HTML);
 		new EmailSender().send(htmlFile);
 

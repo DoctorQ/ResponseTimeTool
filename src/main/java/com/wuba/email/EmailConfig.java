@@ -176,7 +176,7 @@ public class EmailConfig extends AbstractXmlPullParser {
 		while (eventType != XmlPullParser.END_TAG) {
 			if (eventType == XmlPullParser.TEXT) {
 				String text = parser.getText();
-				LOG.info("text : " + text);
+				LOG.debug("text : " + text);
 				return text;
 			}
 			eventType = parser.next();
