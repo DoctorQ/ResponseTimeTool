@@ -2,7 +2,7 @@
 	<parameter name="max" value="2"></parameter>
 	<test name="report">
 		<classes>
-			<class name="com.wuba.report"></class>
+			<class name="com.wuba.report.Testr"></class>
 		</classes>
 	</test>
 	<test name="result">
