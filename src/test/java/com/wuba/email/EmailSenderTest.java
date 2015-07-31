@@ -23,7 +23,7 @@ public class EmailSenderTest {
 	}
 	@Test()
 	public void sendEmailTest(){
-		File file = new File(DirStructureUtil.getReport(),"/2015-07-30_19-18-07/testReport.html");
+		File file = new File(DirStructureUtil.getReport(),"/2015-07-31_10-45-44/testReport.html");
 		sender.send(file);
 		
 	}

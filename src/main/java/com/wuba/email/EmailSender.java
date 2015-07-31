@@ -111,14 +111,16 @@ public class EmailSender {
 			// TODO 关闭流
 
 			try {
-				isReader.close();
+				if (isReader != null)
+					isReader.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 			try {
-				bufReader.close();
+				if (bufReader != null)
+					bufReader.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -182,18 +184,19 @@ public class EmailSender {
 			// 处理附件
 			mbpFile.setDataHandler(new DataHandler(fds));
 			mbpFile.setFileName(fds.getName());
-
-//			MimeBodyPart xlsFile = new MimeBodyPart();
-//			// 以文件名创建FileDataSource对象
-//			FileDataSource xlsFds = new FileDataSource(htmlFile.getParent()
-//					+ File.separator + "testReport.xls");
-//			// 处理附件
-//			mbpFile.setDataHandler(new DataHandler(xlsFds));
-//			mbpFile.setFileName(xlsFds.getName());
+			// 将execl格式添加到附近中
+			MimeBodyPart xlsFile = new MimeBodyPart();
+			// 以文件名创建FileDataSource对象
+			String xlsPath = htmlFile.getParent() + File.separator
+					+ "testReport.xls";
+			FileDataSource xlsFds = new FileDataSource(xlsPath);
+			// 处理附件
+			xlsFile.setDataHandler(new DataHandler(xlsFds));
+			xlsFile.setFileName(xlsFds.getName());
 
 			// 将BodyPart添加到MultiPart中
+			mp.addBodyPart(xlsFile);
 			mp.addBodyPart(mbpFile);
-			//mp.addBodyPart(xlsFile);
 			// 清空附件列表
 			// 向Multipart添加MimeMessage
 			msg.setContent(mp);
