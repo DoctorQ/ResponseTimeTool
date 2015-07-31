@@ -291,7 +291,7 @@ public class HomePage extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(connectAndroid.isSelected()){
 						try {
-							new SelectDeviceDialog(1); //flag 1:Android 2:iOS
+							SelectDeviceDialog.lanch(2); //flag 1:Android 2:iOS
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -312,7 +312,7 @@ public class HomePage extends JFrame {
 					
 					else if(connectIos.isSelected()){
 						try {
-							new SelectDeviceDialog(2).lanch(2);;
+							SelectDeviceDialog.lanch(2);
 						} catch (Exception e1) {
 							
 							// TODO Auto-generated catch block

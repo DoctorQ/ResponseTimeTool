@@ -2,6 +2,7 @@ package com.wuba.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -34,6 +35,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 @SuppressWarnings({ "unused", "serial" })
 public class SelectDeviceDialog extends JDialog {
 
@@ -65,15 +69,15 @@ public class SelectDeviceDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	// public static void main(String[] args) {
-	// try {
-	// SelectDeviceDialog dialog = new SelectDeviceDialog(2);
-	// dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-	// dialog.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
+//	 public static void main(String[] args) {
+//	 try {
+//	 SelectDeviceDialog dialog = new SelectDeviceDialog(2);
+//	 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//	 dialog.setVisible(true);
+//	 } catch (Exception e) {
+//	 e.printStackTrace();
+//	 }
+//	 }
 
 	/**
 	 * Create the dialog.
@@ -82,7 +86,7 @@ public class SelectDeviceDialog extends JDialog {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access", "null" })
 	public SelectDeviceDialog(int flag) throws Exception {
-		super();
+//		super();
 		basicConfig();
 		if (flag == 2) {
 			add(getBundlePanel(), BorderLayout.NORTH);
@@ -91,7 +95,6 @@ public class SelectDeviceDialog extends JDialog {
 		if (flag == 2) {
 			deviceListScrollPane.setViewportView(getDeviceList(2));
 		}
-		
 		add(getButtonPane(), BorderLayout.SOUTH);
 	}
 
@@ -108,7 +111,6 @@ public class SelectDeviceDialog extends JDialog {
 	}
 
 	private JTextField getIosBundleIdField() {
-
 		if (iosBundleIdField == null) {
 			iosBundleIdField = new JTextField();
 			iosBundleIdField.setToolTipText("input ios bundle id");
@@ -142,7 +144,7 @@ public class SelectDeviceDialog extends JDialog {
 			for (IOSDevice ios : iosDeviceList) {
 				iosModel.add(i++, ios.getDeviceId());
 			}
-			deviceList.setModel(getListModel());
+			deviceList.setModel(getIosListModel());
 			deviceList.setVisible(false);
 			break;
 
@@ -153,7 +155,7 @@ public class SelectDeviceDialog extends JDialog {
 			for (AndroidDevice android : androidDeviceList) {
 				androidModel.add(j++, android.getDeviceId());
 			}
-			deviceList.setModel(getListModel());
+			deviceList.setModel(getIosListModel());
 			deviceList.setVisible(true);
 
 		default:
@@ -166,14 +168,7 @@ public class SelectDeviceDialog extends JDialog {
 		if (buttonPane == null) {
 			buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			JButton okButton = getOkButton();
-
-			okButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					onOk();
-				}
-			});
-			buttonPane.add(okButton);
+			buttonPane.add(getOkButton());
 			buttonPane.add(getCancelButton());
 		}
 		return buttonPane;
@@ -182,8 +177,15 @@ public class SelectDeviceDialog extends JDialog {
 	private JButton getOkButton() {
 		if (okButton == null) {
 			okButton = new JButton("OK");
-
+			okButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					dispose();
+//					setVisible(false);
+				}
+			});
 		}
+		
 		return okButton;
 	}
 
@@ -229,7 +231,8 @@ public class SelectDeviceDialog extends JDialog {
 		setBounds(200, 200, 450, 200);
 	}
 
-	private static DefaultListModel getListModel() {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private static DefaultListModel getIosListModel() {
 		int iosCount = DeviceManager.getIOSDevices("com.taofang.iphone").length;
 		System.out.println(iosCount);
 		if (iosBundleIdField.getText().equals("com.taofang.iphone")) {
@@ -237,7 +240,7 @@ public class SelectDeviceDialog extends JDialog {
 			iosModel = new DefaultListModel();
 			iosDeviceList = DeviceManager.getIOSDevices("com.taofang.iphone");
 			for (IOSDevice ios : iosDeviceList) {
-				System.out.println(ios.getDeviceId());
+//				System.out.println(ios.getDeviceId());
 				iosModel.add(i++, ios.getDeviceId());
 			}
 		}
@@ -285,14 +288,18 @@ public class SelectDeviceDialog extends JDialog {
 		return confirmButton;
 	}
 
-	public static void lanch(int flag) {
-		try {
-			SelectDeviceDialog dialog = new SelectDeviceDialog(flag);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public static void lanch(final int flag) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SelectDeviceDialog dialog = new SelectDeviceDialog(flag);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
