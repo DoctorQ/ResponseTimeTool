@@ -15,11 +15,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Vector;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,12 +47,9 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
-import org.omg.CORBA.TIMEOUT;
 
 import com.wuba.device.DeviceManager;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import com.wuba.replayer.IOSPlayer;
 
 //import com.android.screen.monitor.ADB;
 //import com.android.screen.monitor.AboutDialog;
@@ -447,13 +445,22 @@ public class HomePage extends JFrame {
 			replayButton.setToolTipText("stop record");
 			replayButton.setIcon(new ImageIcon(HomePage.class.getResource("/image/replay.png")));
 			replayButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {	
 					replayButton.setEnabled(false);
-					recordButton.setEnabled(true);
+					recordButton.setEnabled(false);
 					openFileButton.setEnabled(true);
 					if (caseRows.size() != 0 && !allUnMarked()
 							&& !replayButton.isEnabled()) {
 						replayButton.setEnabled(true);
+						//handle diff platfrom
+						if(connectIos.isSelected()){
+							System.out.println("ios run");
+							IOSPlayer iosPlayer = new IOSPlayer(null, null);
+							iosPlayer.play(null);
+						}else if (connectAndroid.isSelected()){
+							//Android replayer
+							System.out.println("Android run");
+						}
 					}
 				}
 			});
