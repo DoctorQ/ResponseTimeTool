@@ -52,8 +52,9 @@ test {
     systemProperties 'property': 'value'
     
     useTestNG{
-    	includeGroups 'unittest'
+    	//includeGroups 'unittest'
     	//includeGroups 'iostest'
+    	suites 'src/main/resources/testng.xml'
     }
     jacoco {
         append = false

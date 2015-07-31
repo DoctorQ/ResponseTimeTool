@@ -3,12 +3,7 @@
  */
 package com.wuba.result;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
@@ -127,12 +122,6 @@ public class TestResultTest {
 		iosTestresult.serializeResultToXml();
 	}
 	
-	@Test
-	public void bufferImageReadTest() throws IOException{
-		BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+"/screen.png"));
-		
-		System.out.println("ssd");
-		
-	}
+	
 
 }

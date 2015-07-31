@@ -2,7 +2,6 @@
 <email>
 	<smptserver>smtp.exmail.qq.com</smptserver>
 	<username>wuxianautotest@58.com</username>
-	<password>58autotest</password>
 	<from>wuxianautotest@58.com</from>
 	<to>
 		<item>qianhui@58.com</item>
